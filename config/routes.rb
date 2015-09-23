@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   get 'logout' => 'users#logout', as: :user_logout
 
+  namespace :api do
+    resources :embeds
+  end
+
   # direct all non-caught pages somewhere
   get '(*foo)' => 'pages#hello'
   root 'pages#hello'
