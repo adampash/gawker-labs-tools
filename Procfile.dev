@@ -1,0 +1,6 @@
+web: rails s -b 0.0.0.0 -p 4000
+/*webpack: cd webpack && $(npm bin)/webpack -w --config webpack.rails.config.js*/
+//webpack: cd webpack && $(npm bin)/webpack -w --config webpack.hot.config.js
+webpack: cd webpack && $(npm bin)/webpack-dev-server --config webpack.hot.config.js --hot --progress --inline
+hot: cd webpack && gulp watch
+//hot: cd webpack && node server.js

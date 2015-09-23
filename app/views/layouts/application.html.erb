@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RailsReactWebpackStarter</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="root"></div>
+<%= yield %>
+
+  <script type="text/javascript">
+    window.data = {};
+    <% if user_signed_in? %>
+      data.currentUser = <%= current_user.to_json.html_safe %>;
+    <% else %>
+      data.currentUser = null;
+    <% end %>
+  </script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+</body>
+</html>
