@@ -8,6 +8,10 @@ h2 {
   font-family: Helvetica;
   color: green; }
 
+a {
+  text-decoration: none;
+  color: black; }
+
 a.login {
   text-rendering: optimizeLegibility;
   background: #808080;
