@@ -3,13 +3,16 @@ import { Link } from 'react-router'
 
 export default class HomeLink extends React.Component {
   render() {
-    console.log('hi')
-    let { to, text } = this.props
+    console.log(styles)
+    let { to, text, description } = this.props
     return (
       <Link to={ to } style={ styles.box }>
-        <div>
+        <h4 style={ styles.header }>
           { text }
-        </div>
+        </h4>
+        <p style={ styles.description }>
+          { description }
+        </p>
       </Link>
     )
   }
@@ -17,8 +20,22 @@ export default class HomeLink extends React.Component {
 
 const styles = {
   box: {
-    width: '33.33%',
+    maxWidth: '31%',
     background: 'white',
     display: 'flex',
+    flexDirection: 'column',
+    minHeight: 150,
+    padding: 20,
+    // margin: '0px 5px',
+    justifyContent: 'flex-start',
+    // flex: '1 1'
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    margin: 0,
+  },
+  description: {
+    fontSize: 15
   }
 }

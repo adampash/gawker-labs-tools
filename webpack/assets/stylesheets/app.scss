@@ -1,5 +1,9 @@
 @import 'fonts';
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
   background: #F4F2F2;
   margin: 0;
