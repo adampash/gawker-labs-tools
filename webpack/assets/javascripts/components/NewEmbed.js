@@ -1,11 +1,24 @@
 import React from 'react'
+import EmbedPreview from './EmbedPreview'
+import { createEmbed } from '../actions/embeds'
 
 export default class NewEmbed extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+
   handleSubmit(e) {
-    // let { createEmbed } = this.props
+    let { dispatch } = this.props
+    let { code } = this.state
     e.preventDefault()
-    // createEmbed()
-    console.log('handled!')
+    dispatch(createEmbed({code}))
+  }
+
+  handleChange(e) {
+    this.setState({
+      code: e.target.value
+    })
   }
 
   render() {
@@ -15,6 +28,7 @@ export default class NewEmbed extends React.Component {
           <textarea
             placeholder="Paste the embed code here"
             style={ styles.textarea }
+            onChange={ this.handleChange.bind(this) }
           />
           <button type="submit">Create embed</button>
         </form>

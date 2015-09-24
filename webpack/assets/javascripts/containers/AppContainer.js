@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect, dispatch } from 'react-redux'
-import { pushState } from 'redux-router'
 import { Link } from 'react-router'
-import DumbComponent from '../components/DumbComponent'
 import NavBar from '../components/NavBar'
 import { test } from '../actions/example'
 
@@ -14,7 +12,9 @@ let AppContainer = React.createClass({
       <div>
         <NavBar currentUser={ currentUser } />
         <div style={ styles.container }>
-          { this.props.children }
+          { React.Children.map(this.props.children, (child) => {
+              return React.cloneElement(child, { dispatch })
+          })}
         </div>
       </div>
     )

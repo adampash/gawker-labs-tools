@@ -4,6 +4,7 @@ import AppContainer from './containers/AppContainer'
 import Login from './components/Login'
 import Home from './components/Home'
 import NewEmbed from './components/NewEmbed'
+import ShowEmbed from './components/ShowEmbed'
 import Embeds from './components/Embeds'
 
 let getRoutes = (store) => {
@@ -29,6 +30,7 @@ let getRoutes = (store) => {
       <Route path="/login" component={Login} />
       <Route path="embeds" name="embeds" component={ Embeds }>
         <Route path="new" name="new_embed" component={ NewEmbed } />
+        <Route path=":embedId" name="show_embed" component={ ShowEmbed } />
       </Route>
     </Route>
   )
