@@ -23,7 +23,7 @@ class Root extends React.Component {
             {getRoutes(store)}
           </ReduxRouter>
         </Provider>
-        {__DEVTOOLS__ &&
+        {__DEVTOOLS__ && false &&
           <DebugPanel top right bottom>
             <DevTools store={store} monitor={LogMonitor} />
           </DebugPanel>

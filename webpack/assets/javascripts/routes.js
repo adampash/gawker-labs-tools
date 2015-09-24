@@ -10,7 +10,6 @@ let getRoutes = (store) => {
   let loggedIn = false
   let auth = {
     loggedIn(state) {
-      console.log('current user', state().currentUser)
       let { currentUser } = state()
       return currentUser
     },

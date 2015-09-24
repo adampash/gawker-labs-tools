@@ -1,14 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router'
+import HomeLink from './HomeLink'
 
 export default class Home extends React.Component {
   render() {
     return (
       <div style={ styles.container }>
-        This is where all the content goes, okay?
-        <div>
-          <Link to="/embed/new">New embed</Link>
-        </div>
+        <HomeLink to="/embed/new" text="Embeds" />
       </div>
     )
   }
@@ -16,8 +13,7 @@ export default class Home extends React.Component {
 
 const styles = {
   container: {
-    maxWidth: 800,
-    padding: 40,
-    margin: '0 auto',
+    display: 'flex',
+    flexWrap: 'flex-wrap',
   }
 }

@@ -13,7 +13,9 @@ let AppContainer = React.createClass({
     return(
       <div>
         <NavBar currentUser={ currentUser } />
-        { this.props.children }
+        <div style={ styles.container }>
+          { this.props.children }
+        </div>
       </div>
     )
   }
@@ -22,6 +24,14 @@ let AppContainer = React.createClass({
 function select(state) {
   return {
     ...state,
+  }
+}
+
+const styles = {
+  container: {
+    maxWidth: 800,
+    padding: 40,
+    margin: '0 auto',
   }
 }
 
