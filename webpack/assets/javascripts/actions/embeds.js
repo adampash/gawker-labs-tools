@@ -15,7 +15,34 @@ export function getCurrentUser() {
   }
 }
 
-export function createEmbed(data) {
+export function showEmbed(embed) {
+  return {
+    type: SHOW_EMBED,
+    embed
+  }
+}
+
+export function getEmbedAsync(id) {
+  return (dispatch, getState) => {
+    let embed = getState().embeds[id]
+    if (embed) return dispatch(showEmbed(embed))
+    console.log('hitting the api')
+    fetch(`/api/embeds/${id}`, {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    )
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      dispatch(showEmbed(data))
+    })
+  }
+
+}
+
+export function createEmbed(data, history) {
   return (dispatch, getState) => {
     fetch('/api/embeds/', {
       method: 'post',
@@ -33,6 +60,7 @@ export function createEmbed(data) {
       return response.json()
     })
     .then(data => {
+      history.pushState(null, `/embeds/${data.id}`)
       console.log(data)
     })
 

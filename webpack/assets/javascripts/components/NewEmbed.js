@@ -9,10 +9,10 @@ export default class NewEmbed extends React.Component {
   }
 
   handleSubmit(e) {
-    let { dispatch } = this.props
+    let { dispatch, history } = this.props
     let { code } = this.state
     e.preventDefault()
-    dispatch(createEmbed({code}))
+    dispatch(createEmbed({code}, history))
   }
 
   handleChange(e) {

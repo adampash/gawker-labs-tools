@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 
 export default class HomeLink extends React.Component {
   render() {
-    console.log(styles)
     let { to, text, description } = this.props
     return (
       <Link to={ to } style={ styles.box }>

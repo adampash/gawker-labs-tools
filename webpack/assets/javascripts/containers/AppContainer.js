@@ -7,13 +7,18 @@ import { test } from '../actions/example'
 
 let AppContainer = React.createClass({
   render() {
-    const { dispatch, foo, currentUser } = this.props
+    const {
+      dispatch,
+      foo,
+      currentUser,
+      embeds
+    } = this.props
     return(
       <div>
         <NavBar currentUser={ currentUser } />
         <div style={ styles.container }>
           { React.Children.map(this.props.children, (child) => {
-              return React.cloneElement(child, { dispatch })
+              return React.cloneElement(child, { dispatch, embeds })
           })}
         </div>
       </div>
