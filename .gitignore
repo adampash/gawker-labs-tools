@@ -25,3 +25,5 @@ webpack/*hot-update.js
 
 # any environment variables
 .env
+
+aws.yml

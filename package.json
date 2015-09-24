@@ -33,6 +33,7 @@
     "normalize-scss": "^3.0.1-a",
     "react": "^0.14.0-rc1",
     "react-dom": "^0.14.0-rc1",
+    "react-dropzone": "^2.1.0",
     "react-hot-loader": "^1.1.7",
     "react-preload": "0.2.2",
     "react-retina-image": "^1.1.2",

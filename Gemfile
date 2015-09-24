@@ -42,6 +42,10 @@ gem 'newrelic_rpm'
 gem 'devise'
 gem "omniauth-google-oauth2"
 
+# attachments
+gem 'paperclip', "~> 4.3"
+gem 'aws-sdk'
+
 group :development, :test do
   gem 'dotenv-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
