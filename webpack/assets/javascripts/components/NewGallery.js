@@ -2,7 +2,7 @@ import React from 'react'
 import { createEmbed } from '../actions/embeds'
 import Dropzone from 'react-dropzone'
 import post from '../post'
-import DraggableImages from './DraggableImages'
+import ImageList from './ImageList'
 
 export default class NewGallery extends React.Component {
   constructor(props) {
@@ -57,6 +57,23 @@ export default class NewGallery extends React.Component {
     })
   }
 
+  reorderImages(from, to) {
+    let { files } = this.state
+    console.log('reorder images', from, to)
+    let file = this.state.files.slice(from, from + 1)[0]
+    let without = [
+      ...files.slice(0, from),
+      ...files.slice(from + 1)
+    ]
+    this.setState({
+      files: [
+        ...without.slice(0, to),
+        file,
+        ...without.slice(to)
+      ]
+    })
+  }
+
   render() {
     let { files } = this.state
     return (
@@ -69,8 +86,9 @@ export default class NewGallery extends React.Component {
           </Dropzone>
           <button type="submit">Create gallery</button>
         </form>
-        <DraggableImages
+        <ImageList
           images={ files }
+          reorderImages={ this.reorderImages.bind(this) }
         />
       </div>
     )
