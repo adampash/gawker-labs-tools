@@ -1,5 +1,5 @@
 import React from 'react'
-import { createEmbed } from '../actions/embeds'
+import { createGallery } from '../actions/galleries'
 import Dropzone from 'react-dropzone'
 import post from '../post'
 import ImageList from './ImageList'
@@ -48,7 +48,7 @@ export default class NewGallery extends React.Component {
     let { dispatch, history } = this.props
     let { code } = this.state
     e.preventDefault()
-    dispatch(createEmbed({code}, history))
+    dispatch(createGallery({images}, history))
   }
 
   handleChange(e) {
@@ -78,14 +78,21 @@ export default class NewGallery extends React.Component {
     let { files } = this.state
     return (
       <div style={ styles.container }>
-        <form onSubmit={ this.handleSubmit.bind(this) }>
+        <div style={ styles.topRow }>
           <Dropzone onDrop={ this.onDrop.bind(this) }>
             <div style={ styles.drop_message }>
               Drag and drop images here, or click to select files to upload.
             </div>
           </Dropzone>
-          <button type="submit">Create gallery</button>
-        </form>
+          <form style={ styles.form } onSubmit={ this.handleSubmit.bind(this) }>
+            <input type="text" placeholder="Gallery name"
+              style={ styles.input }
+            />
+            <button type="submit" style={ styles.button }>
+              Create gallery
+            </button>
+          </form>
+        </div>
         <ImageList
           images={ files }
           reorderImages={ this.reorderImages.bind(this) }
@@ -101,8 +108,31 @@ const styles = {
     width: '100%',
     margin: '20px auto',
   },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    padding: '0px 20px',
+  },
+  input: {
+    fontSize: 16,
+    padding: 5,
+    marginBottom: 20
+  },
+  button: {
+    padding: 10,
+    outline: 'none',
+    background: '#f3a',
+    border: 'none',
+    color: 'white',
+    fontSize: 16,
+    
+  },
   drop_message: {
     padding: 10,
   },
+  topRow: {
+    display: 'flex'
+  }
 }
 

@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch'
 import post from '../post'
-import { Router } from 'react-router'
 
 export const CREATE_EMBED = 'CREATE_EMBED'
 export const SHOW_EMBED = 'SHOW_EMBED'
