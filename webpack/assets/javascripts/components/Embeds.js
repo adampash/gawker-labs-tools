@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { dispatch, connect } from 'react-redux'
 
-export default class Embeds extends React.Component {
+class Embeds extends React.Component {
   renderChildren() {
     let { dispatch, embeds } = this.props
     return React.Children.map(this.props.children, (child) => {
@@ -21,3 +22,11 @@ export default class Embeds extends React.Component {
   }
 }
 
+function select(state) {
+  let { embeds } = state
+  return {
+    embeds
+  }
+}
+
+export default connect(select)(Embeds)

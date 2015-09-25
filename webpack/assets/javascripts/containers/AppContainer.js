@@ -2,17 +2,12 @@ import React from 'react'
 import { connect, dispatch } from 'react-redux'
 import { Link } from 'react-router'
 import NavBar from '../components/NavBar'
-import { test } from '../actions/example'
-
 
 let AppContainer = React.createClass({
   render() {
     const {
       dispatch,
-      foo,
       currentUser,
-      embeds,
-      galleries,
     } = this.props
     return(
       <div>
@@ -22,8 +17,6 @@ let AppContainer = React.createClass({
             return React.cloneElement(
               child, {
                 dispatch,
-                embeds,
-                galleries,
               })
           })}
         </div>
@@ -33,8 +26,9 @@ let AppContainer = React.createClass({
 })
 
 function select(state) {
+  let { currentUser } = state
   return {
-    ...state,
+    currentUser
   }
 }
 

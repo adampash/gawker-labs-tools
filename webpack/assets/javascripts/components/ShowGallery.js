@@ -1,4 +1,5 @@
 import React from 'react'
+import Gallery from './Gallery'
 import { getGalleryAsync } from '../actions/galleries'
 
 export default class ShowGallery extends React.Component {
@@ -26,6 +27,7 @@ export default class ShowGallery extends React.Component {
     let gallery = galleries[galleryId]
     return (
       <div style={ styles.container }>
+        <Gallery pics={ gallery.pics }/>
         <textarea
           value={ this.renderIframe() }
           style={ styles.textarea }
