@@ -15,7 +15,7 @@ export default class Gallery extends React.Component {
   }
   render() {
     return (
-      <Slider >
+      <Slider dots={true}>
         { this.renderImages() }
       </Slider>
     )

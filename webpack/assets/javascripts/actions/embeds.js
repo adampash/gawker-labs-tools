@@ -28,8 +28,11 @@ export function getEmbedAsync(id) {
     if (embed) return dispatch(showEmbed(embed))
     console.log('hitting the api')
     fetch(`/api/embeds/${id}`, {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        credentials: 'same-origin',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
       }
     )
     .then(response => {

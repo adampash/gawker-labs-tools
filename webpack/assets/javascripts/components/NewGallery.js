@@ -119,7 +119,8 @@ const styles = {
   input: {
     fontSize: 16,
     padding: 5,
-    marginBottom: 20
+    marginBottom: 20,
+    outline: 'none'
   },
   button: {
     padding: 10,

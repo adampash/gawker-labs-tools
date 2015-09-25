@@ -9,7 +9,7 @@ let AppContainer = React.createClass({
       dispatch,
       currentUser,
     } = this.props
-    return(
+    return (
       <div>
         <NavBar currentUser={ currentUser } />
         <div style={ styles.container }>

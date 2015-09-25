@@ -36,6 +36,33 @@ export function getGalleryAsync(id) {
 
 }
 
+export function showGalleries(galleries) {
+  return {
+    type: SHOW_GALLERIES,
+    galleries
+  }
+}
+
+export function getGalleriesAsync(id) {
+  return (dispatch, getState) => {
+    fetch(`/api/galleries`, {
+        credentials: 'same-origin',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      },
+    )
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      dispatch(showGalleries(data))
+    })
+  }
+
+}
+
 export function createGallery(data, history) {
   return (dispatch, getState) => {
     post('galleries', data)

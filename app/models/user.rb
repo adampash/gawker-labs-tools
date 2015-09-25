@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :galleries
+  has_many :embeds
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable,
     :omniauthable, :omniauth_providers => [:google_oauth2]
