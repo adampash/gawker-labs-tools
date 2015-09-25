@@ -11,17 +11,17 @@ export const SHOW_GALLERIES = 'SHOW_GALLERIES'
 
 export function showGallery(gallery) {
   return {
-    type: SHOW_EMBED,
-    embed
+    type: SHOW_GALLERY,
+    gallery
   }
 }
 
 export function getGalleryAsync(id) {
   return (dispatch, getState) => {
-    let embed = getState().embeds[id]
-    if (embed) return dispatch(showEmbed(embed))
+    let gallery = getState().galleries[id]
+    if (gallery) return dispatch(showGallery(gallery))
     console.log('hitting the api')
-    fetch(`/api/embeds/${id}`, {
+    fetch(`/api/galleries/${id}`, {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
@@ -30,7 +30,7 @@ export function getGalleryAsync(id) {
       return response.json()
     })
     .then(data => {
-      dispatch(showEmbed(data))
+      dispatch(showGallery(data))
     })
   }
 
@@ -43,7 +43,7 @@ export function createGallery(data, history) {
       return response.json()
     })
     .then(data => {
-      history.pushState(null, `/embeds/${data.id}`)
+      history.pushState(null, `/galleries/${data.id}`)
       console.log(data)
     })
 

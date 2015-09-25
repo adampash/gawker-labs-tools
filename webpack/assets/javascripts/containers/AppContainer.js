@@ -11,14 +11,20 @@ let AppContainer = React.createClass({
       dispatch,
       foo,
       currentUser,
-      embeds
+      embeds,
+      galleries,
     } = this.props
     return(
       <div>
         <NavBar currentUser={ currentUser } />
         <div style={ styles.container }>
           { React.Children.map(this.props.children, (child) => {
-              return React.cloneElement(child, { dispatch, embeds })
+            return React.cloneElement(
+              child, {
+                dispatch,
+                embeds,
+                galleries,
+              })
           })}
         </div>
       </div>

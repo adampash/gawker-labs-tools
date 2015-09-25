@@ -1,28 +1,29 @@
 import React from 'react'
-import { getEmbedAsync } from '../actions/embeds'
+import { getGalleryAsync } from '../actions/galleries'
 
-export default class ShowEmbed extends React.Component {
+export default class ShowGallery extends React.Component {
   componentWillMount() {
     let { routeParams, dispatch } = this.props
-    let { embedId } = routeParams
+    let { galleryId } = routeParams
 
-    dispatch(getEmbedAsync(embedId))
+    dispatch(getGalleryAsync(galleryId))
   }
 
   renderLink() {
     let { routeParams } = this.props
-    let { embedId } = routeParams
-    return `${window.location.origin}/api/embeds/${embedId}`
+    let { galleryId } = routeParams
+    return `${window.location.origin}/api/galleries/${galleryId}`
   }
 
   renderIframe() {
-    return `<iframe src="${this.renderLink()}" class="custom" width="100%" ></iframe>`
+    return ''
+    // return `<iframe src="${this.renderLink()}" class="custom" width="100%" ></iframe>`
   }
 
   renderEmbed() {
-    let { embeds, routeParams } = this.props
-    let { embedId } = routeParams
-    let embed = embeds[embedId]
+    let { galleries, routeParams } = this.props
+    let { galleryId } = routeParams
+    let gallery = galleries[galleryId]
     return (
       <div style={ styles.container }>
         <textarea
@@ -30,7 +31,7 @@ export default class ShowEmbed extends React.Component {
           style={ styles.textarea }
         >
         </textarea>
-        <a href={`/api/embeds/${embedId}`} target="_blank">
+        <a href={`/api/galleries/${galleryId}`} target="_blank">
           Preview
         </a>
         <iframe
@@ -44,9 +45,9 @@ export default class ShowEmbed extends React.Component {
   }
 
   render() {
-    let { embeds, routeParams } = this.props
-    let { embedId } = routeParams
-    if (embeds[embedId]) {
+    let { galleries, routeParams } = this.props
+    let { galleryId } = routeParams
+    if (galleries[galleryId]) {
       return this.renderEmbed()
     }
     else {

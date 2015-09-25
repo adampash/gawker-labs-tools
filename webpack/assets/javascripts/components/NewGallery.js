@@ -46,9 +46,11 @@ export default class NewGallery extends React.Component {
 
   handleSubmit(e) {
     let { dispatch, history } = this.props
-    let { code } = this.state
+    let { files } = this.state
+    let picture_ids = files.map( file => { return file.id })
+    let description = 'gallery'
     e.preventDefault()
-    dispatch(createGallery({images}, history))
+    dispatch(createGallery({picture_ids, description}, history))
   }
 
   handleChange(e) {

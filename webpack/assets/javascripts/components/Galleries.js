@@ -3,9 +3,9 @@ import { Link } from 'react-router'
 
 export default class Galleries extends React.Component {
   renderChildren() {
-    let { dispatch, embeds } = this.props
+    let { dispatch, galleries } = this.props
     return React.Children.map(this.props.children, (child) => {
-      return React.cloneElement(child, { dispatch, embeds })
+      return React.cloneElement(child, { dispatch, galleries })
     })
   }
 
