@@ -11,7 +11,7 @@ export default class Home extends React.Component {
           description="Converts unsupported Kinja embed code into supported Kinja embed code."
         />
         <HomeLink
-          to="/gallery/new"
+          to="/galleries"
           text="Galleries"
           description="Make Kinja-friendly image galleries."
         />

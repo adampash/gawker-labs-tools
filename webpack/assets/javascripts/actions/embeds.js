@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import post from '../post'
 import { Router } from 'react-router'
 
 export const CREATE_EMBED = 'CREATE_EMBED'
@@ -44,18 +45,7 @@ export function getEmbedAsync(id) {
 
 export function createEmbed(data, history) {
   return (dispatch, getState) => {
-    fetch('/api/embeds/', {
-      method: 'post',
-      body: JSON.stringify(data),
-      credentials: 'same-origin',
-      headers: {
-        "X-XSRF-TOKEN": decodeURIComponent(
-          document.cookie.match(/XSRF\-TOKEN\=([^;]*)/)[1]
-        ),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
+    post('embeds', data)
     .then(response => {
       return response.json()
     })

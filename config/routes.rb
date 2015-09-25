@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
 
+  get 'pictures/index'
+
+  get 'pictures/create'
+
+  get 'pictures/show'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
   get 'logout' => 'users#logout', as: :user_logout
 
   namespace :api do
     resources :embeds
+    resources :pictures
   end
 
   # direct all non-caught pages somewhere

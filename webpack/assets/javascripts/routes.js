@@ -6,6 +6,9 @@ import Home from './components/Home'
 import NewEmbed from './components/NewEmbed'
 import ShowEmbed from './components/ShowEmbed'
 import Embeds from './components/Embeds'
+import Galleries from './components/Galleries'
+import NewGallery from './components/NewGallery'
+import ShowGallery from './components/ShowGallery'
 
 let getRoutes = (store) => {
   const { getState } = store
@@ -31,6 +34,10 @@ let getRoutes = (store) => {
       <Route path="embeds" name="embeds" component={ Embeds }>
         <Route path="new" name="new_embed" component={ NewEmbed } />
         <Route path=":embedId" name="show_embed" component={ ShowEmbed } />
+      </Route>
+      <Route path="galleries" name="galleries" component={ Galleries }>
+        <Route path="new" name="new_gallery" component={ NewGallery } />
+        <Route path=":galleryId" name="show_gallery" component={ ShowGallery } />
       </Route>
     </Route>
   )
