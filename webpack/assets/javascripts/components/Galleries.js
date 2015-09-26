@@ -35,7 +35,7 @@ class Galleries extends React.Component {
 
   render() {
     let { galleries } = this.props
-    if (Object.keys(galleries).length > 0) {
+    if (galleries) {
       return (
         <div>
           <Link to="/galleries/new">

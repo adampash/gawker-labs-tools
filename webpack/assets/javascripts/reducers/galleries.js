@@ -1,6 +1,6 @@
 import { SHOW_GALLERY, SHOW_GALLERIES } from '../actions/galleries'
 
-export function galleries(state={}, action) {
+export function galleries(state=null, action) {
   switch (action.type) {
   case SHOW_GALLERY:
     let newState = {
