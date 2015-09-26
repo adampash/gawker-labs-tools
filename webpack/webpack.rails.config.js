@@ -18,6 +18,15 @@ config.output = {
 config.entry.push('./scripts/rails_only');
 
 // See webpack.common.config for adding modules common to both the webpack dev server and rails
+config.plugins = [
+  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.DefinePlugin({
+    __CLIENT__: true,
+    __SERVER__: false,
+    __DEVELOPMENT__: false,
+    __DEVTOOLS__: false  // <-------- DISABLE redux-devtools HERE (disable w/false)
+  }),
+];
 
 config.module.loaders.push(
   {
