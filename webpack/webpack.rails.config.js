@@ -5,6 +5,7 @@
 // NOTE: All style sheets handled by the asset pipeline in rails
 
 const config = require('./webpack.common.config');
+const webpack = require('webpack');
 
 config.output = {
   filename: 'client-bundle.js',
