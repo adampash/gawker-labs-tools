@@ -20,8 +20,15 @@ config.entry.push('./scripts/rails_only');
 // See webpack.common.config for adding modules common to both the webpack dev server and rails
 
 config.module.loaders.push(
-  { test: /\.scss$/, loaders: ['style', 'css', 'sass']},
-  { test: /\.cjsx$/, loaders: ['react-hot', 'coffee', 'cjsx']},
+  {
+    test: /\.jsx?$/,
+    exclude: /node_modules/,
+    loaders: ['babel-loader']
+  },
+  {
+    test: /\.scss$/,
+    loader: "style!css!autoprefixer-loader!sass"
+  }, // loaders: ['style', 'css', 'sass', 'autoprefixer']},
   { test: /\.coffee$/, loader: 'coffee' },
 
   // Next 2 lines expose jQuery and $ to any JavaScript files loaded after client-bundle.js
