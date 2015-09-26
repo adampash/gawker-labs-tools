@@ -19,7 +19,8 @@ class Galleries extends React.Component {
   }
 
   renderLatest() {
-    let { galleries } = this.props
+    let { galleries, location } = this.props
+    if (location.pathname !== '/galleries') return
     return Object.keys(galleries).map( galleryId => {
       let gallery = galleries[galleryId]
       return (

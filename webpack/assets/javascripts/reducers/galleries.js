@@ -9,11 +9,9 @@ export function galleries(state={}, action) {
     }
     return newState
   case SHOW_GALLERIES:
-    let galleries = {}
-      action.galleries.map( gallery => {
-          galleries[gallery.id] = gallery
-        }
-      )
+    let galleries = action.galleries.reduce((obj, gallery) =>
+      ({ ...obj, [gallery.id]: gallery }), {}
+    )
     return {
       ...state,
       ...galleries
