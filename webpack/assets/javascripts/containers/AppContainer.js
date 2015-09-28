@@ -35,7 +35,7 @@ function select(state) {
 const styles = {
   container: {
     maxWidth: 800,
-    padding: 40,
+    padding: '40px 0',
     margin: '0 auto',
   }
 }

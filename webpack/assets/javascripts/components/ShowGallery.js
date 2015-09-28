@@ -17,8 +17,7 @@ export default class ShowGallery extends React.Component {
   }
 
   renderIframe() {
-    return ''
-    // return `<iframe src="${this.renderLink()}" class="custom" width="100%" ></iframe>`
+    return `<iframe src="${this.renderLink()}" class="custom" width="100%" ></iframe>`
   }
 
   renderEmbed() {
@@ -36,12 +35,6 @@ export default class ShowGallery extends React.Component {
         <a href={`/api/galleries/${galleryId}`} target="_blank">
           Preview
         </a>
-        <iframe
-          style={ styles.iframe }
-          src={ this.renderLink() }
-          width="636"
-          height="500"
-        />
       </div>
     )
   }
