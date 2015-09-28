@@ -1,5 +1,5 @@
 class Api::GalleriesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
 
   def index
     @galleries = current_user.latest_galleries
