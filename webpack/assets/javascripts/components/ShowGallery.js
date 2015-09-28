@@ -13,7 +13,7 @@ export default class ShowGallery extends React.Component {
   renderLink() {
     let { routeParams } = this.props
     let { galleryId } = routeParams
-    return `${window.location.origin}/api/galleries/${galleryId}`
+    return `${window.location.origin}/iframe/galleries/${galleryId}`
   }
 
   renderIframe() {

@@ -1,12 +1,21 @@
 import React from 'react'
 import SwipeableViews from 'react-swipeable-views'
+import FontAwesome from 'react-fontawesome'
+import MobileDetect from 'mobile-detect'
 
 export default class Gallery extends React.Component {
   constructor(props) {
     super(props)
+    let md = new MobileDetect(window.navigator.userAgent)
     this.state = {
-      index: 0
+      index: 0,
+      mobile: md.mobile()
     }
+  }
+
+  isDesktop() {
+    let { mobile } = this.state
+    return mobile === null
   }
 
   renderImages() {
@@ -67,20 +76,38 @@ export default class Gallery extends React.Component {
     return (
       <div>
         <div style={ styles.container }>
-          <div
-            style={ styles.left }
-            onClick={ this.prevImage.bind(this) }
-          />
+          { this.isDesktop() &&
+            <div
+              style={{ ...styles.nextPrev }}
+              onClick={ this.prevImage.bind(this) }
+            >
+              <FontAwesome
+                name="chevron-left"
+                style={ styles.chevron }
+              />
+            </div>
+          }
           <SwipeableViews
+            style={{
+              alignItems: 'center',
+              backgroundColor: 'black'
+            }}
             index={ index }
             onChangeIndex={ (index) => this.setState({index}) }
           >
             { this.renderImages() }
           </SwipeableViews>
-          <div
-            style={ styles.right }
-            onClick={ this.nextImage.bind(this) }
-          />
+          { this.isDesktop() &&
+            <div
+              style={{ ...styles.nextPrev }}
+              onClick={ this.nextImage.bind(this) }
+            >
+              <FontAwesome
+                name="chevron-right"
+                style={ styles.chevron }
+              />
+            </div>
+          }
         </div>
         <div style={ styles.dotsContainer }>
           { this.renderDots() }
@@ -96,6 +123,7 @@ const styles = {
   container: {
     display: 'flex',
     alignItems: 'stretch',
+    justifyContent: 'center',
   },
   img_container: {
     textAlign: 'center',
@@ -105,15 +133,12 @@ const styles = {
     display: 'block',
     maxWidth: '100%'
   },
-  left: {
-    background: 'black',
-    width: 50,
-    opacity: 0.2,
-  },
-  right: {
-    background: 'black',
-    width: 50,
-    opacity: 0.2,
+  nextPrev: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    cursor: 'pointer',
+    padding: '0 3px',
   },
   dotsContainer: {
     display: 'flex',
@@ -128,4 +153,9 @@ const styles = {
     backgroundColor: 'black',
     margin: 5
   },
+  chevron: {
+    display: 'block',
+    color: 'black',
+    fontSize: 30,
+  }
 }

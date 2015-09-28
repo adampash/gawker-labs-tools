@@ -47,11 +47,13 @@ export default class NewGallery extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    if (!this.isFormEnabled()) return alert("Your gallery needs both files and a name")
+    if (!this.isFormEnabled()) {
+      return alert("Your gallery needs both files and a name")
+    }
     let { dispatch, history } = this.props
     let { galleryName, files } = this.state
     let picture_ids = files.map( file => { return file.id })
-    let description = 'gallery'
+    console.log('okay')
     dispatch(createGallery({
       picture_ids, description: galleryName
     }, history))
@@ -110,7 +112,7 @@ export default class NewGallery extends React.Component {
             <button
               type="submit"
               style={ styles.button }
-              disabled={ this.isFormEnabled() }
+              disabled={ !this.isFormEnabled() }
             >
               Create gallery
             </button>

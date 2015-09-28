@@ -46,6 +46,9 @@ gem "omniauth-google-oauth2"
 gem 'paperclip', "~> 4.3"
 gem 'aws-sdk'
 
+# icons
+gem 'font-awesome-rails'
+
 group :development, :test do
   gem 'dotenv-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
