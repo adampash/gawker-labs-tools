@@ -20,35 +20,71 @@ export default class Gallery extends React.Component {
     })
   }
 
+  renderDots() {
+    let { pics } = this.props
+    let { index } = this.state
+    return pics.map( (pic, num) => {
+      let bg = {}
+      if (num === index) bg.backgroundColor = 'red'
+      return (
+        <div
+          style={{ ...styles.dot, ...bg }}
+          key={ num }
+          onClick={() => this.setState({ index: num }) }
+        />
+      )
+    })
+  }
+
   nextImage() {
     let { index } = this.state
     let { pics } = this.props
+    let newIndex
+    if (index + 1 === pics.length)
+      newIndex = 0
+    else
+      newIndex = index + 1
     this.setState({
-      index: Math.min(index + 1, pics.length - 1)
+      index: newIndex
     })
   }
 
   prevImage() {
+    let { index } = this.state
+    let { pics } = this.props
+    let newIndex
+    if (index - 1 < 0)
+      newIndex = pics.length - 1
+    else
+      newIndex = index - 1
     this.setState({
-      index: Math.max(0, this.state.index - 1)
+      index: newIndex
     })
   }
 
   render() {
     let { index } = this.state
     return (
-      <div style={ styles.container }>
-        <div
-          style={ styles.left }
-          onClick={ this.prevImage.bind(this) }
-        />
-        <SwipeableViews index={ index }>
-          { this.renderImages() }
-        </SwipeableViews>
-        <div
-          style={ styles.right }
-          onClick={ this.nextImage.bind(this) }
-        />
+      <div>
+        <div style={ styles.container }>
+          <div
+            style={ styles.left }
+            onClick={ this.prevImage.bind(this) }
+          />
+          <SwipeableViews
+            index={ index }
+            onChangeIndex={ (index) => this.setState({index}) }
+          >
+            { this.renderImages() }
+          </SwipeableViews>
+          <div
+            style={ styles.right }
+            onClick={ this.nextImage.bind(this) }
+          />
+        </div>
+        <div style={ styles.dotsContainer }>
+          { this.renderDots() }
+        </div>
       </div>
     )
       // <ReactSwipe continuous={ false }>
@@ -78,42 +114,18 @@ const styles = {
     background: 'black',
     width: 50,
     opacity: 0.2,
-  }
+  },
+  dotsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  dot: {
+    width: 10,
+    cursor: 'pointer',
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'black',
+    margin: 5
+  },
 }
-
-// import React from 'react'
-// import Slider from 'react-slick'
-// 
-// export default class Gallery extends React.Component {
-//   renderImages() {
-//     let { pics } = this.props
-//     return pics.map( (pic, index) => {
-//       console.log(pic)
-//       return (
-//         <div key={ index } style={ styles.img_container }>
-//           <img src={ pic.url } style={ styles.img } />
-//         </div>
-//       )
-//     })
-//   }
-//   render() {
-//     return (
-//       <Slider dots={true}>
-//         { this.renderImages() }
-//       </Slider>
-//     )
-//       // <ReactSwipe continuous={ false }>
-//       // </ReactSwipe>
-//   }
-// }
-// 
-// const styles = {
-//   img_container: {
-//     textAlign: 'center'
-//   },
-//   img: {
-//     margin: '0 auto',
-//     display: 'block',
-//     maxWidth: '100%'
-//   }
-// }
