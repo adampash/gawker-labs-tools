@@ -17,10 +17,11 @@ class Api::GalleriesController < ApplicationController
       user_id: current_user.id,
     })
     GalleryPicture.create(
-      params[:picture_ids].map do |id|
+      params[:picture_ids].map do |id, index|
         {
           gallery_id: @gallery.id,
-          picture_id: id
+          picture_id: id,
+          position: index,
         }
       end
     )

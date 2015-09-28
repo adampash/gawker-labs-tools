@@ -1,6 +1,6 @@
 class Picture < ActiveRecord::Base
   has_many :galleries, through: :gallery_pictures
-  has_many :gallery_pictures
+  has_many :gallery_pictures, -> { order('gallery_picture.position asc') }
 
   has_attached_file :image,
     styles: { large: "800x800>", medium: "300x300>", thumb: "100x100>" }

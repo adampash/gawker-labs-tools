@@ -46,6 +46,8 @@ gem "omniauth-google-oauth2"
 gem 'paperclip', "~> 4.3"
 gem 'aws-sdk'
 
+gem 'acts_as_list'
+
 # icons
 gem 'font-awesome-rails'
 
