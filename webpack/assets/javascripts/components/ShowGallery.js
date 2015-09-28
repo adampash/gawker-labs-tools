@@ -1,8 +1,17 @@
 import React from 'react'
+import CopyToClipboard from 'react-copy-to-clipboard'
 import Gallery from './Gallery'
+import FontAwesome from 'react-fontawesome'
 import { getGalleryAsync } from '../actions/galleries'
 
 export default class ShowGallery extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      copied: false
+    }
+  }
+
   componentWillMount() {
     let { routeParams, dispatch } = this.props
     let { galleryId } = routeParams
@@ -23,6 +32,7 @@ export default class ShowGallery extends React.Component {
   renderEmbed() {
     let { galleries, routeParams } = this.props
     let { galleryId } = routeParams
+    let { copied } = this.state
     let gallery = galleries[galleryId]
     return (
       <div style={ styles.container }>
@@ -34,9 +44,11 @@ export default class ShowGallery extends React.Component {
           onClick={ (e) => { e.target.select() }}
         >
         </textarea>
-        <a href={`/api/galleries/${galleryId}`} target="_blank">
-          Preview
-        </a>
+        <CopyToClipboard text={ this.renderIframe() }
+          onCopy={() => this.setState({copied: true})}>
+          <FontAwesome name="copy" /> Copy embed code to clipboard
+        </CopyToClipboard>&nbsp;
+        { copied && "Copied!" }
       </div>
     )
   }
