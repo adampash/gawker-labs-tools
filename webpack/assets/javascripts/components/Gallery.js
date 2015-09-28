@@ -3,6 +3,8 @@ import SwipeableViews from 'react-swipeable-views'
 import FontAwesome from 'react-fontawesome'
 import MobileDetect from 'mobile-detect'
 import key from 'keymaster'
+import KinjaResizer from './KinjaResizer'
+import GalleryImage from './GalleryImage'
 
 export default class Gallery extends React.Component {
   constructor(props) {
@@ -33,9 +35,9 @@ export default class Gallery extends React.Component {
     let { pics } = this.props
     return pics.map( (pic, index) => {
       return (
-        <div key={ index } style={ styles.img_container }>
-          <img src={ pic.url } style={ styles.img } />
-        </div>
+        <KinjaResizer key={ index } style={ styles.img_container }>
+          <GalleryImage pic={ pic } />
+        </KinjaResizer>
       )
     })
   }
@@ -80,10 +82,6 @@ export default class Gallery extends React.Component {
     this.setState({
       index: newIndex
     })
-  }
-
-  logKeyPress(e) {
-    console.log('keypress', e)
   }
 
   render() {
@@ -147,11 +145,6 @@ const styles = {
   img_container: {
     textAlign: 'center',
     background: 'black',
-  },
-  img: {
-    margin: '0 auto',
-    display: 'block',
-    maxWidth: '100%'
   },
   nextPrev: {
     display: 'flex',

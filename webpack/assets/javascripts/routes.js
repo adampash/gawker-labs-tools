@@ -9,6 +9,7 @@ import Embeds from './components/Embeds'
 import Galleries from './components/Galleries'
 import NewGallery from './components/NewGallery'
 import ShowGallery from './components/ShowGallery'
+import GalleryEmbed from './containers/GalleryEmbed'
 
 let getRoutes = (store) => {
   const { getState } = store
@@ -28,6 +29,7 @@ let getRoutes = (store) => {
 
   // Configure routes like normal
   const routes = (
+    <Route>
     <Route path="/" component={AppContainer}>
       <IndexRoute component={Home} onEnter={ requireAuth } />
       <Route path="/login" component={Login} />
@@ -39,6 +41,8 @@ let getRoutes = (store) => {
         <Route path="new" name="new_gallery" component={ NewGallery } />
         <Route path=":galleryId" name="show_gallery" component={ ShowGallery } />
       </Route>
+    </Route>
+    <Route path="iframe/galleries/:galleryId" name="galleries" component={ GalleryEmbed } />
     </Route>
   )
   return routes

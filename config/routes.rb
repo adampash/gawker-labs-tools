@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     resources :galleries
   end
 
+  namespace :iframe do
+  #   resources :embeds
+  #   resources :galleries
+    get '(*iframe)' => 'galleries#empty'
+  end
+
   # direct all non-caught pages somewhere
   get '(*foo)' => 'pages#hello'
   root 'pages#hello'
