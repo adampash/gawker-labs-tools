@@ -43,16 +43,16 @@ config.module.loaders.push(
 
   // Next 2 lines expose jQuery and $ to any JavaScript files loaded after client-bundle.js
   // in the Rails Asset Pipeline. Thus, load this one prior.
-  {test: require.resolve('jquery'), loader: 'expose?jQuery'},
-  {test: require.resolve('jquery'), loader: 'expose?$'}
+  // {test: require.resolve('jquery'), loader: 'expose?jQuery'},
+  // {test: require.resolve('jquery'), loader: 'expose?$'}
 );
 module.exports = config;
 
 // Next line is Heroku specific. You'll have BUILDPACK_URL defined for your Heroku install.
-const devBuild = (typeof process.env.BUILDPACK_URL) === 'undefined';
-if (devBuild) {
-  console.log('Webpack dev build for Rails'); // eslint-disable-line no-console
-  module.exports.devtool = 'eval-source-map';
-} else {
-  console.log('Webpack production build for Rails'); // eslint-disable-line no-console
-}
+// const devBuild = (typeof process.env.BUILDPACK_URL) === 'undefined';
+// if (devBuild) {
+//   console.log('Webpack dev build for Rails'); // eslint-disable-line no-console
+//   module.exports.devtool = 'eval-source-map';
+// } else {
+console.log('Webpack production build for Rails'); // eslint-disable-line no-console
+// }
