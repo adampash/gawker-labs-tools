@@ -2,6 +2,7 @@ import React from 'react'
 import SwipeableViews from 'react-swipeable-views'
 import FontAwesome from 'react-fontawesome'
 import MobileDetect from 'mobile-detect'
+import key from 'keymaster'
 
 export default class Gallery extends React.Component {
   constructor(props) {
@@ -11,6 +12,16 @@ export default class Gallery extends React.Component {
       index: 0,
       mobile: md.mobile()
     }
+  }
+
+  componentWillMount() {
+    key('left', this.prevImage.bind(this))
+    key('right', this.nextImage.bind(this))
+  }
+
+  componentWillUnmount() {
+    key.unbind('left')
+    key.unbind('right')
   }
 
   isDesktop() {
@@ -69,6 +80,10 @@ export default class Gallery extends React.Component {
     this.setState({
       index: newIndex
     })
+  }
+
+  logKeyPress(e) {
+    console.log('keypress', e)
   }
 
   render() {

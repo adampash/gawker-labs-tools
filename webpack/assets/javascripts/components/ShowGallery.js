@@ -29,7 +29,9 @@ export default class ShowGallery extends React.Component {
         <Gallery pics={ gallery.pics }/>
         <textarea
           value={ this.renderIframe() }
+          readOnly={ true }
           style={ styles.textarea }
+          onClick={ (e) => { e.target.select() }}
         >
         </textarea>
         <a href={`/api/galleries/${galleryId}`} target="_blank">
