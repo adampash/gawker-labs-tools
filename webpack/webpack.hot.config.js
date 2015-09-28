@@ -41,7 +41,7 @@ config.module.loaders.push(
   {
     test: /\.scss$/,
     loader: "style!css?sourceMap!autoprefixer-loader!sass"
-  }, // loaders: ['style', 'css', 'sass', 'autoprefixer']},
+  },
   { test: /\.coffee$/, loader: 'coffee' }
 )
 
