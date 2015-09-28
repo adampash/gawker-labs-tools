@@ -1,7 +1,7 @@
 import React from 'react'
 import { createGallery } from '../actions/galleries'
 import Dropzone from 'react-dropzone'
-import post from '../post'
+import Network from '../Network'
 import ImageList from './ImageList'
 
 export default class NewGallery extends React.Component {
@@ -15,7 +15,7 @@ export default class NewGallery extends React.Component {
 
   uploadFiles(files, index=0) {
     let file = files[index]
-    post('pictures', { file }, 'file')
+    Network.post('pictures', { file }, 'file')
     .then( response => { return response.json() })
     .then(pic => {
       let { files } = this.state

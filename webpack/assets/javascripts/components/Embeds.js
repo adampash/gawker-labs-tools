@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { dispatch, connect } from 'react-redux'
 
-class Embeds extends React.Component {
+class Embeds extends Component {
   renderChildren() {
     let { dispatch, embeds } = this.props
     return React.Children.map(this.props.children, (child) => {

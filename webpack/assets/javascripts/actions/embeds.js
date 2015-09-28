@@ -1,5 +1,4 @@
-import fetch from 'isomorphic-fetch'
-import post from '../post'
+import Network from '../Network'
 
 export const CREATE_EMBED = 'CREATE_EMBED'
 export const SHOW_EMBED = 'SHOW_EMBED'
@@ -27,27 +26,20 @@ export function getEmbedAsync(id) {
     let embed = getState().embeds[id]
     if (embed) return dispatch(showEmbed(embed))
     console.log('hitting the api')
-    fetch(`/api/embeds/${id}`, {
-        credentials: 'same-origin',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
-    )
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
-      dispatch(showEmbed(data))
-    })
+    Network.get(`embeds/${id}`)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        dispatch(showEmbed(data))
+      })
   }
 
 }
 
 export function createEmbed(data, history) {
   return (dispatch, getState) => {
-    post('embeds', data)
+    Network.post('embeds', data)
     .then(response => {
       return response.json()
     })

@@ -1,5 +1,4 @@
-import fetch from 'isomorphic-fetch'
-import post from '../post'
+import Network from '../Network'
 
 export const CREATE_GALLERY = 'CREATE_GALLERY'
 export const SHOW_GALLERY = 'SHOW_GALLERY'
@@ -21,11 +20,7 @@ export function getGalleryAsync(id) {
     let gallery = getState().galleries[id]
     if (gallery) return dispatch(showGallery(gallery))
     console.log('hitting the api')
-    fetch(`/api/galleries/${id}`, {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    )
+  Network.get(`galleries/${id}`)
     .then(response => {
       return response.json()
     })
@@ -45,27 +40,20 @@ export function showGalleries(galleries) {
 
 export function getGalleriesAsync(id) {
   return (dispatch, getState) => {
-    fetch(`/api/galleries`, {
-        credentials: 'same-origin',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      },
-    )
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
-      dispatch(showGalleries(data))
-    })
+    Network.get('galleries')
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        dispatch(showGalleries(data))
+      })
   }
 
 }
 
 export function createGallery(data, history) {
   return (dispatch, getState) => {
-    post('galleries', data)
+    Network.post('galleries', data)
     .then(response => {
       return response.json()
     })
