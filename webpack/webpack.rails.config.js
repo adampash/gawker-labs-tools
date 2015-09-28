@@ -39,12 +39,7 @@ config.module.loaders.push(
     test: /\.scss$/,
     loader: "style!css!autoprefixer-loader!sass"
   }, // loaders: ['style', 'css', 'sass', 'autoprefixer']},
-  { test: /\.coffee$/, loader: 'coffee' },
-
-  // Next 2 lines expose jQuery and $ to any JavaScript files loaded after client-bundle.js
-  // in the Rails Asset Pipeline. Thus, load this one prior.
-  // {test: require.resolve('jquery'), loader: 'expose?jQuery'},
-  // {test: require.resolve('jquery'), loader: 'expose?$'}
+  { test: /\.coffee$/, loader: 'coffee' }
 )
 module.exports = config
 
