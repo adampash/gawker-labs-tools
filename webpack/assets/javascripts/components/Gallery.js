@@ -87,16 +87,17 @@ export default class Gallery extends React.Component {
               />
             </div>
           }
-          <SwipeableViews
-            style={{
-              alignItems: 'center',
-              backgroundColor: 'black'
-            }}
-            index={ index }
-            onChangeIndex={ (index) => this.setState({index}) }
-          >
-            { this.renderImages() }
-          </SwipeableViews>
+          <div style={ styles.swipeContainer }>
+            <SwipeableViews
+              style={{
+                alignItems: 'center',
+              }}
+              index={ index }
+              onChangeIndex={ (index) => this.setState({index}) }
+            >
+              { this.renderImages() }
+            </SwipeableViews>
+          </div>
           { this.isDesktop() &&
             <div
               style={{ ...styles.nextPrev }}
@@ -125,8 +126,12 @@ const styles = {
     alignItems: 'stretch',
     justifyContent: 'center',
   },
+  swipeContainer: {
+    background: 'black',
+  },
   img_container: {
     textAlign: 'center',
+    background: 'black',
   },
   img: {
     margin: '0 auto',
