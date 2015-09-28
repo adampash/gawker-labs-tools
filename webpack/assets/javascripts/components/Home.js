@@ -7,7 +7,7 @@ export default class Home extends React.Component {
       <div style={ styles.container }>
         <HomeLink
           to="/embeds"
-          text="Embeds"
+          text="Embeds (work in progress)"
           description="Converts unsupported Kinja embed code into supported Kinja embed code."
         />
         <HomeLink

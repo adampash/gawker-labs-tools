@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable,
     :omniauthable, :omniauth_providers => [:google_oauth2]
 
-
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(:email => data["email"]).first
@@ -20,4 +19,9 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+  def latest_galleries
+    galleries.order(created_at: :desc).limit(10)
+  end
+
 end

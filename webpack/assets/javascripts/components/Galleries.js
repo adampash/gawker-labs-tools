@@ -19,9 +19,9 @@ class Galleries extends React.Component {
   }
 
   renderLatest() {
-    let { galleries, location } = this.props
+    let { galleries, location, galleryList } = this.props
     if (location.pathname !== '/galleries') return
-    return Object.keys(galleries).map( galleryId => {
+    return galleryList.map( galleryId => {
       let gallery = galleries[galleryId]
       return (
         <div key={ galleryId }>
@@ -55,9 +55,10 @@ class Galleries extends React.Component {
 
 
 function select(state) {
-  let { galleries } = state
+  let { galleries, galleryList } = state
   return {
-    galleries
+    galleries,
+    galleryList
   }
 }
 

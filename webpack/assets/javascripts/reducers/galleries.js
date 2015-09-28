@@ -21,4 +21,13 @@ export function galleries(state=null, action) {
   }
 }
 
-
+export function galleryList(state=[], action) {
+  switch(action.type) {
+  case SHOW_GALLERIES:
+    return action.galleries.map( gallery =>
+      gallery.id
+    )
+  default:
+    return state
+  }
+}

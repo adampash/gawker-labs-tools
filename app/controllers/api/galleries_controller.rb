@@ -2,7 +2,7 @@ class Api::GalleriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @galleries = current_user.galleries.limit(10)
+    @galleries = current_user.latest_galleries
     render json: @galleries.to_json(:methods => [:pics])
   end
 
