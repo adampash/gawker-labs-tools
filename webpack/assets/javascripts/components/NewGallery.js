@@ -1,9 +1,11 @@
 import React from 'react'
+import Radium from 'radium'
 import { createGallery } from '../actions/galleries'
 import Dropzone from 'react-dropzone'
 import Network from '../Network'
 import ImageList from './ImageList'
 
+@Radium
 export default class NewGallery extends React.Component {
   constructor(props) {
     super(props)

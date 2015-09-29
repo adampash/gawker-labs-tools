@@ -1,10 +1,12 @@
 import React from 'react'
+import Radium from 'radium'
 import Gallery from '../components/Gallery'
 import KinjaResizer from '../components/KinjaResizer'
 import FontAwesome from 'react-fontawesome'
 import { getGalleryAsync } from '../actions/galleries'
 import { connect } from 'react-redux'
 
+@Radium
 class GalleryEmbed extends React.Component {
   componentWillMount() {
     let { routeParams, dispatch } = this.props

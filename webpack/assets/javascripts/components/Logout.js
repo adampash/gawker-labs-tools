@@ -1,7 +1,9 @@
 import React from 'react'
+import Radium from 'radium'
 
 let logoutPath = "/logout"
 
+@Radium
 export default class Login extends React.Component {
   render() {
     return (

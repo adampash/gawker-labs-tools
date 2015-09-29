@@ -1,5 +1,7 @@
 import React from 'react'
+import Radium from 'radium'
 
+@Radium
 export default class EmbedPreview extends React.Component {
   render() {
     let { embedId } = this.props

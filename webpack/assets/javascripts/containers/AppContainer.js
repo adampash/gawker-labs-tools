@@ -1,9 +1,10 @@
 import React from 'react'
+import Radium from 'radium'
 import { connect, dispatch } from 'react-redux'
-import { Link } from 'react-router'
 import NavBar from '../components/NavBar'
 
-let AppContainer = React.createClass({
+@Radium
+class AppContainer extends React.Component {
   render() {
     const {
       dispatch,
@@ -23,7 +24,7 @@ let AppContainer = React.createClass({
       </div>
     )
   }
-})
+}
 
 function select(state) {
   let { currentUser } = state

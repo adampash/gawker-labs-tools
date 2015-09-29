@@ -1,9 +1,11 @@
 import React from 'react'
+import Radium from 'radium'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import Gallery from './Gallery'
 import FontAwesome from 'react-fontawesome'
 import { getGalleryAsync } from '../actions/galleries'
 
+@Radium
 export default class ShowGallery extends React.Component {
   constructor(props) {
     super(props)

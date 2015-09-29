@@ -33,6 +33,7 @@
     "mobile-detect": "^1.3.0",
     "node-sass": "^3.3.3",
     "normalize-scss": "^3.0.1-a",
+    "radium": "^0.14.1",
     "react": "^0.14.0-rc1",
     "react-dnd": "^1.1.8",
     "react-dom": "^0.14.0-rc1",

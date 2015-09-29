@@ -1,4 +1,5 @@
 import React from 'react'
+import Radium from 'radium'
 import SwipeableViews from 'react-swipeable-views'
 import FontAwesome from 'react-fontawesome'
 import MobileDetect from 'mobile-detect'
@@ -6,6 +7,7 @@ import key from 'keymaster'
 import KinjaResizer from './KinjaResizer'
 import GalleryImage from './GalleryImage'
 
+@Radium
 export default class Gallery extends React.Component {
   constructor(props) {
     super(props)

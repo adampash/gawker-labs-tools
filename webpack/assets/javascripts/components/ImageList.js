@@ -1,6 +1,8 @@
 import React from 'react'
+import Radium from 'radium'
 import OrderedImage from './OrderedImage'
 
+@Radium
 export default class ImageList extends React.Component {
   reorderImages(from, to) {
     this.props.reorderImages(from, to)

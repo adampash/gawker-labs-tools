@@ -1,7 +1,9 @@
 import React from 'react'
+import Radium from 'radium'
 import EmbedPreview from './EmbedPreview'
 import { createEmbed } from '../actions/embeds'
 
+@Radium
 export default class NewEmbed extends React.Component {
   constructor(props) {
     super(props)

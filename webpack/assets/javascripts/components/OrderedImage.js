@@ -1,5 +1,7 @@
 import React from 'react'
+import Radium from 'radium'
 
+@Radium
 export default class OrderedImage extends React.Component {
   constructor(props) {
     super(props)

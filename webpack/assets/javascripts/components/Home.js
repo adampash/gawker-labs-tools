@@ -1,6 +1,8 @@
 import React from 'react'
+import Radium from 'radium'
 import HomeLink from './HomeLink'
 
+@Radium
 export default class Home extends React.Component {
   render() {
     return (
@@ -28,7 +30,6 @@ export default class Home extends React.Component {
 const styles = {
   container: {
     display: 'flex',
-    flexWrap: 'flex-wrap',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
   }
 }

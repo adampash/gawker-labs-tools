@@ -1,6 +1,8 @@
 import React from 'react'
+import Radium from 'radium'
 import { getEmbedAsync } from '../actions/embeds'
 
+@Radium
 export default class ShowEmbed extends React.Component {
   componentWillMount() {
     let { routeParams, dispatch } = this.props

@@ -1,33 +1,40 @@
 import React from 'react'
+import Radium from 'radium'
 import { Link } from 'react-router'
 
+let StyledLink = Radium(Link)
+
+@Radium
 export default class HomeLink extends React.Component {
   render() {
     let { to, text, description } = this.props
     return (
-      <Link to={ to } style={ styles.box }>
+      <StyledLink to={ to } style={ styles.box }>
         <h4 style={ styles.header }>
           { text }
         </h4>
         <p style={ styles.description }>
           { description }
         </p>
-      </Link>
+      </StyledLink>
     )
   }
 }
 
 const styles = {
   box: {
-    maxWidth: '31%',
+    width: '31%',
     background: 'white',
     display: 'flex',
     flexDirection: 'column',
     minHeight: 150,
     padding: 20,
-    // margin: '0px 5px',
     justifyContent: 'flex-start',
-    // flex: '1 1'
+    margin: 10,
+    flex: '1 1',
+    ':hover': {
+      background: '#eee'
+    }
   },
   header: {
     fontWeight: 'bold',

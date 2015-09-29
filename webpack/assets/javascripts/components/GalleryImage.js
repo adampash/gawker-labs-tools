@@ -1,5 +1,7 @@
 import { Component } from 'react'
+import Radium from 'radium'
 
+@Radium
 export default class GalleryImage extends Component {
   render() {
     let { pic, resize } = this.props
