@@ -2,6 +2,7 @@ class Api::EmbedsController < ApplicationController
   before_filter :set_cache_control_headers, only: :show
   before_action :authenticate_user!, except: :show
   after_filter :set_csrf_cookie, except: :show
+  after_action :allow_iframe, only: :show
   layout 'iframe', only: :show
 
   def index
@@ -26,5 +27,10 @@ class Api::EmbedsController < ApplicationController
       format.json { render json: @embed.to_json }
       format.html
     end
+  end
+
+  private
+  def allow_iframe
+    response.headers.except! 'X-Frame-Options'
   end
 end
