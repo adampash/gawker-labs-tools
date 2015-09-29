@@ -1,8 +1,7 @@
 import React from 'react'
 import Radium from 'radium'
-import CopyToClipboard from 'react-copy-to-clipboard'
 import Gallery from './Gallery'
-import FontAwesome from 'react-fontawesome'
+import EmbedArea from './EmbedArea'
 import { getGalleryAsync } from '../actions/galleries'
 
 @Radium
@@ -27,10 +26,6 @@ export default class ShowGallery extends React.Component {
     return `${window.location.origin}/iframe/galleries/${galleryId}`
   }
 
-  renderIframe() {
-    return `<iframe src="${this.renderLink()}" class="custom" width="100%" ></iframe>`
-  }
-
   renderEmbed() {
     let { galleries, routeParams } = this.props
     let { galleryId } = routeParams
@@ -39,18 +34,7 @@ export default class ShowGallery extends React.Component {
     return (
       <div style={ styles.container }>
         <Gallery pics={ gallery.pics }/>
-        <textarea
-          value={ this.renderIframe() }
-          readOnly={ true }
-          style={ styles.textarea }
-          onClick={ (e) => { e.target.select() }}
-        >
-        </textarea>
-        <CopyToClipboard text={ this.renderIframe() }
-          onCopy={() => this.setState({copied: true})}>
-          <FontAwesome name="copy" /> Copy embed code to clipboard
-        </CopyToClipboard>&nbsp;
-        { copied && "Copied!" }
+        <EmbedArea link={ this.renderLink() } />
       </div>
     )
   }

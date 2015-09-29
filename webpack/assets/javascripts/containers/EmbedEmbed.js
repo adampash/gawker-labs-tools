@@ -1,11 +1,13 @@
 import React from 'react'
 import Radium from 'radium'
+import Embed from '../components/Embed'
+import KinjaResizer from '../components/KinjaResizer'
+import FontAwesome from 'react-fontawesome'
 import { getEmbedAsync } from '../actions/embeds'
-import EmbedArea from './EmbedArea'
-import Embed from './Embed'
+import { connect } from 'react-redux'
 
 @Radium
-export default class ShowEmbed extends React.Component {
+class EmbedEmbed extends React.Component {
   componentWillMount() {
     let { routeParams, dispatch } = this.props
     let { embedId } = routeParams
@@ -16,28 +18,15 @@ export default class ShowEmbed extends React.Component {
   renderLink() {
     let { routeParams } = this.props
     let { embedId } = routeParams
-    return `${window.location.origin}/iframe/embeds/${embedId}`
-  }
-
-  renderApiLink() {
-    let { routeParams } = this.props
-    let { embedId } = routeParams
     return `${window.location.origin}/api/embeds/${embedId}`
   }
 
-  renderIframe() {
-    return `<iframe src="${this.renderLink()}" class="custom" width="100%" ></iframe>`
-  }
-
   renderEmbed() {
-    let { embeds, routeParams } = this.props
-    let { embedId } = routeParams
-    let embed = embeds[embedId]
+    // let { embeds, routeParams } = this.props
+    // let { embedId } = routeParams
+    // let embed = embeds[embedId]
     return (
-      <div style={ styles.container }>
-        <Embed link={ this.renderApiLink() } embed={ embed } />
-        <EmbedArea link={ this.renderApiLink() } />
-      </div>
+      <Embed link={ this.renderLink() } />
     )
   }
 
@@ -61,7 +50,7 @@ const styles = {
   container: {
     maxWidth: 636,
     width: '100%',
-    margin: '20px auto',
+    margin: 0,
   },
   textarea: {
     resize: 'none',
@@ -75,3 +64,13 @@ const styles = {
     border: 'none',
   }
 }
+
+function select(state) {
+  let { embeds } = state
+  return {
+    embeds
+  }
+}
+
+export default connect(select)(EmbedEmbed)
+

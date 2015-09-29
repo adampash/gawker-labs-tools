@@ -37,6 +37,27 @@ export function getEmbedAsync(id) {
 
 }
 
+export function getEmbedsAsync(id) {
+  return (dispatch, getState) => {
+    Network.get('embeds')
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        dispatch(showEmbeds(data))
+      })
+  }
+}
+
+export function showEmbeds(embeds) {
+  return {
+    type: SHOW_EMBEDS,
+    embeds
+  }
+}
+
+
+
 export function createEmbed(data, history) {
   return (dispatch, getState) => {
     Network.post('embeds', data)

@@ -23,7 +23,7 @@ export default class KinjaResizer extends Component {
 
   resize() {
     let height = this.getHeight() + 10
-    // console.log(height)
+    console.log(height)
     window.top.postMessage(
       JSON.stringify({
         kinja: {

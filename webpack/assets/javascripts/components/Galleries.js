@@ -5,9 +5,7 @@ import { getGalleriesAsync } from '../actions/galleries'
 
 class Galleries extends React.Component {
   componentWillMount() {
-    let { routeParams, dispatch } = this.props
-    let { galleryId } = routeParams
-
+    let { dispatch } = this.props
     dispatch(getGalleriesAsync())
   }
 

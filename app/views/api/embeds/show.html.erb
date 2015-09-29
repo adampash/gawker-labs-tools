@@ -1,1 +1,43 @@
 <%= @embed.code.html_safe %>
+
+<script type="text/javascript">
+  var KinjaResizer = {
+    resize: function() {
+      var height = this.getHeight() + 10
+      console.log(height)
+      window.top.postMessage(
+        JSON.stringify({
+          kinja: {
+            sourceUrl: window.location.href,
+            resizeFrame: {
+              height
+            }
+          }
+        }), '*'
+      )
+    },
+
+    getHeight: function() {
+      var minHeight = 100
+      var body = document.body
+      var html = document.documentElement
+
+      return Math.max(html.scrollHeight, html.offsetHeight, minHeight)
+    }
+  }
+
+  var stopAt = 15
+  var i = 0
+  var resizeLoop = function() {
+    setTimeout(function() {
+      i++
+      if (i > stopAt) return
+      KinjaResizer.resize()
+      resizeLoop()
+    }, 500)
+  }
+  window.onload = function() {
+    resizeLoop()
+  }
+
+</script>

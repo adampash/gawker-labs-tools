@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
     galleries.order(created_at: :desc).limit(10)
   end
 
+  def latest_embeds
+    embeds.order(created_at: :desc).limit(10)
+  end
+
 end

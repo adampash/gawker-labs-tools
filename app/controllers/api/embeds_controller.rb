@@ -2,6 +2,12 @@ class Api::EmbedsController < ApplicationController
   before_filter :set_cache_control_headers, only: :show
   before_action :authenticate_user!
   after_filter :set_csrf_cookie, except: :show
+  layout 'iframe', only: :show
+
+  def index
+    @embeds = current_user.latest_embeds
+    render json: @embeds.to_json
+  end
 
   def new
   end
@@ -12,9 +18,6 @@ class Api::EmbedsController < ApplicationController
       user_id: current_user.id
     })
     render json: @embed.to_json
-  end
-
-  def index
   end
 
   def show
