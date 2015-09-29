@@ -1,4 +1,5 @@
 class Api::GalleriesController < ApplicationController
+  before_filter :set_cache_control_headers, only: :show
   before_action :authenticate_user!, except: :show
 
   def index

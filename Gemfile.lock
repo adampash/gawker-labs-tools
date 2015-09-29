@@ -76,6 +76,10 @@ GEM
       sass (>= 3.3.0, < 3.5)
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
+    curb (0.8.8)
+    curb-fu (0.6.2)
+      curb (>= 0.5.4.0)
+      rack-test (>= 0.2.0)
     debug_inspector (0.0.2)
     devise (3.5.2)
       bcrypt (~> 3.0)
@@ -91,6 +95,12 @@ GEM
     execjs (2.5.2)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    fastly (1.1.5)
+      curb (~> 0.8.6)
+      curb-fu (~> 0.6.2)
+    fastly-rails (0.4.0)
+      fastly (~> 1.1.4)
+      rails
     ffi (1.9.8)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
@@ -234,6 +244,7 @@ DEPENDENCIES
   compass
   devise
   dotenv-rails
+  fastly-rails
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails

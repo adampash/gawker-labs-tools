@@ -31,6 +31,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Puma as the app server
 gem 'puma'
 
+# Fastly CDN
+gem 'fastly-rails'
+
 # production debugging stuff
 gem 'rollbar', '~> 1.2.7'
 gem 'newrelic_rpm'

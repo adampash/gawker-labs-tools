@@ -1,4 +1,5 @@
 class Iframe::GalleriesController < ApplicationController
+  before_filter :set_cache_control_headers
   after_action :allow_iframe
   layout 'iframe'
 
