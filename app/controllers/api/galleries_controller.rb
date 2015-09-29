@@ -9,6 +9,7 @@ class Api::GalleriesController < ApplicationController
 
   def show
     @gallery = Gallery.find(params[:id])
+    set_surrogate_key_header @gallery.record_key
     render json: @gallery.to_json(:methods => [:pics])
   end
 
