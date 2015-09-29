@@ -1,6 +1,6 @@
 class Api::EmbedsController < ApplicationController
   before_filter :set_cache_control_headers, only: :show
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
   after_filter :set_csrf_cookie, except: :show
   layout 'iframe', only: :show
 
