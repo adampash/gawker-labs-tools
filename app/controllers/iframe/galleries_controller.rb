@@ -4,6 +4,7 @@ class Iframe::GalleriesController < ApplicationController
   layout 'iframe'
 
   def empty
+    set_surrogate_key_header ['empty']
     render :text => "", :layout => 'iframe'
   end
 
