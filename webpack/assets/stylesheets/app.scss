@@ -12,6 +12,13 @@ body {
     background: white;
   }
 }
+
+.center_embed {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+}
+
 h2 {
   font-size: $size;
   font-family: $font;
