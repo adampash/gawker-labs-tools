@@ -1,8 +1,6 @@
 import { GET_CURRENT_USER, LOGIN, LOGOUT } from '../actions/currentUser'
 
-let initialState = window.data.currentUser
-
-export function currentUser(state=initialState, action) {
+export function currentUser(state=null, action) {
   switch (action.type) {
   case LOGIN:
     return action.user

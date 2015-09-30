@@ -26,7 +26,8 @@ export default function configureStore(initialState) {
 
   const finalCreateStore = compose(...composers)(createStore)
 
-  let store = finalCreateStore(rootReducer)
+
+  let store = finalCreateStore(rootReducer, initialState)
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('./reducers/index', () => {

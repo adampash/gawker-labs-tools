@@ -12,7 +12,9 @@ import { ReduxRouter } from 'redux-router'
 import getRoutes from './routes'
 
 window.React = React
-let store = configureStore()
+
+let initialState = window.data
+let store = configureStore(initialState)
 
 class Root extends React.Component {
   render() {
