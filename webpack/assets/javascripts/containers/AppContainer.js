@@ -7,16 +7,18 @@ import Breadcrumbs from '../components/Breadcrumbs'
 @Radium
 class AppContainer extends React.Component {
   render() {
-    const {
+    let {
       dispatch,
       currentUser,
       routes,
+      params,
     } = this.props
+    console.log('params',params)
     return (
       <div>
         <NavBar currentUser={ currentUser } />
         <div style={ styles.container }>
-          <Breadcrumbs routes={ routes } />
+          <Breadcrumbs routes={ routes } params={ params } />
           { React.Children.map(this.props.children, (child) => {
             return React.cloneElement(
               child, {

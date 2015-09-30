@@ -39,7 +39,9 @@ export default class ShowGallery extends React.Component {
           <NewLink to="/galleries/new" text="New gallery" />
         </h3>
         <Gallery pics={ gallery.pics }/>
-        <EmbedArea link={ this.renderLink() } />
+        <div style={{ maxWidth: 400, margin: '15px auto' }}>
+          <EmbedArea link={ this.renderLink() } />
+        </div>
       </div>
     )
   }
