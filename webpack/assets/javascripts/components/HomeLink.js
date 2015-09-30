@@ -33,7 +33,8 @@ const styles = {
     margin: 10,
     flex: '1 1',
     ':hover': {
-      background: '#eee'
+      background: 'red',
+      color: 'white'
     }
   },
   header: {

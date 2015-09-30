@@ -150,7 +150,7 @@ const styles = {
   button: {
     padding: 10,
     outline: 'none',
-    background: '#f3a',
+    background: 'red',
     border: 'none',
     color: 'white',
     fontSize: 16,

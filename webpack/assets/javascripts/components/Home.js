@@ -9,7 +9,7 @@ export default class Home extends React.Component {
       <div style={ styles.container }>
         <HomeLink
           to="/embeds"
-          text="Embeds (work in progress)"
+          text="Embeds"
           description="Converts unsupported Kinja embed code into supported Kinja embed code."
         />
         <HomeLink
@@ -18,7 +18,7 @@ export default class Home extends React.Component {
           description="Make Kinja-friendly image galleries."
         />
         <HomeLink
-          to="/suggestion/new"
+          to="/suggestions/new"
           text="Suggestions?"
           description="Got something you'd like to see?"
         />

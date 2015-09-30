@@ -11,6 +11,7 @@ import NewGallery from './components/NewGallery'
 import ShowGallery from './components/ShowGallery'
 import GalleryEmbed from './containers/GalleryEmbed'
 import EmbedEmbed from './containers/EmbedEmbed'
+import NewSuggestion from './components/NewSuggestion'
 
 let getRoutes = (store) => {
   const { getState } = store
@@ -42,6 +43,7 @@ let getRoutes = (store) => {
           <Route path="new" name="New" component={ NewGallery } />
           <Route path=":galleryId" name="Show gallery" component={ ShowGallery } />
         </Route>
+        <Route path="/suggestions/new" name="Suggestions" component={ NewSuggestion } />
       </Route>
       <Route path="iframe/galleries/:galleryId" name="iframe_gallery" component={ GalleryEmbed } />
       <Route path="iframe/embeds/:embedId" name="iframe_embed" component={ EmbedEmbed } />
