@@ -2,6 +2,7 @@ import React from 'react'
 import Radium from 'radium'
 import Gallery from './Gallery'
 import EmbedArea from './EmbedArea'
+import NewLink from './NewLink'
 import { getGalleryAsync } from '../actions/galleries'
 
 @Radium
@@ -33,6 +34,10 @@ export default class ShowGallery extends React.Component {
     let gallery = galleries[galleryId]
     return (
       <div style={ styles.container }>
+        <h3>
+          { gallery.description.toUpperCase() }
+          <NewLink to="/galleries/new" text="New gallery" />
+        </h3>
         <Gallery pics={ gallery.pics }/>
         <EmbedArea link={ this.renderLink() } />
       </div>

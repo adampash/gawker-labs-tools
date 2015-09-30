@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import NewLink from './NewLink'
 import { dispatch, connect } from 'react-redux'
 import { getEmbedsAsync } from '../actions/embeds'
 
@@ -20,7 +21,7 @@ class Embeds extends Component {
     let { embeds, location, embedsList } = this.props
     console.log(this.props)
     if (location.pathname !== '/embeds') return
-    return embedsList.map( embedId => {
+    let list = embedsList.map( embedId => {
       let embed = embeds[embedId]
       return (
         <div key={ embedId }>
@@ -30,19 +31,32 @@ class Embeds extends Component {
         </div>
       )
     })
+    return (
+      <div style={ styles.list }>
+        <h3>
+          Your latest embeds
+          <NewLink to="/embeds/new" text="New embed" />
+        </h3>
+        { list }
+      </div>
+    )
   }
 
   render() {
     return (
       <div>
-        <Link to="/embeds/new">
-          + Create a new embed
-        </Link>
         { this.renderLatest() }
         { this.renderChildren() }
       </div>
     )
   }
+}
+
+const styles = {
+  list: {
+    maxWidth: 500,
+    margin: '0 auto',
+  },
 }
 
 function select(state) {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import NewLink from './NewLink'
 import { connect } from 'react-redux'
 import { getGalleriesAsync } from '../actions/galleries'
 
@@ -19,28 +20,36 @@ class Galleries extends React.Component {
   renderLatest() {
     let { galleries, location, galleryList } = this.props
     if (location.pathname !== '/galleries') return
-    return galleryList.map( galleryId => {
+    let list = galleryList.map( galleryId => {
       let gallery = galleries[galleryId]
       return (
-        <div key={ galleryId }>
+        <div key={ galleryId } style={ styles.listItem }>
           <Link to={`/galleries/${galleryId}`}>
             { gallery.description }
           </Link>
         </div>
       )
     })
+    return (
+      <div style={ styles.list }>
+        <h3>
+          Your latest galleries
+          <NewLink to="/galleries/new" text="New gallery" />
+        </h3>
+        { list }
+      </div>
+    )
   }
 
   render() {
     let { galleries } = this.props
     if (galleries) {
       return (
-        <div>
-          <Link to="/galleries/new">
-            + Create a new gallery
-          </Link>
-          { this.renderLatest() }
-          { this.renderChildren() }
+        <div style={ styles.container }>
+          <div style={ styles.childContainer }>
+            { this.renderLatest() }
+            { this.renderChildren() }
+          </div>
         </div>
       )
     } else {
@@ -49,6 +58,13 @@ class Galleries extends React.Component {
       )
     }
   }
+}
+
+const styles = {
+  list: {
+    maxWidth: 500,
+    margin: '0 auto',
+  },
 }
 
 

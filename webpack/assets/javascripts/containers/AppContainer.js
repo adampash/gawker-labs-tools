@@ -2,6 +2,7 @@ import React from 'react'
 import Radium from 'radium'
 import { connect, dispatch } from 'react-redux'
 import NavBar from '../components/NavBar'
+import Breadcrumbs from '../components/Breadcrumbs'
 
 @Radium
 class AppContainer extends React.Component {
@@ -9,11 +10,13 @@ class AppContainer extends React.Component {
     const {
       dispatch,
       currentUser,
+      routes,
     } = this.props
     return (
       <div>
         <NavBar currentUser={ currentUser } />
         <div style={ styles.container }>
+          <Breadcrumbs routes={ routes } />
           { React.Children.map(this.props.children, (child) => {
             return React.cloneElement(
               child, {
@@ -36,7 +39,7 @@ function select(state) {
 const styles = {
   container: {
     maxWidth: 800,
-    padding: '40px 0',
+    padding: '20px 10px',
     margin: '0 auto',
   }
 }
