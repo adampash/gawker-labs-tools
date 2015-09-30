@@ -35,6 +35,7 @@ export default class ShowEmbed extends React.Component {
     let embed = embeds[embedId]
     return (
       <div style={ styles.container }>
+        <h3>{ embed.name.toUpperCase() }</h3>
         <Embed link={ this.renderApiLink() } embed={ embed } />
         <EmbedArea link={ this.renderApiLink() } />
       </div>

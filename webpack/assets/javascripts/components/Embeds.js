@@ -26,7 +26,7 @@ class Embeds extends Component {
       return (
         <div key={ embedId }>
           <Link to={`/embeds/${embedId}`}>
-            Embed: { embed.description }
+            { embed.name }
           </Link>
         </div>
       )

@@ -14,8 +14,10 @@ class Api::EmbedsController < ApplicationController
   end
 
   def create
+    puts params
     @embed = Embed.create({
       code: params[:code],
+      name: params[:name],
       user_id: current_user.id
     })
     render json: @embed.to_json

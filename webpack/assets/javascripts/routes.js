@@ -31,20 +31,20 @@ let getRoutes = (store) => {
   // Configure routes like normal
   const routes = (
     <Route>
-    <Route path="/" component={AppContainer} name="Dashboard">
-      <IndexRoute component={Home} onEnter={ requireAuth } name="Dashboard" />
       <Route path="/login" component={Login} />
-      <Route path="/embeds" name="Embeds" component={ Embeds }>
-        <Route path="new" name="New" component={ NewEmbed } />
-        <Route path=":embedId" name="Show embed" component={ ShowEmbed } />
+      <Route path="/" component={AppContainer} name="Dashboard" onEnter={ requireAuth }>
+        <IndexRoute component={Home}  name="Dashboard" />
+        <Route path="/embeds" name="Embeds" component={ Embeds }>
+          <Route path="new" name="New" component={ NewEmbed } />
+          <Route path=":embedId" name="Show embed" component={ ShowEmbed } />
+        </Route>
+        <Route path="/galleries" name="Galleries" component={ Galleries }>
+          <Route path="new" name="New" component={ NewGallery } />
+          <Route path=":galleryId" name="Show gallery" component={ ShowGallery } />
+        </Route>
       </Route>
-      <Route path="/galleries" name="Galleries" component={ Galleries }>
-        <Route path="new" name="New" component={ NewGallery } />
-        <Route path=":galleryId" name="Show gallery" component={ ShowGallery } />
-      </Route>
-    </Route>
-    <Route path="iframe/galleries/:galleryId" name="iframe_gallery" component={ GalleryEmbed } />
-    <Route path="iframe/embeds/:embedId" name="iframe_embed" component={ EmbedEmbed } />
+      <Route path="iframe/galleries/:galleryId" name="iframe_gallery" component={ GalleryEmbed } />
+      <Route path="iframe/embeds/:embedId" name="iframe_embed" component={ EmbedEmbed } />
     </Route>
   )
   return routes
