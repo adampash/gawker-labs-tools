@@ -3,6 +3,7 @@ import Radium from 'radium'
 import { getEmbedAsync } from '../actions/embeds'
 import EmbedArea from './EmbedArea'
 import Embed from './Embed'
+import NewLink from './NewLink'
 
 @Radium
 export default class ShowEmbed extends React.Component {
@@ -35,7 +36,13 @@ export default class ShowEmbed extends React.Component {
     let embed = embeds[embedId]
     return (
       <div style={ styles.container }>
-        <h3>{ embed.name.toUpperCase() }</h3>
+        <h3 style={ styles.title }>
+          { embed.name.toUpperCase() }
+          <NewLink to="/embeds/new" text="New embed" />
+        </h3>
+        <div style={ styles.note }>
+          Note: The embed will automatically adjust its height to fit in Kinja
+        </div>
         <Embed link={ this.renderApiLink() } embed={ embed } />
         <EmbedArea link={ this.renderApiLink() } />
       </div>
@@ -74,5 +81,14 @@ const styles = {
   iframe: {
     outline: 'none',
     border: 'none',
+  },
+  note: {
+    fontSize: 12,
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  title: {
+    marginBottom: 0,
+    textAlign: 'center',
   }
 }

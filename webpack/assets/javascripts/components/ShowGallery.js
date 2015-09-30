@@ -34,10 +34,13 @@ export default class ShowGallery extends React.Component {
     let gallery = galleries[galleryId]
     return (
       <div style={ styles.container }>
-        <h3>
+        <h3 style={ styles.title }>
           { gallery.description.toUpperCase() }
           <NewLink to="/galleries/new" text="New gallery" />
         </h3>
+        <div style={ styles.note }>
+          Note: The embed will automatically adjust its height to fit in Kinja
+        </div>
         <Gallery pics={ gallery.pics }/>
         <div style={{ maxWidth: 400, margin: '15px auto' }}>
           <EmbedArea link={ this.renderLink() } />
@@ -78,6 +81,15 @@ const styles = {
   iframe: {
     outline: 'none',
     border: 'none',
+  },
+  note: {
+    fontSize: 12,
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  title: {
+    marginBottom: 0,
+    textAlign: 'center',
   }
 }
 
