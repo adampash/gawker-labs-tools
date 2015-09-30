@@ -14,7 +14,7 @@ export default class EmbedArea extends React.Component {
 
   renderIframe() {
     let { link } = this.props
-    return `<iframe src="${link}" class="custom" width="100%" ></iframe>`
+    return `<iframe src="${link}" class="custom" width="100%" height="325"></iframe>`
   }
 
   render() {
