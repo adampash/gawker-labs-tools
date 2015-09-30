@@ -43,8 +43,8 @@ export default class ShowEmbed extends React.Component {
         <div style={ styles.note }>
           Note: The embed will automatically adjust its height to fit in Kinja
         </div>
-        <Embed link={ this.renderApiLink() } embed={ embed } />
-        <EmbedArea link={ this.renderApiLink() } />
+        <Embed link={ this.renderLink() } embed={ embed } />
+        <EmbedArea link={ this.renderLink() } />
       </div>
     )
   }

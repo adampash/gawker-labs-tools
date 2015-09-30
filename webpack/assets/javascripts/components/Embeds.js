@@ -19,7 +19,6 @@ class Embeds extends Component {
 
   renderLatest() {
     let { embeds, location, embedsList } = this.props
-    console.log(this.props)
     if (location.pathname !== '/embeds') return
     let list = embedsList.map( embedId => {
       let embed = embeds[embedId]

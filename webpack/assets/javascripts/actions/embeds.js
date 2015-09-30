@@ -25,7 +25,6 @@ export function getEmbedAsync(id) {
   return (dispatch, getState) => {
     let embed = getState().embeds[id]
     if (embed) return dispatch(showEmbed(embed))
-    console.log('hitting the api')
     Network.get(`embeds/${id}`)
       .then(response => {
         return response.json()
@@ -66,7 +65,6 @@ export function createEmbed(data, history) {
     })
     .then(data => {
       history.pushState(null, `/embeds/${data.id}`)
-      console.log(data)
     })
 
   }

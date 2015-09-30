@@ -25,10 +25,7 @@ class Api::EmbedsController < ApplicationController
 
   def show
     @embed = Embed.find(params[:id])
-    respond_to do |format|
-      format.json { render json: @embed.to_json }
-      format.html
-    end
+    render json: @embed.to_json
   end
 
   private

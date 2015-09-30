@@ -8,7 +8,6 @@ import Spiframe from './Spiframe'
 export default class Embed extends React.Component {
   render() {
     let { embed, link } = this.props
-    // console.log(embed.code)
     return (
       <KinjaResizer>
         <Spiframe link={ link } />

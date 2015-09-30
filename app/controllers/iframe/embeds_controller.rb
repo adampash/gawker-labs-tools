@@ -8,6 +8,10 @@ class Iframe::EmbedsController < ApplicationController
     render :text => "", :layout => 'iframe'
   end
 
+  def embed
+    @embed = Embed.find(params[:id])
+  end
+
   private
   def allow_iframe
     response.headers.except! 'X-Frame-Options'

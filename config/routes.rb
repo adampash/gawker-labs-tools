@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :iframe do
   #   resources :embeds
   #   resources :galleries
+    get 'embeds/:id' => 'embeds#embed'
     get '(*iframe)' => 'embeds#empty'
   end
 

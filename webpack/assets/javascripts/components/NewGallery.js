@@ -55,7 +55,6 @@ export default class NewGallery extends React.Component {
     let { dispatch, history } = this.props
     let { galleryName, files } = this.state
     let picture_ids = files.map( file => { return file.id })
-    console.log('okay')
     dispatch(createGallery({
       picture_ids, description: galleryName
     }, history))
@@ -97,7 +96,6 @@ export default class NewGallery extends React.Component {
 
   render() {
     let { files } = this.state
-    console.log('enable?', this.isFormEnabled())
     return (
       <div style={ styles.container }>
         <div style={ styles.topRow }>

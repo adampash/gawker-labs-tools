@@ -6,7 +6,6 @@ export default class Spiframe extends Component {
   }
 
   handleLoad() {
-    console.log('loaded!')
     this.props.resize()
   }
 

@@ -19,7 +19,6 @@ export function getGalleryAsync(id) {
   return (dispatch, getState) => {
     let gallery = getState().galleries[id]
     if (gallery) return dispatch(showGallery(gallery))
-    console.log('hitting the api')
   Network.get(`galleries/${id}`)
     .then(response => {
       return response.json()
@@ -59,7 +58,6 @@ export function createGallery(data, history) {
     })
     .then(data => {
       history.pushState(null, `/galleries/${data.id}`)
-      console.log(data)
     })
 
   }

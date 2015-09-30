@@ -8,7 +8,6 @@ export default class Breadcrumbs extends Component {
   swapParams(route) {
     let { params } = this.props
     let param = Object.keys(params)[0]
-    console.log("PARAM", param, route)
     if (route.path === `:${param}`) {
       return params[param]
     } else {
@@ -19,7 +18,6 @@ export default class Breadcrumbs extends Component {
   renderLinks() {
     let { routes, params } = this.props
     return routes.reduce( (acc, route) => {
-      console.log(this.swapParams(route))
       let { name, path } = route
       if (path) {
         acc.push(

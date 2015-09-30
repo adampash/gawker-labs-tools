@@ -6,6 +6,7 @@ import Home from './components/Home'
 import NewEmbed from './components/NewEmbed'
 import ShowEmbed from './components/ShowEmbed'
 import Embeds from './components/Embeds'
+import Nothing from './components/Nothing'
 import Galleries from './components/Galleries'
 import NewGallery from './components/NewGallery'
 import ShowGallery from './components/ShowGallery'
@@ -46,7 +47,7 @@ let getRoutes = (store) => {
         <Route path="/suggestions/new" name="Suggestions" component={ NewSuggestion } />
       </Route>
       <Route path="iframe/galleries/:galleryId" name="iframe_gallery" component={ GalleryEmbed } />
-      <Route path="iframe/embeds/:embedId" name="iframe_embed" component={ EmbedEmbed } />
+      <Route path="iframe/embeds/:embedId" name="iframe_embed" component={ Nothing } />
     </Route>
   )
   return routes

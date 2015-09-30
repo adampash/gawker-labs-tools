@@ -13,7 +13,6 @@ class AppContainer extends React.Component {
       routes,
       params,
     } = this.props
-    console.log('params',params)
     return (
       <div>
         <NavBar currentUser={ currentUser } />
