@@ -25,3 +25,6 @@ webpack/*hot-update.js
 
 # any environment variables
 .env
+
+# ignore serverside project
+server-side-render
