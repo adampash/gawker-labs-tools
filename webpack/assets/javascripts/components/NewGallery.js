@@ -91,7 +91,7 @@ export default class NewGallery extends React.Component {
 
   isFormEnabled() {
     let { files, galleryName } = this.state
-    return galleryName !== '' && files.length !== 0
+    return galleryName !== '' && files.length !== 0 && !files.slice(-1)[0].preview
   }
 
   render() {
@@ -111,7 +111,7 @@ export default class NewGallery extends React.Component {
             />
             <button
               type="submit"
-              style={ styles.button }
+              style={[ styles.button, !this.isFormEnabled() && styles.disabled ]}
               disabled={ !this.isFormEnabled() }
             >
               Create gallery
@@ -154,7 +154,7 @@ const styles = {
     fontSize: 16,
     cursor: 'pointer'
   },
-  disabled_button: {
+  disabled: {
     opacity: 0.5,
   },
   drop_message: {

@@ -34,7 +34,5 @@ export default class ImageList extends React.Component {
 
 const styles = {
   images: {
-    display: 'flex',
-    flexWrap: 'wrap',
   },
 }

@@ -10,22 +10,13 @@ export default class OrderedImage extends React.Component {
     }
   }
 
-  // componentWillUpdate() {
-  //   this.setState({
-  //     num: this.props.index + 1
-  //   })
-  // }
-
   handleChange(e) {
     this.handleBlur(e)
-    // let value = parseInt(e.target.value)
-    // this.setState({ num: parseInt(e.target.value) })
   }
 
   handleBlur(e) {
     let { index, max } = this.props
     let num = parseInt(e.target.value)
-    // let { num } = this.state
     if (index === num - 1 || index < 0 || index > max) return
     this.props.reorderImages(index, num - 1)
   }
@@ -34,44 +25,70 @@ export default class OrderedImage extends React.Component {
     e.target.select()
   }
 
+  handleSubmit(e) {
+    e.preventDefault()
+    console.log('okay')
+  }
+
   render() {
     let { file, index } = this.props
     let { num } = this.state
-    let img_container_style = styles.img_container
+    let container = styles.container
     if (file.preview) {
-      img_container_style = { ...img_container_style, ...styles.preview }
+      container = { ...container, ...styles.preview }
     }
     return (
-      <div style={ img_container_style }>
-        <div style={ styles.number }>
-          <input
-            type="text"
-            value={ index + 1 }
-            style={ styles.input }
-            onBlur={ this.handleBlur.bind(this) }
-            onChange={ this.handleChange.bind(this) }
-            onFocus={ this.handleFocus.bind(this) }
-          />
-        </div>
+      <div style={ container }>
         <img src={ file.url || file.preview } style={ styles.thumb } />
+        <form onSubmit={ this.handleSubmit.bind(this) }
+          style={ styles.form }
+        >
+          <div style={ styles.inputContainer }>
+            <textarea style={ styles.input }placeholder="Caption (optional)"/>
+            <input style={ styles.input } type="text" placeholder="Photo credit (optional)"/>
+          </div>
+        </form>
       </div>
     )
+        // <div style={ styles.number }>
+        //   <input
+        //     type="text"
+        //     value={ index + 1 }
+        //     style={ styles.input }
+        //     onBlur={ this.handleBlur.bind(this) }
+        //     onChange={ this.handleChange.bind(this) }
+        //     onFocus={ this.handleFocus.bind(this) }
+        //   />
+        // </div>
   }
 
 }
 
 const styles = {
-  img_container: {
-    position: 'relative',
+  container: {
     transition: 'opacity .5s ease-in-out',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  thumb: {
+    maxWidth: 150,
+    margin: 10,
+    flex: '1 0 150'
+  },
+  form: {
+    flex: '1 0'
+  },
+  inputContainer: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   input: {
-    width: 10,
     outline: 'none',
-    border: 'none',
-    color: 'white',
-    background: 'black',
-    textAlign: 'center',
+    border: '1px solid #ddd',
+    padding: 5,
+    marginBottom: 10,
   },
   number: {
     position: 'absolute',
@@ -85,10 +102,6 @@ const styles = {
     width: 30,
     height: 30,
     borderRadius: '50%',
-  },
-  thumb: {
-    maxWidth: 150,
-    margin: 10,
   },
   preview: {
     opacity: 0.3,

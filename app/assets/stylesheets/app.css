@@ -1,8 +1,131 @@
-*, *:before, *:after {
-  box-sizing: border-box; }
+@font-face {
+  font-family: 'ProximaNovaCond';
+  font-weight: normal;
+  font-style: normal;
+  src: url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_reg-webfont.woff2?08252015) format("woff2"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_reg-webfont.woff?08252015) format("woff"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_reg-webfont.ttf?08252015) format("ttf"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_reg-webfont.eot?08252015) format("eot"); }
+@font-face {
+  font-family: 'ProximaNovaCond';
+  font-weight: normal;
+  font-style: italic;
+  src: url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_reg_it-webfont.woff2?08252015) format("woff2"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_reg_it-webfont.woff?08252015) format("woff"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_reg_it-webfont.ttf?08252015) format("ttf"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_reg_it-webfont.eot?08252015) format("eot"); }
+@font-face {
+  font-family: 'ProximaNovaCond';
+  font-weight: bold;
+  font-style: normal;
+  src: url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_sbold-webfont.woff2?08252015) format("woff2"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_sbold-webfont.woff?08252015) format("woff"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_sbold-webfont.ttf?08252015) format("ttf"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_sbold-webfont.eot?08252015) format("eot"); }
+@font-face {
+  font-family: 'ProximaNovaCond';
+  font-weight: bold;
+  font-style: italic;
+  src: url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_sbold_it-webfont.woff2?08252015) format("woff2"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_sbold_it-webfont.woff?08252015) format("woff"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_sbold_it-webfont.ttf?08252015) format("ttf"), url(http://x.kinja-static.com/assets/fonts/proxima/proxima_nova_cond_sbold_it-webfont.eot?08252015) format("eot"); }
+@font-face {
+  font-family: 'ElizabethSerif';
+  font-weight: 400;
+  font-style: normal;
+  src: url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-light-webfont.woff2?08252015) format("woff2"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-light-webfont.woff?08252015) format("woff"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-light-webfont.ttf?08252015) format("ttf"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-light-webfont.eot?08252015) format("eot"); }
+@font-face {
+  font-family: 'ElizabethSerif';
+  font-weight: 400;
+  font-style: italic;
+  src: url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-lightitalic-webfont.woff2?08252015) format("woff2"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-lightitalic-webfont.woff?08252015) format("woff"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-lightitalic-webfont.ttf?08252015) format("ttf"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-lightitalic-webfont.eot?08252015) format("eot"); }
+@font-face {
+  font-family: 'ElizabethSerif';
+  font-weight: 500;
+  font-style: normal;
+  src: url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-regular-webfont.woff2?09112015) format("woff2"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-regular-webfont.woff?09112015) format("woff"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-regular-webfont.ttf?09112015) format("ttf"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-regular-webfont.eot?09112015) format("eot"); }
+@font-face {
+  font-family: 'ElizabethSerif';
+  font-weight: 500;
+  font-style: italic;
+  src: url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-italic-webfont.woff2?09112015) format("woff2"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-italic-webfont.woff?09112015) format("woff"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-italic-webfont.ttf?09112015) format("ttf"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-italic-webfont.eot?09112015) format("eot"); }
+@font-face {
+  font-family: 'ElizabethSerif';
+  font-weight: 700;
+  font-style: normal;
+  src: url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-bold-webfont.woff2?08252015) format("woff2"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-bold-webfont.woff?08252015) format("woff"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-bold-webfont.ttf?08252015) format("ttf"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-bold-webfont.eot?08252015) format("eot"); }
+@font-face {
+  font-family: 'ElizabethSerif';
+  font-weight: 700;
+  font-style: italic;
+  src: url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-bolditalic-webfont.woff2?08252015) format("woff2"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-bolditalic-webfont.woff?08252015) format("woff"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-bolditalic-webfont.ttf?08252015) format("ttf"), url(http://x.kinja-static.com/assets/fonts/elizabeth-serif/elizabeth-serif-bolditalic-webfont.eot?08252015) format("eot"); }
+@font-face {
+  font-family: 'PostGrotesk';
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-Light.eot);
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-Light.eot?#iefix) format("embedded-opentype"), url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-Light.woff) format("woff");
+  font-weight: 200;
+  font-style: normal; }
+@font-face {
+  font-family: 'PostGrotesk';
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-LightItalic.eot);
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-LightItalic.eot?#iefix) format("embedded-opentype"), url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-LightItalic.woff) format("woff");
+  font-weight: 200;
+  font-style: italic; }
+@font-face {
+  font-family: 'PostGrotesk';
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-Book.eot);
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-Book.eot?#iefix) format("embedded-opentype"), url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-Book.woff) format("woff");
+  font-weight: 400;
+  font-style: normal; }
+@font-face {
+  font-family: 'PostGrotesk';
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-BookItalic.eot);
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-BookItalic.eot?#iefix) format("embedded-opentype"), url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-BookItalic.woff) format("woff");
+  font-weight: 400;
+  font-style: italic; }
+@font-face {
+  font-family: 'PostGrotesk';
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-Medium.eot);
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-Medium.eot?#iefix) format("embedded-opentype"), url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-Medium.woff) format("woff");
+  font-weight: 500;
+  font-style: normal; }
+@font-face {
+  font-family: 'PostGrotesk';
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-MediumItalic.eot);
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-MediumItalic.eot?#iefix) format("embedded-opentype"), url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-MediumItalic.woff) format("woff");
+  font-weight: 500;
+  font-style: italic; }
+@font-face {
+  font-family: 'PostGrotesk';
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-Bold.eot);
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-Bold.eot?#iefix) format("embedded-opentype"), url(http://x.kinja-static.com/assets/fontspostgrotesk/PostGrotesk-Bold.woff) format("woff");
+  font-weight: 700;
+  font-style: normal; }
+@font-face {
+  font-family: 'PostGrotesk';
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-BoldItalic.eot);
+  src: url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-BoldItalic.eot?#iefix) format("embedded-opentype"), url(http://x.kinja-static.com/assets/fonts/postgrotesk/PostGrotesk-BoldItalic.woff) format("woff");
+  font-weight: 700;
+  font-style: italic; }
+@font-face {
+  font-family: 'KinjaIcons';
+  src: url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-webfont.eot?052015);
+  src: url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-webfont.eot?052015#iefix) format("embedded-opentype"), url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-webfont.svg?052015) format("svg"), url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-webfont.woff?052015) format("woff"), url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-webfont.ttf?052015) format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+.secondary-nav__item.secondary-nav__item--inline:after, .secondary-nav__item.secondary-nav__item--list:after, .dropdown.button:after, .split.button span:after, body:not(.f_hipra_discussion_redesign_on).f_groupchats_refactor_on .button--pagination:after {
+  font-family: 'KinjaIcons'; }
+
+@font-face {
+  font-family: 'KinjaIconsEssentials';
+  src: url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-essentials.eot?052815);
+  src: url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-essentials.eot?052815#iefix) format("embedded-opentype"), url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-essentials.svg?052815) format("svg"), url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-essentials.woff?052815) format("woff"), url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-essentials.ttf?052815) format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'KinjaIconsOutline';
+  src: url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-outline.eot?052815);
+  src: url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-outline.eot?052815#iefix) format("embedded-opentype"), url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-outline.svg?052815) format("svg"), url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-outline.woff?052815) format("woff"), url(http://x.kinja-static.com/assets/fonts/kinjafont/kinjaicons-outline.ttf?052815) format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; }
 
 body {
   background: #F4F2F2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0; }
   body.iframe {
@@ -14,8 +137,6 @@ body {
   max-width: 100%; }
 
 h2 {
-  font-size: 50px;
-  font-family: Helvetica;
   color: green; }
 
 a {
