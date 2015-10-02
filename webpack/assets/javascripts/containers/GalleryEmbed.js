@@ -21,7 +21,7 @@ class GalleryEmbed extends React.Component {
     let gallery = galleries[galleryId]
     return (
       <KinjaResizer style={ styles.container }>
-        <Gallery pics={ gallery.pics }/>
+        <Gallery gallery={ gallery }/>
       </KinjaResizer>
     )
   }
