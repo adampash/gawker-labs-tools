@@ -44,7 +44,7 @@ export default class OrderedImage extends React.Component {
           style={ styles.form }
         >
           <div style={ styles.inputContainer }>
-            <textarea style={ styles.input }placeholder="Caption (optional)"/>
+            <textarea style={[ styles.input, styles.textarea ]} placeholder="Caption (optional)"/>
             <input style={ styles.input } type="text" placeholder="Photo credit (optional)"/>
           </div>
         </form>
@@ -70,11 +70,12 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    padding: '10px 0'
   },
   thumb: {
     maxWidth: 150,
-    margin: 10,
+    margin: '0 10px',
     flex: '1 0 150'
   },
   form: {
@@ -89,6 +90,9 @@ const styles = {
     border: '1px solid #ddd',
     padding: 5,
     marginBottom: 10,
+  },
+  textarea: {
+    height: 70,
   },
   number: {
     position: 'absolute',
