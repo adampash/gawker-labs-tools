@@ -41,7 +41,9 @@ export default class ShowGallery extends React.Component {
         <div style={ styles.note }>
           Note: The embed will automatically adjust its height to fit in Kinja
         </div>
-        <Gallery pics={ gallery.pics }/>
+        <Gallery
+          gallery={ gallery }
+        />
         <div style={{ maxWidth: 400, margin: '15px auto' }}>
           <EmbedArea link={ this.renderLink() } />
         </div>
@@ -67,9 +69,11 @@ export default class ShowGallery extends React.Component {
 
 const styles = {
   container: {
-    maxWidth: 636,
+    maxWidth: 676,
     width: '100%',
     margin: '20px auto',
+    padding: 20,
+    backgroundColor: 'white',
   },
   textarea: {
     resize: 'none',

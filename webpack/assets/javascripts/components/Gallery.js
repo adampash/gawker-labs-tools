@@ -34,7 +34,7 @@ export default class Gallery extends React.Component {
   }
 
   renderImages() {
-    let { pics } = this.props
+    let { pics } = this.props.gallery
     return pics.map( (pic, index) => {
       return (
         <KinjaResizer key={ index } style={ styles.img_container }>
@@ -44,25 +44,44 @@ export default class Gallery extends React.Component {
     })
   }
 
-  renderDots() {
-    let { pics } = this.props
+  renderIndex() {
     let { index } = this.state
-    return pics.map( (pic, num) => {
-      let bg = {}
-      if (num === index) bg.backgroundColor = 'red'
-      return (
+    let { pics } = this.props.gallery
+    return (
+      <div style={[ styles.galleryIndex, styles.copy ]}>
+        { index + 1 } of { pics.length }
+      </div>
+    )
+  }
+
+  renderButtons() {
+    return (
+      <div style={ styles.buttonContainer }>
         <div
-          style={{ ...styles.dot, ...bg }}
-          key={ num }
-          onClick={() => this.setState({ index: num }) }
-        />
-      )
-    })
+          style={{ ...styles.nextPrev }}
+          onClick={ this.prevImage.bind(this) }
+        >
+          <FontAwesome
+            name="chevron-left"
+            style={ styles.chevron }
+          />
+        </div>
+        <div
+          style={{ ...styles.nextPrev }}
+          onClick={ this.nextImage.bind(this) }
+        >
+          <FontAwesome
+            name="chevron-right"
+            style={ styles.chevron }
+          />
+        </div>
+      </div>
+    )
   }
 
   nextImage() {
     let { index } = this.state
-    let { pics } = this.props
+    let { pics } = this.props.gallery
     let newIndex
     if (index + 1 === pics.length)
       newIndex = 0
@@ -75,7 +94,7 @@ export default class Gallery extends React.Component {
 
   prevImage() {
     let { index } = this.state
-    let { pics } = this.props
+    let { pics } = this.props.gallery
     let newIndex
     if (index - 1 < 0)
       newIndex = pics.length - 1
@@ -88,20 +107,11 @@ export default class Gallery extends React.Component {
 
   render() {
     let { index } = this.state
+    let { description } = this.props.gallery
     return (
-      <div>
+      <div style={ styles.global }>
+        <div style={[ styles.title, styles.copy ]}>{ description }</div>
         <div style={ styles.container }>
-          { this.isDesktop() &&
-            <div
-              style={{ ...styles.nextPrev }}
-              onClick={ this.prevImage.bind(this) }
-            >
-              <FontAwesome
-                name="chevron-left"
-                style={ styles.chevron }
-              />
-            </div>
-          }
           <div style={ styles.swipeContainer }>
             <SwipeableViews
               style={{
@@ -113,20 +123,10 @@ export default class Gallery extends React.Component {
               { this.renderImages() }
             </SwipeableViews>
           </div>
-          { this.isDesktop() &&
-            <div
-              style={{ ...styles.nextPrev }}
-              onClick={ this.nextImage.bind(this) }
-            >
-              <FontAwesome
-                name="chevron-right"
-                style={ styles.chevron }
-              />
-            </div>
-          }
         </div>
-        <div style={ styles.dotsContainer }>
-          { this.renderDots() }
+        <div style={ styles.topMeta }>
+          { this.renderIndex() }
+          { this.renderButtons() }
         </div>
       </div>
     )
@@ -136,13 +136,17 @@ export default class Gallery extends React.Component {
 }
 
 const styles = {
+  global: {
+    fontFamily: 'ElizabethSerif',
+    backgroundColor: 'white',
+  },
   container: {
     display: 'flex',
     alignItems: 'stretch',
     justifyContent: 'center',
   },
   swipeContainer: {
-    background: 'black',
+    backgroundColor: '#F2F2F2',
   },
   img_container: {
     textAlign: 'center',
@@ -153,7 +157,6 @@ const styles = {
     justifyContent: 'center',
     flexDirection: 'column',
     cursor: 'pointer',
-    padding: '0 3px',
   },
   dotsContainer: {
     display: 'flex',
@@ -169,8 +172,29 @@ const styles = {
     margin: 5
   },
   chevron: {
-    display: 'block',
     color: 'black',
-    fontSize: 30,
-  }
+    fontSize: 12,
+  },
+  topMeta: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 15,
+  },
+  buttonContainer: {
+    display: 'flex',
+    width: 42,
+    justifyContent: 'space-between'
+  },
+  copy: {
+    fontSize: 16,
+    lineHeight: '29px',
+  },
+  galleryIndex: {
+    fontWeight: 'bold',
+  },
+  title: {
+    fontWeight: 'bold',
+    marginBottom: 15,
+  },
 }

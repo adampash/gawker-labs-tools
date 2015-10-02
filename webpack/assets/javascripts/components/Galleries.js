@@ -46,10 +46,8 @@ class Galleries extends React.Component {
     if (galleries) {
       return (
         <div style={ styles.container }>
-          <div style={ styles.childContainer }>
-            { this.renderLatest() }
-            { this.renderChildren() }
-          </div>
+          { this.renderLatest() }
+          { this.renderChildren() }
         </div>
       )
     } else {
@@ -61,6 +59,8 @@ class Galleries extends React.Component {
 }
 
 const styles = {
+  container: {
+  },
   list: {
     maxWidth: 500,
     margin: '0 auto',
