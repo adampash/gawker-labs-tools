@@ -13,6 +13,8 @@ import getRoutes from './routes'
 
 window.React = React
 
+require('babel-core/polyfill')
+
 let initialState = window.data
 let store = configureStore(initialState)
 
