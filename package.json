@@ -44,7 +44,6 @@
     "react-hot-loader": "^1.1.7",
     "react-preload": "0.2.2",
     "react-retina-image": "^1.1.2",
-    "react-sortable-mixin2": "~0.0.6",
     "react-router": "^1.0.0-rc1",
     "redux-router": "^1.0.0-beta3",
     "react-slick": "git@github.com:adampash/react-slick.git#react@0.14.0-rc1",
