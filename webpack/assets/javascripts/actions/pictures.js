@@ -2,6 +2,7 @@ import Network from '../Network'
 
 export const UPDATE_PICTURE = 'UPDATE_PICTURE'
 export const UPLOAD_PICTURES = 'UPLOAD_PICTURES'
+export const REORDER_PICTURES = 'REORDER_PICTURES'
 
 //
 // action creators
@@ -12,6 +13,14 @@ export function updatePicture(index, data) {
     type: UPDATE_PICTURE,
     index,
     ...data
+  }
+}
+
+export function reorderImages(from, to) {
+  return {
+    type: REORDER_PICTURES,
+    from,
+    to
   }
 }
 

@@ -62,7 +62,7 @@ export default class Gallery extends React.Component {
     return (
       <div>
         { description && description.trim() !== '' &&
-          <div>{ description }</div>
+          <div style={ styles.description }>{ description }</div>
         }
         { credit && credit.trim() !== '' &&
           <div style={ styles.credit }>Credit: { credit }</div>

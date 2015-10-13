@@ -1,7 +1,7 @@
 import React from 'react'
 import Radium from 'radium'
 import { createGallery } from '../actions/galleries'
-import { uploadPictures, updatePictureAsync } from '../actions/pictures'
+import { uploadPictures, updatePictureAsync, reorderImages } from '../actions/pictures'
 import { connect } from 'react-redux'
 import Dropzone from 'react-dropzone'
 import Network from '../Network'
@@ -76,19 +76,8 @@ class NewGallery extends React.Component {
   }
 
   reorderImages(from, to) {
-    let { files } = this.state
-    let file = this.state.files.slice(from, from + 1)[0]
-    let without = [
-      ...files.slice(0, from),
-      ...files.slice(from + 1)
-    ]
-    this.setState({
-      files: [
-        ...without.slice(0, to),
-        file,
-        ...without.slice(to)
-      ]
-    })
+    let { dispatch } = this.props
+    dispatch(reorderImages(from, to))
   }
 
   handleNameChange(e) {

@@ -7,8 +7,32 @@ export default class OrderedImage extends React.Component {
     super(props)
     this.state = {
       showSave: false,
-      loading: false
+      loading: false,
+      position: props.index + 1
     }
+  }
+
+  componentWillReceiveProps(props) {
+    console.log(props)
+    let { index } = props
+    this.setState({
+      position: index + 1
+    }, () => {
+      this.refs.order.blur()
+    })
+    console.log(this.refs.order)
+  }
+
+  shouldComponentUpdate(props) {
+    // console.log(props)
+    // debugger
+    return true
+  }
+
+  handleNumChange(e) {
+    this.setState({
+      position: parseInt(e.target.value)
+    })
   }
 
   handleSubmit(e) {
@@ -17,6 +41,13 @@ export default class OrderedImage extends React.Component {
     let credit = this.refs.credit.value
     e.preventDefault()
     this.props.handleUpdatePic({ description, credit, id: file.id, index })
+  }
+
+  reorder(e) {
+    e.preventDefault()
+    let { index } = this.props
+    let { value } = this.refs.order
+    this.props.reorderImages(index, parseInt(value) - 1)
   }
 
   showSave(e) {
@@ -34,7 +65,16 @@ export default class OrderedImage extends React.Component {
     }
     return (
       <div style={ container }>
-        <img src={ file.url || file.preview } style={ styles.thumb } />
+        <form onSubmit={ this.reorder.bind(this) } style={ styles.img_form }>
+          <img src={ file.url || file.preview } style={ styles.thumb } />
+          <input
+            ref="order"
+            style={ styles.reorder_input }
+            type="text"
+            value={ this.state.position }
+            onChange={ this.handleNumChange.bind(this) }
+          />
+        </form>
         <form onSubmit={ this.handleSubmit.bind(this) }
           onChange={ this.showSave.bind(this) }
           style={ styles.form }
@@ -106,5 +146,15 @@ const styles = {
   },
   preview: {
     opacity: 0.3,
+  },
+  img_form: {
+    position: 'relative'
+  },
+  reorder_input: {
+    position: 'absolute',
+    top: 0,
+    left: 10,
+    width: 30,
+    textAlign: 'center'
   }
 }
