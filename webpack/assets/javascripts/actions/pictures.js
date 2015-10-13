@@ -1,0 +1,60 @@
+import Network from '../Network'
+
+export const UPDATE_PICTURE = 'UPDATE_PICTURE'
+export const UPLOAD_PICTURES = 'UPLOAD_PICTURES'
+
+//
+// action creators
+//
+
+export function updatePicture(index, data) {
+  return {
+    type: UPDATE_PICTURE,
+    index,
+    ...data
+  }
+}
+
+export function updatePictureAsync(index, {id, description, credit}) {
+  return (dispatch, getState) => {
+    let pic = getState().pictures[index]
+    dispatch(updatePicture(index, { pic: { ...pic, loading: true }}))
+    Network.put(`pictures/${id}`, { description, credit })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        dispatch(updatePicture(index, { pic: {...pic, loading: false}}))
+      })
+  }
+
+}
+
+function uploadFiles(files, index=0, offset=0) {
+  return (dispatch, getState) => {
+    let file = files[index]
+    Network.post('pictures', { file }, 'file')
+    .then( response => { return response.json() })
+    .then(pic => {
+      dispatch(updatePicture(index + offset, { pic }))
+      if (files.length - 1 === index) return
+      dispatch(uploadFiles(files, index += 1, offset))
+    })
+  }
+}
+
+function appendTemp(tempFiles) {
+  return {
+    type: UPLOAD_PICTURES,
+    tempFiles,
+  }
+}
+
+export function uploadPictures(tempFiles=[]) {
+  return (dispatch, getState) => {
+    let { pictures } = getState()
+    dispatch(appendTemp(tempFiles))
+    dispatch(uploadFiles(tempFiles, 0, pictures.length))
+  }
+}
+

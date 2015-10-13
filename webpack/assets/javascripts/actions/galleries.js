@@ -3,6 +3,7 @@ import Network from '../Network'
 export const CREATE_GALLERY = 'CREATE_GALLERY'
 export const SHOW_GALLERY = 'SHOW_GALLERY'
 export const SHOW_GALLERIES = 'SHOW_GALLERIES'
+export const CLEAR_NEW_GALLERY = 'CLEAR_NEW_GALLERY'
 
 //
 // action creators
@@ -50,6 +51,12 @@ export function getGalleriesAsync(id) {
 
 }
 
+function clearNewGallery() {
+  return {
+    type: CLEAR_NEW_GALLERY
+  }
+}
+
 export function createGallery(data, history) {
   return (dispatch, getState) => {
     Network.post('galleries', data)
@@ -58,6 +65,7 @@ export function createGallery(data, history) {
     })
     .then(data => {
       history.pushState(null, `/galleries/${data.id}`)
+      dispatch(clearNewGallery())
     })
 
   }

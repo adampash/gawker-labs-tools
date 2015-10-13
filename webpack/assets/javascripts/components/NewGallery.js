@@ -1,12 +1,14 @@
 import React from 'react'
 import Radium from 'radium'
 import { createGallery } from '../actions/galleries'
+import { uploadPictures, updatePictureAsync } from '../actions/pictures'
+import { connect } from 'react-redux'
 import Dropzone from 'react-dropzone'
 import Network from '../Network'
 import ImageList from './ImageList'
 
 @Radium
-export default class NewGallery extends React.Component {
+class NewGallery extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -37,14 +39,16 @@ export default class NewGallery extends React.Component {
   }
 
   onDrop(tempFiles) {
-    let { files } = this.state
-    let uploadIndex = files.length
-    this.setState({
-      uploading: true,
-      files: [...this.state.files, ...tempFiles]
-    }, () => {
-      this.uploadFiles(this.state.files, uploadIndex)
-    })
+    let { dispatch } = this.props
+    // let { files } = this.state
+    // let uploadIndex = files.length
+    dispatch(uploadPictures(tempFiles))
+    // this.setState({
+    //   uploading: true,
+    //   files: [...this.state.files, ...tempFiles]
+    // }, () => {
+    //   this.uploadFiles(this.state.files, uploadIndex)
+    // })
   }
 
   handleSubmit(e) {
@@ -52,9 +56,9 @@ export default class NewGallery extends React.Component {
     if (!this.isFormEnabled()) {
       return alert("Your gallery needs both files and a name")
     }
-    let { dispatch, history } = this.props
-    let { galleryName, files } = this.state
-    let picture_ids = files.map( file => { return file.id })
+    let { dispatch, history, pictures } = this.props
+    let { galleryName } = this.state
+    let picture_ids = pictures.map( pic => { return pic.id })
     dispatch(createGallery({
       picture_ids, description: galleryName
     }, history))
@@ -64,6 +68,11 @@ export default class NewGallery extends React.Component {
     this.setState({
       code: e.target.value
     })
+  }
+
+  handleUpdatePic({ description, credit, id, index }) {
+    let { dispatch } = this.props
+    dispatch(updatePictureAsync(index, { description, credit, id }))
   }
 
   reorderImages(from, to) {
@@ -90,12 +99,14 @@ export default class NewGallery extends React.Component {
   }
 
   isFormEnabled() {
-    let { files, galleryName } = this.state
-    return galleryName !== '' && files.length !== 0 && !files.slice(-1)[0].preview
+    let { galleryName } = this.state
+    let { pictures } = this.props
+    return galleryName !== '' && pictures.length !== 0 && !pictures.slice(-1)[0].preview
   }
 
   render() {
-    let { files } = this.state
+    // let { files } = this.state
+    let { pictures } = this.props
     return (
       <div style={ styles.container }>
         <div style={ styles.topRow }>
@@ -119,8 +130,9 @@ export default class NewGallery extends React.Component {
           </form>
         </div>
         <ImageList
-          images={ files }
+          images={ pictures }
           reorderImages={ this.reorderImages.bind(this) }
+          handleUpdatePic={ this.handleUpdatePic.bind(this) }
         />
       </div>
     )
@@ -165,3 +177,12 @@ const styles = {
   }
 }
 
+
+function select(state) {
+  let { pictures } = state
+  return {
+    pictures
+  }
+}
+
+export default connect(select)(NewGallery)

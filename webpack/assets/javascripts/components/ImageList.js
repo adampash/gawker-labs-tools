@@ -7,16 +7,18 @@ export default class ImageList extends React.Component {
   reorderImages(from, to) {
     this.props.reorderImages(from, to)
   }
+
   renderImages() {
     let { images } = this.props
     return images.map( (file, index) => {
       return (
         <OrderedImage
           key={index}
+          item={ file }
           index={ index }
           file={ file }
           reorderImages={ this.reorderImages.bind(this) }
-          max={ images.length - 1 }
+          handleUpdatePic={ this.props.handleUpdatePic.bind(this) }
         />
       )
     })

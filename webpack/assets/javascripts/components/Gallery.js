@@ -54,6 +54,22 @@ export default class Gallery extends React.Component {
     )
   }
 
+  renderMeta() {
+    let { index } = this.state
+    let { pics } = this.props.gallery
+    let pic = pics[index]
+    let { description, credit } = pic
+    return (
+      <div>
+        { description && description.trim() !== '' &&
+          <div>{ description }</div>
+        }
+        { credit && credit.trim() !== '' &&
+          <div style={ styles.credit }>Credit: { credit }</div>
+        }
+      </div>
+    )
+  }
   renderButtons() {
     return (
       <div style={ styles.buttonContainer }>
@@ -128,6 +144,7 @@ export default class Gallery extends React.Component {
           { this.renderIndex() }
           { this.renderButtons() }
         </div>
+        { this.renderMeta() }
       </div>
     )
       // <ReactSwipe continuous={ false }>
@@ -192,9 +209,17 @@ const styles = {
   },
   galleryIndex: {
     fontWeight: 'bold',
+    marginBottom: 6,
   },
   title: {
     fontWeight: 'bold',
     marginBottom: 15,
   },
+  description: {
+    marginBottom: 12,
+  },
+  credit: {
+    fontSize: 12,
+    color: '#808080',
+  }
 }

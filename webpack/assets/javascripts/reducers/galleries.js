@@ -1,4 +1,5 @@
 import { SHOW_GALLERY, SHOW_GALLERIES } from '../actions/galleries'
+import { UPDATE_PICTURE } from '../actions/pictures'
 
 export function galleries(state={}, action) {
   switch (action.type) {

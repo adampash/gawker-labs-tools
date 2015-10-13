@@ -6,47 +6,44 @@ export default class OrderedImage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      num: props.index + 1
+      showSave: false,
+      loading: false
     }
   }
 
-  handleChange(e) {
-    this.handleBlur(e)
-  }
-
-  handleBlur(e) {
-    let { index, max } = this.props
-    let num = parseInt(e.target.value)
-    if (index === num - 1 || index < 0 || index > max) return
-    this.props.reorderImages(index, num - 1)
-  }
-
-  handleFocus(e) {
-    e.target.select()
-  }
-
   handleSubmit(e) {
+    let { file, index } = this.props
+    let description = this.refs.description.value
+    let credit = this.refs.credit.value
     e.preventDefault()
-    console.log('okay')
+    this.props.handleUpdatePic({ description, credit, id: file.id, index })
+  }
+
+  showSave(e) {
+    this.setState({
+      showSave: true
+    })
   }
 
   render() {
     let { file, index } = this.props
-    let { num } = this.state
+    let { showSave, loading } = this.state
     let container = styles.container
-    if (file.preview) {
+    if (file.preview || loading) {
       container = { ...container, ...styles.preview }
     }
     return (
       <div style={ container }>
         <img src={ file.url || file.preview } style={ styles.thumb } />
         <form onSubmit={ this.handleSubmit.bind(this) }
+          onChange={ this.showSave.bind(this) }
           style={ styles.form }
         >
           <div style={ styles.inputContainer }>
-            <textarea style={[ styles.input, styles.textarea ]} placeholder="Caption (optional)"/>
-            <input style={ styles.input } type="text" placeholder="Photo credit (optional)"/>
+            <textarea ref="description" style={[ styles.input, styles.textarea ]} placeholder="Caption (optional)"/>
+            <input ref="credit" style={ styles.input } type="text" placeholder="Photo credit (optional)"/>
           </div>
+          { showSave && <button type="submit">Save</button> }
         </form>
       </div>
     )
