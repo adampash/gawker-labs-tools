@@ -24,6 +24,20 @@ export function reorderImages(from, to) {
   }
 }
 
+export function reorderImagesAndUpdateGallery(galleryId, from, to) {
+  return (dispatch, getState) => {
+    dispatch(reorderImages(from, to))
+    Network.put(`galleries/${galleryId}`, { position: { from, to } })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        console.log(data)
+        // dispatch(updatePicture(index, { pic: {...pic, loading: false}}))
+      })
+  }
+}
+
 export function updatePictureAsync(index, {id, description, credit}) {
   return (dispatch, getState) => {
     let pic = getState().pictures[index]

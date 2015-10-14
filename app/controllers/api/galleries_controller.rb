@@ -31,4 +31,16 @@ class Api::GalleriesController < ApplicationController
 
     render json: @gallery.to_json(:methods => [:pics])
   end
+
+  def update
+    @gallery = Gallery.find(params[:id])
+    if (params[:position])
+      @gallery.gallery_pictures.find_by(
+        position: params[:position][:from] + 1
+      ).set_list_position(
+        params[:position][:to] + 1
+      )
+    end
+    render json: { success: true }
+  end
 end

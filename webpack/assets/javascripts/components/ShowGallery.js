@@ -6,7 +6,7 @@ import ImageList from './ImageList'
 import NewLink from './NewLink'
 import { connect } from 'react-redux'
 import { getGalleryAsync } from '../actions/galleries'
-import { uploadPictures, updatePictureAsync, reorderImages } from '../actions/pictures'
+import { uploadPictures, updatePictureAsync, reorderImagesAndUpdateGallery } from '../actions/pictures'
 
 @Radium
 class ShowGallery extends React.Component {
@@ -30,8 +30,10 @@ class ShowGallery extends React.Component {
   }
 
   reorderImages(from, to) {
-    let { dispatch } = this.props
-    dispatch(reorderImages(from, to))
+    let { dispatch, routeParams } = this.props
+    let { galleryId } = routeParams
+    console.log(from, to)
+    dispatch(reorderImagesAndUpdateGallery(galleryId, from, to))
   }
 
   renderLink() {
