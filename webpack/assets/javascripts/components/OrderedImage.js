@@ -18,8 +18,8 @@ export default class OrderedImage extends React.Component {
     let { loading } = this.state
     let { index, file } = props
     let { credit, description } = file
-    console.log(this.state.position, index + 1)
-    console.log(this.state.position === index + 1)
+    // console.log(this.state.position, index + 1)
+    // console.log(this.state.position === index + 1)
     let newState = {
       position: index + 1
     }
@@ -50,7 +50,7 @@ export default class OrderedImage extends React.Component {
   }
 
   handleChange(e) {
-    console.log(e)
+    // console.log(e)
     this.setState({
       [e.target.name]: e.target.value
     })
