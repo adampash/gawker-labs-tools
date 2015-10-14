@@ -19,14 +19,14 @@ export function showGallery(gallery) {
 export function getGalleryAsync(id) {
   return (dispatch, getState) => {
     let gallery = getState().galleries[id]
-    if (gallery) return dispatch(showGallery(gallery))
-  Network.get(`galleries/${id}`)
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
-      dispatch(showGallery(data))
-    })
+    if (gallery) dispatch(showGallery(gallery))
+    Network.get(`galleries/${id}`)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        dispatch(showGallery(data))
+      })
   }
 
 }
