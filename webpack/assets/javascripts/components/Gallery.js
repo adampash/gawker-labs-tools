@@ -166,14 +166,17 @@ const styles = {
   global: {
     fontFamily: 'ElizabethSerif',
     backgroundColor: 'white',
+    width: '100%',
   },
   container: {
     display: 'flex',
     alignItems: 'stretch',
     justifyContent: 'center',
+    width: '100%',
   },
   swipeContainer: {
     backgroundColor: '#F2F2F2',
+    width: '100%',
   },
   img_container: {
     textAlign: 'center',
