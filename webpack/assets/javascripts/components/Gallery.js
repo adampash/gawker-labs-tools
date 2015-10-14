@@ -44,7 +44,9 @@ export default class Gallery extends React.Component {
   }
 
   renderImages() {
-    let { pics } = this.props || this.props.gallery
+    let { pics } = this.props
+    if (pics === undefined)
+      pics = this.props.gallery.pics
     return pics.map( (pic, index) => {
       return (
         <KinjaResizer key={ index } style={ styles.img_container }>
