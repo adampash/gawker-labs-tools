@@ -1,6 +1,6 @@
 message=$1;
 echo Compiling client bundle;
-cd webpack && $(npm bin)/webpack -p --config webpack.rails.config.js;
+cd webpack && NODE_ENV=production $(npm bin)/webpack -p --config webpack.rails.config.js;
 cd ..;
 git add . && git commit -m "$message"
 echo Pushing changes
