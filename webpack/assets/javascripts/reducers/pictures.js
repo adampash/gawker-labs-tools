@@ -4,6 +4,7 @@ import {
   REORDER_PICTURES
 } from '../actions/pictures'
 import { CLEAR_NEW_GALLERY } from '../actions/galleries'
+import { SHOW_GALLERY } from '../actions/galleries'
 
 export function pictures(state=[], action) {
   switch (action.type) {
@@ -28,6 +29,8 @@ export function pictures(state=[], action) {
       image,
       ...without.slice(to)
     ]
+  case SHOW_GALLERY:
+    return action.gallery.pics
   case CLEAR_NEW_GALLERY:
     return []
   default:

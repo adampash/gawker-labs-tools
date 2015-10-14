@@ -13,21 +13,19 @@ export default class OrderedImage extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log(props)
     let { index } = props
     this.setState({
       position: index + 1
     }, () => {
       this.refs.order.blur()
     })
-    console.log(this.refs.order)
   }
 
-  shouldComponentUpdate(props) {
-    // console.log(props)
-    // debugger
-    return true
-  }
+  // shouldComponentUpdate(props) {
+  //   // console.log(props)
+  //   // debugger
+  //   return true
+  // }
 
   handleNumChange(e) {
     this.setState({
@@ -80,8 +78,19 @@ export default class OrderedImage extends React.Component {
           style={ styles.form }
         >
           <div style={ styles.inputContainer }>
-            <textarea ref="description" style={[ styles.input, styles.textarea ]} placeholder="Caption (optional)"/>
-            <input ref="credit" style={ styles.input } type="text" placeholder="Photo credit (optional)"/>
+            <textarea
+              ref="description"
+              style={[ styles.input, styles.textarea ]}
+              placeholder="Caption (optional)"
+              defaultValue={ file.description }
+            />
+            <input
+              ref="credit"
+              style={ styles.input }
+              type="text"
+              placeholder="Photo credit (optional)"
+              defaultValue={ file.credit }
+            />
           </div>
           { showSave && <button type="submit">Save</button> }
         </form>

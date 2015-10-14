@@ -25,12 +25,12 @@ export default class Gallery extends React.Component {
 
   componentDidMount() {
     let { resize } = this.props
-    resize()
+    if (resize) resize()
   }
 
   componentDidUpdate() {
     let { resize } = this.props
-    resize()
+    if (resize) resize()
   }
 
   componentWillUnmount() {

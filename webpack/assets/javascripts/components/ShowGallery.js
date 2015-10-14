@@ -2,11 +2,14 @@ import React from 'react'
 import Radium from 'radium'
 import Gallery from './Gallery'
 import EmbedArea from './EmbedArea'
+import ImageList from './ImageList'
 import NewLink from './NewLink'
+import { connect } from 'react-redux'
 import { getGalleryAsync } from '../actions/galleries'
+import { uploadPictures, updatePictureAsync, reorderImages } from '../actions/pictures'
 
 @Radium
-export default class ShowGallery extends React.Component {
+class ShowGallery extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -21,6 +24,16 @@ export default class ShowGallery extends React.Component {
     dispatch(getGalleryAsync(galleryId))
   }
 
+  handleUpdatePic({ description, credit, id, index }) {
+    let { dispatch } = this.props
+    dispatch(updatePictureAsync(index, { description, credit, id }))
+  }
+
+  reorderImages(from, to) {
+    let { dispatch } = this.props
+    dispatch(reorderImages(from, to))
+  }
+
   renderLink() {
     let { routeParams } = this.props
     let { galleryId } = routeParams
@@ -28,7 +41,7 @@ export default class ShowGallery extends React.Component {
   }
 
   renderEmbed() {
-    let { galleries, routeParams } = this.props
+    let { galleries, routeParams, pictures } = this.props
     let { galleryId } = routeParams
     let { copied } = this.state
     let gallery = galleries[galleryId]
@@ -47,6 +60,11 @@ export default class ShowGallery extends React.Component {
         <div style={{ maxWidth: 400, margin: '15px auto' }}>
           <EmbedArea link={ this.renderLink() } />
         </div>
+        <ImageList
+          images={ pictures }
+          reorderImages={ this.reorderImages.bind(this) }
+          handleUpdatePic={ this.handleUpdatePic.bind(this) }
+        />
       </div>
     )
   }
@@ -97,3 +115,11 @@ const styles = {
   }
 }
 
+function select(state) {
+  let { pictures } = state
+  return {
+    pictures
+  }
+}
+
+export default connect(select)(ShowGallery)
