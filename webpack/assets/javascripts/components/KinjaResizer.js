@@ -21,9 +21,10 @@ export default class KinjaResizer extends Component {
       window.removeEventListener('resize', this.resize.bind(this))
   }
 
-  resize() {
+  resize(e) {
     let height = this.getHeight() + 10
     console.log('resize', height)
+    if (e) debugger
     window.top.postMessage(
       JSON.stringify({
         kinja: {
@@ -41,7 +42,8 @@ export default class KinjaResizer extends Component {
     let body = document.body
     let html = document.documentElement
 
-    return Math.max(html.scrollHeight, html.offsetHeight, minHeight)
+    return Math.max(html.offsetHeight, minHeight)
+    // return Math.max(html.scrollHeight, html.offsetHeight, minHeight)
   }
 
   render() {
