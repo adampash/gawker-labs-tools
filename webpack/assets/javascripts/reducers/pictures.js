@@ -32,6 +32,7 @@ export function pictures(state=[], action) {
   case SHOW_GALLERY:
     return action.gallery.pics
   case CLEAR_NEW_GALLERY:
+  case "@@reduxReactRouter/routerDidChange":
     return []
   default:
     return state
