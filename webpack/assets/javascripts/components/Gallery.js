@@ -76,6 +76,7 @@ export default class Gallery extends React.Component {
     let { index } = this.state
     let pics = this.getPics()
     let pic = pics[index]
+    if (!pic) return null
     let { description, credit } = pic
     return (
       <div>
