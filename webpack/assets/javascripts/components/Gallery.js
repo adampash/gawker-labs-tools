@@ -23,6 +23,16 @@ export default class Gallery extends React.Component {
     key('right', this.nextImage.bind(this))
   }
 
+  componentDidMount() {
+    let { resize } = this.props
+    resize()
+  }
+
+  componentDidUpdate() {
+    let { resize } = this.props
+    resize()
+  }
+
   componentWillUnmount() {
     key.unbind('left')
     key.unbind('right')
