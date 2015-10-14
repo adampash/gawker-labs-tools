@@ -8,17 +8,26 @@ export default class OrderedImage extends React.Component {
     this.state = {
       showSave: false,
       loading: false,
-      position: props.index + 1
+      position: props.index + 1,
+      description: props.file.description,
+      credit: props.file.credit,
     }
   }
 
   componentWillReceiveProps(props) {
-    let { index } = props
-    this.setState({
+    let { loading } = this.state
+    let { index, file } = props
+    let { credit, description } = file
+    console.log(this.state.position, index + 1)
+    console.log(this.state.position === index + 1)
+    let newState = {
       position: index + 1
-    }, () => {
-      this.refs.order.blur()
-    })
+    }
+    // if (!loading) {
+      newState.description = description
+      newState.credit = credit
+    // }
+    this.setState(newState, () => this.refs.order.blur())
   }
 
   // shouldComponentUpdate(props) {
@@ -28,8 +37,22 @@ export default class OrderedImage extends React.Component {
   // }
 
   handleNumChange(e) {
+    let { value } = e.target
+    let num
+    if (parseInt(value) > 0) {
+      num = parseInt(value)
+    } else {
+      num = ''
+    }
     this.setState({
-      position: parseInt(e.target.value)
+      position: num
+    })
+  }
+
+  handleChange(e) {
+    console.log(e)
+    this.setState({
+      [e.target.name]: e.target.value
     })
   }
 
@@ -45,6 +68,7 @@ export default class OrderedImage extends React.Component {
     e.preventDefault()
     let { index } = this.props
     let { value } = this.refs.order
+    if (value === '') return
     this.props.reorderImages(index, parseInt(value) - 1)
   }
 
@@ -56,7 +80,7 @@ export default class OrderedImage extends React.Component {
 
   render() {
     let { file, index } = this.props
-    let { showSave, loading } = this.state
+    let { showSave, loading, description, credit } = this.state
     let container = styles.container
     if (file.preview || loading) {
       container = { ...container, ...styles.preview }
@@ -71,6 +95,7 @@ export default class OrderedImage extends React.Component {
             type="text"
             value={ this.state.position }
             onChange={ this.handleNumChange.bind(this) }
+            onFocus={ (e) => e.target.select() }
           />
         </form>
         <form onSubmit={ this.handleSubmit.bind(this) }
@@ -80,16 +105,21 @@ export default class OrderedImage extends React.Component {
           <div style={ styles.inputContainer }>
             <textarea
               ref="description"
+              name="description"
               style={[ styles.input, styles.textarea ]}
               placeholder="Caption (optional)"
-              defaultValue={ file.description }
+              value={ description }
+              onChange={ this.handleChange.bind(this) }
             />
             <input
               ref="credit"
+              name="credit"
+              style={[ styles.input, styles.textarea ]}
               style={ styles.input }
               type="text"
               placeholder="Photo credit (optional)"
-              defaultValue={ file.credit }
+              value={ credit }
+              onChange={ this.handleChange.bind(this) }
             />
           </div>
           { showSave && <button type="submit">Save</button> }

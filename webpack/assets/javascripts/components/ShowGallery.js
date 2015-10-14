@@ -32,7 +32,6 @@ class ShowGallery extends React.Component {
   reorderImages(from, to) {
     let { dispatch, routeParams } = this.props
     let { galleryId } = routeParams
-    console.log(from, to)
     dispatch(reorderImagesAndUpdateGallery(galleryId, from, to))
   }
 
@@ -58,6 +57,7 @@ class ShowGallery extends React.Component {
         </div>
         <Gallery
           gallery={ gallery }
+          pics={ pictures }
         />
         <div style={{ maxWidth: 400, margin: '15px auto' }}>
           <EmbedArea link={ this.renderLink() } />
