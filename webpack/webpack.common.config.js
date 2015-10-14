@@ -1,6 +1,6 @@
 // Common webpack configuration used by webpack.hot.config and webpack.rails.config.
 
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   // the project dir
@@ -21,4 +21,4 @@ module.exports = {
   module: {
     loaders: []
   }
-};
+}
