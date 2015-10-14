@@ -7,7 +7,6 @@ export default class OrderedImage extends React.Component {
     super(props)
     this.state = {
       showSave: false,
-      loading: false,
       position: props.index + 1,
       description: props.file.description,
       credit: props.file.credit,
@@ -15,26 +14,21 @@ export default class OrderedImage extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    let { loading } = this.state
     let { index, file } = props
-    let { credit, description } = file
-    // console.log(this.state.position, index + 1)
-    // console.log(this.state.position === index + 1)
+    let { credit, description, loading } = file
+    let wasLoading = this.props.file.loading
     let newState = {
       position: index + 1
     }
-    // if (!loading) {
+    if (wasLoading && !loading) {
+      newState.showSave = false
+    }
+    if (!loading) {
       newState.description = description
       newState.credit = credit
-    // }
+    }
     this.setState(newState, () => this.refs.order.blur())
   }
-
-  // shouldComponentUpdate(props) {
-  //   // console.log(props)
-  //   // debugger
-  //   return true
-  // }
 
   handleNumChange(e) {
     let { value } = e.target
@@ -50,7 +44,6 @@ export default class OrderedImage extends React.Component {
   }
 
   handleChange(e) {
-    // console.log(e)
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -80,9 +73,10 @@ export default class OrderedImage extends React.Component {
 
   render() {
     let { file, index } = this.props
-    let { showSave, loading, description, credit } = this.state
+    let { loading, preview } = file
+    let { showSave, description, credit } = this.state
     let container = styles.container
-    if (file.preview || loading) {
+    if (preview || loading) {
       container = { ...container, ...styles.preview }
     }
     return (
@@ -122,20 +116,13 @@ export default class OrderedImage extends React.Component {
               onChange={ this.handleChange.bind(this) }
             />
           </div>
-          { showSave && <button type="submit">Save</button> }
+          { showSave &&
+            <button type="submit" style={ styles.save }>
+              Save
+            </button> }
         </form>
       </div>
     )
-        // <div style={ styles.number }>
-        //   <input
-        //     type="text"
-        //     value={ index + 1 }
-        //     style={ styles.input }
-        //     onBlur={ this.handleBlur.bind(this) }
-        //     onChange={ this.handleChange.bind(this) }
-        //     onFocus={ this.handleFocus.bind(this) }
-        //   />
-        // </div>
   }
 
 }
@@ -192,8 +179,26 @@ const styles = {
   reorder_input: {
     position: 'absolute',
     top: 0,
-    left: 10,
+    right: 10,
+    margin: 2,
+    textAlign: 'center',
+    // background: 'black',
+    // display: 'flex',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // color: 'white',
     width: 30,
-    textAlign: 'center'
-  }
+    height: 30,
+    borderRadius: '50%',
+    border: '2px solid #aaa',
+    outline: 'none',
+  },
+  save: {
+    padding: 10,
+    outline: 'none',
+    border: '1px solid #ccc',
+    background: '#fe0003',
+    color: 'white',
+    cursor: 'pointer',
+  },
 }

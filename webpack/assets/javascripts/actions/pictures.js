@@ -26,16 +26,17 @@ export function reorderImages(from, to) {
 
 export function reorderImagesAndUpdateGallery(galleryId, from, to) {
   return (dispatch, getState) => {
+    dispatch(reorderImages(from, to))
     Network.put(`galleries/${galleryId}`, { position: { from, to } })
       .then(response => {
         return response.json()
       })
       .then(data => {
         console.log(data)
-        dispatch(reorderImages(from, to))
       })
       .catch(e => {
         console.log(e)
+        dispatch(reorderImages(to, from))
         alert(`Something went wrong. Send an email to labs@gawker.com with as many details as you've got.`)
       })
   }
@@ -44,7 +45,15 @@ export function reorderImagesAndUpdateGallery(galleryId, from, to) {
 export function updatePictureAsync(index, {id, description, credit}) {
   return (dispatch, getState) => {
     let pic = getState().pictures[index]
-    dispatch(updatePicture(index, { pic: { ...pic, loading: true }}))
+    dispatch(updatePicture(
+      index,
+      {
+        pic: {
+          ...pic,
+          loading: true
+        }
+      }
+    ))
     Network.put(`pictures/${id}`, { description, credit })
       .then(response => {
         return response.json()

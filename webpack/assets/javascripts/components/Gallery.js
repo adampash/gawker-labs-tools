@@ -44,9 +44,7 @@ export default class Gallery extends React.Component {
   }
 
   renderImages() {
-    let { pics } = this.props
-    if (pics === undefined)
-      pics = this.props.gallery.pics
+    let pics = this.getPics()
     return pics.map( (pic, index) => {
       return (
         <KinjaResizer key={ index } style={ styles.img_container }>
@@ -58,7 +56,8 @@ export default class Gallery extends React.Component {
 
   renderIndex() {
     let { index } = this.state
-    let { pics } = this.props.gallery
+    // let { pics } = this.props.gallery
+    let pics = this.getPics()
     return (
       <div style={[ styles.galleryIndex, styles.copy ]}>
         { index + 1 } of { pics.length }
@@ -66,9 +65,16 @@ export default class Gallery extends React.Component {
     )
   }
 
+  getPics() {
+    let { pics } = this.props
+    if (pics === undefined)
+      pics = this.props.gallery.pics
+    return pics
+  }
+
   renderMeta() {
     let { index } = this.state
-    let { pics } = this.props.gallery
+    let pics = this.getPics()
     let pic = pics[index]
     let { description, credit } = pic
     return (
@@ -109,7 +115,7 @@ export default class Gallery extends React.Component {
 
   nextImage() {
     let { index } = this.state
-    let { pics } = this.props.gallery
+    let pics = this.getPics()
     let newIndex
     if (index + 1 === pics.length)
       newIndex = 0
@@ -122,7 +128,7 @@ export default class Gallery extends React.Component {
 
   prevImage() {
     let { index } = this.state
-    let { pics } = this.props.gallery
+    let pics = this.getPics()
     let newIndex
     if (index - 1 < 0)
       newIndex = pics.length - 1

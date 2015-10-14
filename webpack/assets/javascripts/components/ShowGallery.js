@@ -62,6 +62,9 @@ class ShowGallery extends React.Component {
         <div style={{ maxWidth: 400, margin: '15px auto' }}>
           <EmbedArea link={ this.renderLink() } />
         </div>
+        <div>
+          Edit photo descriptions, credit, and order:
+        </div>
         <ImageList
           images={ pictures }
           reorderImages={ this.reorderImages.bind(this) }
