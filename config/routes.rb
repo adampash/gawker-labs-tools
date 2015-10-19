@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  post 'slackbot' => 'slackbot#handle'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
   get 'logout' => 'users#logout', as: :user_logout

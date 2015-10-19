@@ -51,6 +51,11 @@ gem 'aws-sdk'
 
 gem 'acts_as_list'
 
+# slackbot stuff
+gem 'google-search'
+gem 'slack-notifier'
+gem 'reverse_markdown'
+
 # icons
 gem 'font-awesome-rails'
 
