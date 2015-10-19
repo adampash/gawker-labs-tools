@@ -18,19 +18,16 @@ module Googler
 
   def self.format(results, count=4)
     formatted = results.map do |result|
-      # {
-      #   title: result.title,
-      #   url: result.uri,
-      #   content: result.content,
-      #   display_url: result.visible_uri,
-      # }
       {
         fallback: "[#{result.title}](#{result.uri})",
         title: result.title,
         title_link: result.uri,
         # pretext: result.visible_uri,
         text: ReverseMarkdown.convert(result.content).gsub('**', '*'),
-        color: "good"
+        color: "#F7F7F7",
+        fields: [{
+          value: "<#{result.uri}|#{result.visible_uri}>",
+        }],
       }
     end
     formatted[0...5]
