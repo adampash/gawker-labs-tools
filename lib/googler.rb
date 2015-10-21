@@ -27,10 +27,11 @@ module Googler
   def self.clean(results)
     coder = HTMLEntities.new
     results.map do |result|
+      h = {}
       result.keys.map do |key|
-        result[key] = coder.decode(result[key])
+        h[key] = coder.decode(result[key])
       end
-      result
+      h
     end
   end
 
@@ -42,7 +43,7 @@ module Googler
         title: result["titleNoFormatting"],
         title_link: result["url"],
         # pretext: result.visible_uri,
-        text: ReverseMarkdown.convert(result["content"]).gsub('**', '*'),
+        text: ReverseMarkdown.convert(result["content"]).gsub('**', '*').gsub("&nbsp;", ''),
         color: "#F7F7F7",
         fields: [{
           value: "<#{result["url"]}|#{result["visibleUrl"]}>",
