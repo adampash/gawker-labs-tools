@@ -7,7 +7,12 @@ end
 
 module Googler
   def self.search(query)
-    Google::Search::Web.new(query: query, size: :small, rsz: 4)
+    search = Google::Search::Web.new(
+      query: query,
+      size: :small,
+      rsz: 4,
+    )
+    search.get_response.hash["responseData"]["results"]
   end
 
   def self.search_and_format(query)
@@ -17,16 +22,17 @@ module Googler
   end
 
   def self.format(results, count=4)
+    puts results
     results[0...4].map do |result|
       {
-        fallback: "[#{result.title}](#{result.uri})",
-        title: result.title,
-        title_link: result.uri,
+        fallback: "[#{result["titleNoFormatting"]}](#{result["url"]})",
+        title: result["titleNoFormatting"],
+        title_link: result["url"],
         # pretext: result.visible_uri,
-        text: ReverseMarkdown.convert(result.content).gsub('**', '*'),
+        text: ReverseMarkdown.convert(result["content"]).gsub('**', '*').gsub("&nbsp;", ''),
         color: "#F7F7F7",
         fields: [{
-          value: "<#{result.uri}|#{result.visible_uri}>",
+          value: "<#{result["url"]}|#{result["visibleUrl"]}>",
         }],
       }
     end
