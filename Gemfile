@@ -57,6 +57,9 @@ gem 'slack-notifier'
 gem 'reverse_markdown'
 gem 'htmlentities', '~> 4.3', '>= 4.3.4'
 
+# styleguide search
+gem 'searchkick'
+
 # icons
 gem 'font-awesome-rails'
 

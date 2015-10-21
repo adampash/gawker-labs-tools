@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :embeds
     resources :pictures
     resources :galleries
+    resources :styles
   end
 
   namespace :iframe do

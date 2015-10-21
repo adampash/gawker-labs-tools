@@ -1,10 +1,11 @@
 require 'googler'
 require 'slack-notifier'
+TOKENS = ENV["SLACK_TOKEN"].split(",")
 
 class SlackbotController < ApplicationController
   protect_from_forgery :except => :handle
   def handle
-    render nothing: true if params[:token] != ENV["SLACK_TOKEN"]
+    return render nothing: true if !TOKENS.include? params[:token]
     username = "SlackBot"
     case params[:command]
     when '/google'
@@ -13,7 +14,15 @@ class SlackbotController < ApplicationController
       icon_emoji = ":rainbow:"
       channel = get_channel(params)
       puts "CHANNEL: #{channel}"
+    when '/style'
+      response = Style.find_and_format(params[:text])
+      username = "StyleBot"
+      icon_emoji = ":penguin:"
+      channel = get_channel(params)
+      puts "CHANNEL: #{channel}"
     end
+    puts "RESPONSE:"
+    puts response
     notifier = Slack::Notifier.new(
       ENV["SLACK_WEBHOOK_URL"],
       channel: channel,

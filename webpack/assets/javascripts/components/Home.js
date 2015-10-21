@@ -18,6 +18,11 @@ export default class Home extends React.Component {
           description="Make Kinja-friendly image galleries."
         />
         <HomeLink
+          to="/styles"
+          text="Styles"
+          description="Add a rule to the Gawker Media Style Guide"
+        />
+        <HomeLink
           to="/suggestions/new"
           text="Suggestions?"
           description="Got something you'd like to see?"

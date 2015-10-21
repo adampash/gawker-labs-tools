@@ -13,6 +13,9 @@ import ShowGallery from './components/ShowGallery'
 import GalleryEmbed from './containers/GalleryEmbed'
 import EmbedEmbed from './containers/EmbedEmbed'
 import NewSuggestion from './components/NewSuggestion'
+import Styles from './components/Styles'
+import NewStyle from './components/NewStyle'
+import ShowStyle from './components/ShowStyle'
 
 let getRoutes = (store) => {
   const { getState } = store
@@ -43,6 +46,10 @@ let getRoutes = (store) => {
         <Route path="/galleries" name="Galleries" component={ Galleries }>
           <Route path="new" name="New" component={ NewGallery } />
           <Route path=":galleryId" name="Show gallery" component={ ShowGallery } />
+        </Route>
+        <Route path="/styles" name="Styles" component={ Styles }>
+          <Route path="new" name="New" component={ NewStyle } />
+          <Route path=":styleId" name="Show style" component={ ShowStyle } />
         </Route>
         <Route path="/suggestions/new" name="Suggestions" component={ NewSuggestion } />
       </Route>
