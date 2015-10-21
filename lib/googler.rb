@@ -1,5 +1,6 @@
 require 'google-search'
 require 'reverse_markdown'
+require 'htmlentities'
 
 ReverseMarkdown.config do |config|
   config.github_flavored  = true
@@ -17,8 +18,20 @@ module Googler
 
   def self.search_and_format(query)
     format(
-      search(query)
+      clean(
+        search(query)
+      )
     )
+  end
+
+  def self.clean(results)
+    coder = HTMLEntities.new
+    results.map do |result|
+      result.keys.map do |key|
+        result[key] = coder.decode(result[key])
+      end
+      result
+    end
   end
 
   def self.format(results, count=4)
@@ -29,7 +42,7 @@ module Googler
         title: result["titleNoFormatting"],
         title_link: result["url"],
         # pretext: result.visible_uri,
-        text: ReverseMarkdown.convert(result["content"]).gsub('**', '*').gsub("&nbsp;", ''),
+        text: ReverseMarkdown.convert(result["content"]).gsub('**', '*'),
         color: "#F7F7F7",
         fields: [{
           value: "<#{result["url"]}|#{result["visibleUrl"]}>",
