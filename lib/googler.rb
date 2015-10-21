@@ -17,7 +17,7 @@ module Googler
   end
 
   def self.format(results, count=4)
-    formatted = results.map do |result|
+    results[0...4].map do |result|
       {
         fallback: "[#{result.title}](#{result.uri})",
         title: result.title,
@@ -30,6 +30,5 @@ module Googler
         }],
       }
     end
-    formatted[0...5]
   end
 end
