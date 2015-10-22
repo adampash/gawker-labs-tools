@@ -31,7 +31,7 @@ const styles = {
     padding: 20,
     justifyContent: 'flex-start',
     margin: 10,
-    flex: '1 1',
+    flex: '1 0 250px',
     ':hover': {
       background: 'red',
       color: 'white'

@@ -20,7 +20,7 @@ export default class StyleForm extends Component {
           handleNameChange={ handleChange }
           name="rule"
           title="Rule"
-          placeholder="E.g., Em dash style"
+          placeholder="E.g., No spaces around an em dash"
           initialValue={ rule }
         />
         <FieldAndInput
@@ -35,7 +35,7 @@ export default class StyleForm extends Component {
           handleNameChange={ handleChange }
           name="keywords"
           title="Keywords"
-          placeholder="Include keywords that will help in searching for this style rule—e.g., misspellings or common search phrases are a good start."
+          placeholder="Include keywords that will help in searching for this style rule; misspellings or likely search phrases are a good start."
           type="textarea"
           initialValue={ keywords }
         />
