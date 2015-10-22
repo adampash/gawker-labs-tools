@@ -19,7 +19,7 @@ class Style < ActiveRecord::Base
     end
   end
 
-  def self.usage_guide(query, username)
+  def self.usage_guide
     [{
       fallback: "To use me, just search for text related to the style rule you're curious about. This is a work in progress, and the rules will grow over time.",
       pretext: "To use me, just search for text related to the style rule you're curious about. This is a work in progress, and the rules will grow over time.",
