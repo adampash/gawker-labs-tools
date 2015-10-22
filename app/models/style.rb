@@ -13,7 +13,7 @@ class Style < ActiveRecord::Base
       [{
         fallback: "No rule found for \"#{query}\"",
         pretext: "No rule found for \"#{query}\"",
-        text: "You may want to try another spelling",
+        text: "You may want to try another spelling, or ask an editor. Maybe we should add this to the style guide.",
         color: "#F7F7F7",
       }]
     end
