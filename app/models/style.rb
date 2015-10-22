@@ -19,6 +19,15 @@ class Style < ActiveRecord::Base
     end
   end
 
+  def self.usage_guide(query, username)
+    [{
+      fallback: "To use me, just search for text related to the style rule you're curious about. This is a work in progress, and the rules will grow over time.",
+      pretext: "To use me, just search for text related to the style rule you're curious about. This is a work in progress, and the rules will grow over time.",
+      text: "",
+      color: "#F7F7F7",
+    }]
+  end
+
   def self.notify_style_misses(query, username)
     notifier = Slack::Notifier.new(
       ENV["SLACK_WEBHOOK_URL"],

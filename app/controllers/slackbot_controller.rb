@@ -14,7 +14,11 @@ class SlackbotController < ApplicationController
       icon_emoji = ":rainbow:"
       channel = get_channel(params)
     when '/style'
-      response = Style.find_and_format(params[:text], params[:user_name])
+      if params[:text] == ''
+        response = Style.usage_guide
+      else
+        response = Style.find_and_format(params[:text], params[:user_name])
+      end
       username = "StyleBot"
       icon_emoji = ":penguin:"
       channel = get_channel(params)
