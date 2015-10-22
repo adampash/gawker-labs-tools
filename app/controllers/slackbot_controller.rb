@@ -13,23 +13,18 @@ class SlackbotController < ApplicationController
       username = "Google results for *#{params[:text]}*"
       icon_emoji = ":rainbow:"
       channel = get_channel(params)
-      puts "CHANNEL: #{channel}"
     when '/style'
-      response = Style.find_and_format(params[:text])
+      response = Style.find_and_format(params[:text], params[:user_name])
       username = "StyleBot"
       icon_emoji = ":penguin:"
       channel = get_channel(params)
-      puts "CHANNEL: #{channel}"
     end
-    puts "RESPONSE:"
-    puts response
     notifier = Slack::Notifier.new(
       ENV["SLACK_WEBHOOK_URL"],
       channel: channel,
       username: username,
       icon_emoji: icon_emoji,
-    )
-    notifier.ping "", attachments: response
+    ).ping("", attachments: response)
     render nothing: true
   end
 
