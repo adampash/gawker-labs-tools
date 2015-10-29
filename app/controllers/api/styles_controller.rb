@@ -14,7 +14,7 @@ class Api::StylesController < ApplicationController
   end
 
   def create
-    render nothing: true unless current_user.editor?
+    return render nothing: true unless current_user.editor?
     @style = Style.create({
       rule: params[:rule],
       details: params[:details],
