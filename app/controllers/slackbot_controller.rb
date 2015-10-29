@@ -12,7 +12,7 @@ class SlackbotController < ApplicationController
       response = Googler.search_and_format(params[:text])
       username = "Google results for *#{params[:text]}*"
       icon_emoji = ":rainbow:"
-      channel = get_channel(params)
+      channel = params[:channel_id]
     when '/style'
       if params[:text] == ''
         response = Style.usage_guide
@@ -21,9 +21,9 @@ class SlackbotController < ApplicationController
       end
       username = "StyleBot"
       icon_emoji = ":penguin:"
-      channel = get_channel(params)
+      channel = params[:channel_id]
     end
-    notifier = Slack::Notifier.new(
+    Slack::Notifier.new(
       ENV["SLACK_WEBHOOK_URL"],
       channel: channel,
       username: username,
