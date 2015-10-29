@@ -64,6 +64,7 @@ gem 'searchkick'
 gem 'font-awesome-rails'
 
 group :development, :test do
+  gem 'certified'
   gem 'dotenv-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
