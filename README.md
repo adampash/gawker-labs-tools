@@ -11,7 +11,5 @@ npm install
 # Development
 
 ```bash
-./dev
+npm start
 ```
-
-

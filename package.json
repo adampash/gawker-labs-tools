@@ -92,7 +92,8 @@
   "scripts": {
     "watch": "./node_modules/.bin/gulp --gulpfile ./webpack/gulpfile.coffee watch",
     "build": "./node_modules/.bin/gulp build",
-    "test": "jest"
+    "test": "jest",
+    "start": "foreman start -f Procfile.dev"
   },
   "devDependencies": {
     "babel-core": "^5.8.24",
