@@ -1,3 +1,5 @@
+#! /bin/bash
+
 message=$1;
 echo Compiling client bundle;
 cd webpack && NODE_ENV=production $(npm bin)/webpack -p --config webpack.rails.config.js;
