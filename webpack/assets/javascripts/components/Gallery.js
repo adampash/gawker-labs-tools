@@ -43,6 +43,12 @@ export default class Gallery extends React.Component {
     return mobile === null
   }
 
+  openOriginal() {
+    let { index } = this.state
+    let pic = this.props.pics[index]
+    window.open(pic.original)
+  }
+
   renderImages() {
     let pics = this.getPics()
     return pics.map( (pic, index) => {
@@ -147,7 +153,7 @@ export default class Gallery extends React.Component {
       <div style={ styles.global }>
         <div style={[ styles.title, styles.copy ]}>{ description }</div>
         <div style={ styles.container }>
-          <div style={ styles.swipeContainer }>
+          <div style={ styles.swipeContainer } className="galContainer">
             <SwipeableViews
               style={{
                 alignItems: 'center',
@@ -157,6 +163,13 @@ export default class Gallery extends React.Component {
             >
               { this.renderImages() }
             </SwipeableViews>
+            <div className="enlarge">
+              <FontAwesome
+                name="external-link"
+                style={ styles.original }
+                onClick={ this.openOriginal.bind(this) }
+              />
+            </div>
           </div>
         </div>
         <div style={ styles.topMeta }>
@@ -186,6 +199,7 @@ const styles = {
   swipeContainer: {
     backgroundColor: '#F2F2F2',
     width: '100%',
+    position: 'relative',
   },
   img_container: {
     textAlign: 'center',
@@ -243,5 +257,10 @@ const styles = {
   credit: {
     fontSize: 12,
     color: '#808080',
+  },
+  original: {
+    color: 'white',
+    fontSize: 18,
+    cursor: 'pointer',
   }
 }

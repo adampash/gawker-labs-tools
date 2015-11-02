@@ -4,6 +4,6 @@ class Gallery < ActiveRecord::Base
   belongs_to :user
 
   def pics
-    pictures.as_json(:methods => [:url])
+    pictures.as_json(:methods => [:url, :original])
   end
 end

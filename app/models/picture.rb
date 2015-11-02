@@ -9,4 +9,8 @@ class Picture < ActiveRecord::Base
   def url
     image.url(:large)
   end
+
+  def original
+    image.url(:original)
+  end
 end
