@@ -43,12 +43,6 @@ export default class Gallery extends React.Component {
     return mobile === null
   }
 
-  openOriginal() {
-    let { index } = this.state
-    let pic = this.props.pics[index]
-    window.open(pic.original)
-  }
-
   renderImages() {
     let pics = this.getPics()
     return pics.map( (pic, index) => {
@@ -148,6 +142,7 @@ export default class Gallery extends React.Component {
 
   render() {
     let { index } = this.state
+    let pic = this.props.pics[index]
     let { description } = this.props.gallery
     return (
       <div style={ styles.global }>
@@ -164,11 +159,12 @@ export default class Gallery extends React.Component {
               { this.renderImages() }
             </SwipeableViews>
             <div className="enlarge">
-              <FontAwesome
-                name="external-link"
-                style={ styles.original }
-                onClick={ this.openOriginal.bind(this) }
-              />
+              <a href={ pic.original } target="_blank">
+                <FontAwesome
+                  name="external-link"
+                  style={ styles.original }
+                />
+              </a>
             </div>
           </div>
         </div>
