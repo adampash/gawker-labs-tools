@@ -18,3 +18,11 @@
     opacity: 1;
   }
 }
+
+.isvg.loaded {
+  svg {
+    line, polyline {
+      stroke: white;
+    }
+  }
+}

@@ -134,6 +134,9 @@
 .galContainer:hover .enlarge {
   opacity: 1; }
 
+.isvg.loaded svg line, .isvg.loaded svg polyline {
+  stroke: white; }
+
 * {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;

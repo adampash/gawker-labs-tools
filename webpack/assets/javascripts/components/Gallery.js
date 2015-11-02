@@ -160,8 +160,7 @@ export default class Gallery extends React.Component {
             </SwipeableViews>
             <div className="enlarge">
               <a href={ pic.original } target="_blank">
-                <FontAwesome
-                  name="external-link"
+                <img src="/assets/new_tab_icon.svg"
                   style={ styles.original }
                 />
               </a>
@@ -256,7 +255,13 @@ const styles = {
   },
   original: {
     color: 'white',
-    fontSize: 18,
+    width: 30,
+    height: 30,
     cursor: 'pointer',
+    // transition: 'all 0.3s ease-out',
+    // ':hover': {
+    //   width: 32,
+    //   height: 32,
+    // }
   }
 }
