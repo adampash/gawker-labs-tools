@@ -160,7 +160,7 @@ export default class Gallery extends React.Component {
             </SwipeableViews>
             <div className="enlarge">
               <a href={ pic.original } target="_blank">
-                <img src="/assets/new_tab_icon.svg"
+                <img src="/new_tab_icon.svg"
                   style={ styles.original }
                 />
               </a>
