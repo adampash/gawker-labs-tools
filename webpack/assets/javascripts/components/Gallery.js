@@ -75,8 +75,8 @@ export default class Gallery extends React.Component {
   renderMeta() {
     let { index } = this.state
     let pics = this.getPics()
+    // if (!pics) return null
     let pic = pics[index]
-    if (!pic) return null
     let { description, credit } = pic
     return (
       <div>
@@ -142,7 +142,9 @@ export default class Gallery extends React.Component {
 
   render() {
     let { index } = this.state
-    let pic = this.props.pics[index]
+    let pics = this.getPics()
+    if (!pics) return null
+    let pic = pics[index]
     let { description } = this.props.gallery
     return (
       <div style={ styles.global }>
