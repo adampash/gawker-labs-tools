@@ -258,10 +258,12 @@ const styles = {
     width: 30,
     height: 30,
     cursor: 'pointer',
+    // opacity: 0.6,
     // transition: 'all 0.3s ease-out',
     // ':hover': {
-    //   width: 32,
-    //   height: 32,
+      // opacity: 1,
+      // width: 32,
+      // height: 32,
     // }
   }
 }
