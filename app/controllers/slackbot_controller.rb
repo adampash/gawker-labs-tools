@@ -13,6 +13,11 @@ class SlackbotController < ApplicationController
       username = "Google results for *#{params[:text]}*"
       icon_emoji = ":rainbow:"
       channel = params[:channel_id]
+    when '/image'
+      response = text = Googler.image_search(params[:text])
+      username = "Google image result for *#{params[:text]}*"
+      icon_emoji = ":camera:"
+      channel = params[:channel_id]
     when '/style'
       if params[:text] == ''
         response = Style.usage_guide
@@ -28,7 +33,7 @@ class SlackbotController < ApplicationController
       channel: channel,
       username: username,
       icon_emoji: icon_emoji,
-    ).ping("", attachments: response)
+    ).ping(text || "", attachments: response)
     render nothing: true
   end
 

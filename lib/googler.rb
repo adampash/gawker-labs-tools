@@ -51,4 +51,20 @@ module Googler
       }
     end
   end
+
+  def self.image_search(query)
+    search = Google::Search::Image.new(
+      query: query,
+      size: :small,
+      rsz: 4,
+    )
+    results = search.get_response.hash["responseData"]["results"]
+    if results
+      img = results.sample["url"]
+    else
+      img = "No image found"
+    end
+    img
+  end
+
 end
