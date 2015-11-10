@@ -7,10 +7,14 @@ class Picture < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   def url
-    image.url(:large)
+    cdn_link image.url(:large)
   end
 
   def original
-    image.url(:original)
+    cdn_link image.url(:original)
+  end
+
+  def cdn_link(uri)
+    uri.gsub('s3.amazonaws.com/', '')
   end
 end
