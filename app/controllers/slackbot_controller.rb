@@ -13,6 +13,7 @@ class SlackbotController < ApplicationController
       username = "Google results for *#{params[:text]}*"
       icon_emoji = ":rainbow:"
       channel = params[:channel_id]
+      text = "https://www.google.com/#q=#{params[:text]}"
     when '/image'
       response = text = Googler.image_search(params[:text])
       username = "Google image result for *#{params[:text]}*"
