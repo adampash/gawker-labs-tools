@@ -5,8 +5,13 @@ require 'htmlentities'
 ReverseMarkdown.config do |config|
   config.github_flavored  = true
 end
+IMG_URL = "https://www.google.com/search?tbm=isch&q="
 
 module Googler
+  def self.mechanize
+    Mechanize.new
+  end
+
   def self.search(query)
     search = Google::Search::Web.new(
       query: query,
@@ -53,14 +58,13 @@ module Googler
   end
 
   def self.image_search(query)
-    search = Google::Search::Image.new(
-      query: query,
-      size: :small,
-      rsz: 4,
-    )
-    results = search.get_response.hash["responseData"]["results"]
+    www = mechanize.get("#{IMG_URL}#{query}")
+    images = www.images_with(text: "Image result for #{query}")
+    results = images[0..4].map do |image|
+      image.src
+    end
     if results
-      img = results.sample["url"]
+      img = results.sample
     else
       img = "No image found"
     end
