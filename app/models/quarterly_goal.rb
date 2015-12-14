@@ -1,11 +1,17 @@
 class QuarterlyGoal < ActiveRecord::Base
   belongs_to :site
+  belongs_to :quarter
   belongs_to :person, class_name: "User"
+  belongs_to :approved_by, class_name: "User"
 
   def self.create_from_params(options)
+    puts options
+    quarter = Quarter.find_by(q_id: options[:quarter])
+    site = Site.find_by(name: options[:siteName].titlecase)
     create(
       person_id: 1,
-      quarter_id: 1,
+      quarter_id: quarter.id,
+      site_id: site.id,
       goals: options["goals"],
       other_goals: options["otherGoals"],
     )

@@ -14,7 +14,7 @@ export default class GoalRow extends Component {
         <div style={ styles.goal } >
           This is a goal.
         </div>
-        { !goal.approved &&
+        { goal.approved &&
           <span>
             <FontAwesome name="check" />
             Approved

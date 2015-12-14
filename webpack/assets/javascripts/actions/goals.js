@@ -120,7 +120,7 @@ export function updateGoalAsync({id, rule, details, keywords}) {
 export function createGoal(data, history) {
   let { siteName } = data
   return (dispatch, getState) => {
-    Network.post(`sites/${siteName}/goals`)
+    Network.post(`sites/${siteName}/goals`, data)
     .then(response => {
       return response.json()
     })

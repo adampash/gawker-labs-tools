@@ -1,7 +1,6 @@
 class Api::GoalsController < ApplicationController
   def index
     Quarter.initiate_quarters
-    # @site = Site.find_by(name: params[:site_id])
     @quarters = Quarter.all
     render json: @quarters
   end

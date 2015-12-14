@@ -8,10 +8,14 @@ class Quarter < ActiveRecord::Base
   end
 
   def self.q_name
-    "Q#{(Time.now.month/3.0).ceil} #{Time.now.year}"
+    "Q#{(next_quarter.month/3.0).ceil} #{next_quarter.year}"
+  end
+
+  def self.next_quarter
+    Time.now + 1.month
   end
 
   def self.q_id
-    "#{Time.now.year}#{(Time.now.month/3.0).ceil}".to_i
+    "#{next_quarter.year}#{(next_quarter.month/3.0).ceil}".to_i
   end
 end
