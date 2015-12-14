@@ -28,4 +28,14 @@ class User < ActiveRecord::Base
     embeds.order(created_at: :desc).limit(10)
   end
 
+  def site
+    email.match(/@(\w+)\.com/)[1]
+  end
+
+  def as_json(options=nil)
+    json = super
+    json["site"] = site
+    json
+  end
+
 end

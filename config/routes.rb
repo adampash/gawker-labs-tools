@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :pictures
     resources :galleries
     resources :styles
+    resources :sites do
+      resources :goals
+    end
   end
 
   namespace :iframe do

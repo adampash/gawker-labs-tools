@@ -5,14 +5,20 @@ import FontAwesome from 'react-fontawesome'
 
 @Radium
 export default class Breadcrumbs extends Component {
-  swapParams(route) {
+  swapParams(path) {
     let { params } = this.props
-    let param = Object.keys(params)[0]
-    if (route.path === `:${param}`) {
-      return params[param]
+    let param = this.arrayMatch(Object.keys(params), path)
+    if (param) {
+      return path.replace(`:${param}`, params[param])
     } else {
-      return route.path
+      return path
     }
+  }
+
+  arrayMatch(array, string) {
+    return array.filter( (item) => {
+      return string.indexOf(`:${item}`) >= 0
+    })[0]
   }
 
   renderLinks() {
@@ -27,7 +33,7 @@ export default class Breadcrumbs extends Component {
                 <FontAwesome name="chevron-right" style={ styles.separator } />
               </div>
             }
-            <Link to={ this.swapParams(route) }>{ name }</Link>
+            <Link to={ this.swapParams(path) }>{ name }</Link>
           </div>
         )
         return acc

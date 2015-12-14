@@ -5,6 +5,13 @@ import HomeLink from './HomeLink'
 @Radium
 export default class Home extends React.Component {
   render() {
+    let { currentUser } = this.props
+    let goalsUrl
+    if (currentUser.manager) {
+      goalsUrl = "/sites/goals"
+    } else {
+      goalsUrl = `/sites/${currentUser.site}/goals`
+    }
     return (
       <div style={ styles.container }>
         <HomeLink
@@ -22,6 +29,13 @@ export default class Home extends React.Component {
           text="Styles"
           description="Add a rule to the Gawker Media Style Guide"
         />
+        { (currentUser.editor || currentUser.manager) &&
+          <HomeLink
+            to={ goalsUrl }
+            text="Goals"
+            description="Add a rule to the Gawker Media Style Guide"
+          />
+        }
         <HomeLink
           to="/suggestions/new"
           text="Suggestions?"

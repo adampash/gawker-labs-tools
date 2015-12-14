@@ -22,6 +22,7 @@ class AppContainer extends React.Component {
             return React.cloneElement(
               child, {
                 dispatch,
+                currentUser,
               })
           })}
         </div>

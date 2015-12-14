@@ -16,6 +16,9 @@ import NewSuggestion from './components/NewSuggestion'
 import Styles from './components/Styles'
 import NewStyle from './components/NewStyle'
 import ShowStyle from './components/ShowStyle'
+import Goals from './components/Goals'
+import NewGoal from './components/NewGoal'
+import ShowQuarter from './components/ShowQuarter'
 
 let getRoutes = (store) => {
   const { getState } = store
@@ -50,6 +53,10 @@ let getRoutes = (store) => {
         <Route path="/styles" name="Styles" component={ Styles }>
           <Route path="new" name="New" component={ NewStyle } />
           <Route path=":styleId" name="Show style" component={ ShowStyle } />
+        </Route>
+        <Route path="/sites/:siteName/goals" name="Goals" component={ Goals }>
+          <Route path=":quarter" name="Show goals" component={ ShowQuarter } />
+          <Route path=":quarter/new" name="New goal" component={ NewGoal } />
         </Route>
         <Route path="/suggestions/new" name="Suggestions" component={ NewSuggestion } />
       </Route>

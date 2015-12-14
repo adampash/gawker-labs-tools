@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021173810) do
+ActiveRecord::Schema.define(version: 20151210222530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 20151021173810) do
     t.integer  "position"
   end
 
+  create_table "job_titles", force: :cascade do |t|
+    t.text     "name"
+    t.integer  "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pictures", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "description"
@@ -50,6 +57,34 @@ ActiveRecord::Schema.define(version: 20151021173810) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.text     "credit"
+  end
+
+  create_table "quarterly_goals", force: :cascade do |t|
+    t.boolean  "approved",       default: false
+    t.integer  "approved_by_id"
+    t.integer  "person_id"
+    t.integer  "site_id"
+    t.integer  "quarter_id"
+    t.text     "post_notes"
+    t.text     "goals"
+    t.text     "other_goals"
+    t.text     "job_title_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "quarters", force: :cascade do |t|
+    t.text     "name"
+    t.integer  "q_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.text     "name"
+    t.text     "domain"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "styles", force: :cascade do |t|
@@ -77,6 +112,7 @@ ActiveRecord::Schema.define(version: 20151021173810) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "editor",                 default: false
+    t.boolean  "manager",                default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
