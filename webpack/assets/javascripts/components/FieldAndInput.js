@@ -54,7 +54,9 @@ export default class FieldAndInput extends Component {
           ref="input"
         />
         { suggestions && suggestions.length > 0 &&
-          this.renderSuggestions()
+          <div style={ styles.autocomplete }>
+            { this.renderSuggestions() }
+          </div>
         }
       </div>
     )
@@ -103,10 +105,15 @@ const styles = {
   },
   textarea: {
     fontSize: 13,
-    // padding: '10px 5px',
     padding: 10,
     marginBottom: 20,
     outline: 'none',
-    // fontFamily: 'ElizabethSerif'
+  },
+  autocomplete: {
+    position: 'absolute',
+    background: 'white',
+    width: 500,
+    marginTop: -21,
+    border: '1px solid black',
   },
 }

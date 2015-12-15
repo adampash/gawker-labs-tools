@@ -1,4 +1,6 @@
 class Api::UsersController < ApplicationController
+  after_filter :set_csrf_cookie
+
   def autocomplete
     if params[:query] == ''
       @users = []

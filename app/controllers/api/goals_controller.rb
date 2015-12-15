@@ -1,4 +1,6 @@
 class Api::GoalsController < ApplicationController
+  after_filter :set_csrf_cookie, except: :show
+
   def index
     Quarter.initiate_quarters
     @quarters = Quarter.all

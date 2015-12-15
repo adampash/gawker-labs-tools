@@ -13,10 +13,12 @@ class ShowQuarter extends React.Component {
   }
 
   renderGoals() {
-    let { goals } = this.props
+    let { goals, currentUser } = this.props
     return goals.map( (goal) => {
       return (
-        <GoalRow goal={ goal } key={ goal.id } />
+        <GoalRow goal={ goal } key={ goal.id }
+          currentUser={ currentUser }
+        />
       )
     })
   }

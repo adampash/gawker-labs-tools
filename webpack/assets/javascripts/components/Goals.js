@@ -12,12 +12,13 @@ class Goals extends React.Component {
   }
 
   renderChildren() {
-    let { dispatch, quarters, goals } = this.props
+    let { dispatch, quarters, goals, currentUser } = this.props
     return React.Children.map(this.props.children, (child, index) => {
       return React.cloneElement(child, {
         dispatch,
         quarter: quarters[index],
         goals,
+        currentUser,
       })
     })
   }
@@ -82,11 +83,12 @@ const goals = {
 
 
 function select(state) {
-  let { goals, goalList, quarters } = state
+  let { goals, goalList, quarters, currentUser } = state
   return {
     goals,
     quarters,
-    goalList
+    goalList,
+    currentUser,
   }
 }
 
