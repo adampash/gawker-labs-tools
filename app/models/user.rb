@@ -1,9 +1,14 @@
 class User < ActiveRecord::Base
+  WHITELISTED_EMAILS = /^\w.*@(gawker|deadspin|jezebel|kotaku|lifehacker|jalopnik|io9|gizmodo)\.com$/
   has_many :galleries
   has_many :embeds
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable,
     :omniauthable, :omniauth_providers => [:google_oauth2]
+
+  def self.whitelisted?(email)
+    !email.match(WHITELISTED_EMAILS).nil?
+  end
 
   def self.from_omniauth(access_token)
     data = access_token.info
