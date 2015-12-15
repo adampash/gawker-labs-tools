@@ -25,7 +25,7 @@ class NewGoal extends React.Component {
     e.preventDefault()
     let { siteName, quarter } = this.props.params
     if (!this.isFormEnabled()) {
-      return alert("Your style needs both files and a name")
+      return alert("You need to fill out this form.")
     }
     let { dispatch, history } = this.props
     dispatch(createGoal({
@@ -40,6 +40,9 @@ class NewGoal extends React.Component {
     this.setState({
       [name]: value
     })
+    if (e.person) {
+      this.setState({ person: e.person })
+    }
   }
 
   isFormEnabled() {
@@ -48,10 +51,14 @@ class NewGoal extends React.Component {
   }
 
   render() {
+    let { params } = this.props
     return (
       <div style={ styles.container }>
         <form style={ styles.form } onSubmit={ this.handleSubmit.bind(this) }>
-          <GoalForm handleChange={ this.handleNameChange.bind(this) } />
+          <GoalForm
+            handleChange={ this.handleNameChange.bind(this) }
+            params={ params }
+          />
           <button
             type="submit"
             style={[ styles.button, !this.isFormEnabled() && styles.disabled ]}

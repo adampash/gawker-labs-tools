@@ -12,7 +12,7 @@ export default class GoalRow extends Component {
         <img src={ person.avatar } style={ styles.avatar } />
         <div style={ styles.name }>{ person.name }</div>
         <div style={ styles.goal } >
-          This is a goal.
+          { goal.goals }
         </div>
         { goal.approved &&
           <span>

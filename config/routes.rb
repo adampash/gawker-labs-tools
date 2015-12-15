@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :sites do
       resources :goals
     end
+    post 'users/autocomplete' => 'users#autocomplete'
   end
 
   namespace :iframe do

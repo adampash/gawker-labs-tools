@@ -9,7 +9,7 @@ class QuarterlyGoal < ActiveRecord::Base
     quarter = Quarter.find_by(q_id: options[:quarter])
     site = Site.find_by(name: options[:siteName].titlecase)
     create(
-      person_id: 1,
+      person_id: options["person"]["id"],
       quarter_id: quarter.id,
       site_id: site.id,
       goals: options["goals"],
@@ -20,7 +20,9 @@ class QuarterlyGoal < ActiveRecord::Base
   def self.by_site_and_quarter(site_name, q_id)
     site = Site.find_by(name: site_name.titlecase)
     quarter = Quarter.find_by(q_id: q_id)
-    where(site_id: site.id).where(quarter_id: quarter.id)
+    where(site_id: site.id)
+      .where(quarter_id: quarter.id)
+      .order(approved: :desc)
   end
 
   def as_json(options=nil)
