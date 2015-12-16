@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   WHITELISTED_EMAILS = /^\w.*@(gawker|deadspin|jezebel|kotaku|lifehacker|jalopnik|io9|gizmodo)\.com$/
   has_many :galleries
   has_many :embeds
+  has_many :quarterly_goals, foreign_key: :person_id
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable,
     :omniauthable, :omniauth_providers => [:google_oauth2]
@@ -41,6 +42,24 @@ class User < ActiveRecord::Base
     json = super
     json["site"] = site
     json
+  end
+
+  def previous_goal(quarter_id)
+    quarterly_goals.find_by(quarter_id: previous_quarter(quarter_id).id)
+  end
+
+  def previous_quarter(quarter_id)
+    Quarter.find_by(q_id: previous_quarter_id(quarter_id))
+  end
+
+  def previous_quarter_id(quarter_id)
+    quarter = Quarter.find(quarter_id)
+    case quarter.q_id.to_s.last
+    when "2", "3", "4"
+      quarter.q_id + 1
+    else
+      quarter.q_id - 7
+    end
   end
 
 end

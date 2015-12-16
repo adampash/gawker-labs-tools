@@ -24,9 +24,12 @@ class ShowQuarter extends React.Component {
   }
 
   render() {
-    let { quarter, params, goals } = this.props
+    let { quarters, params, goals } = this.props
     let { siteName, quarter: quarter_id } = params
-    if (quarter && typeof goals.map === 'function') {
+    let quarter = quarters.find( quarter => {
+      return quarter.q_id === parseInt(quarter_id)
+    })
+    if (quarters && typeof goals.map === 'function') {
       return (
         <div>
           <h3>{ `${siteName.toUpperCase()} ${quarter.name}` } <NewLink to={`/sites/${siteName}/quarters/${quarter_id}/new`} text="Create new goal" /></h3>

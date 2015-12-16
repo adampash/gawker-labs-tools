@@ -7,6 +7,9 @@ import TitleRow from './TitleRow'
 
 @Radium
 export default class GoalForm extends Component {
+  componentWillMount() {
+  }
+
   user_autocomplete(query) {
     let { siteName, quarter } = this.props.params
     let data = {
@@ -62,7 +65,7 @@ export default class GoalForm extends Component {
   }
 
   render() {
-    console.log('RENDER')
+    let { prevGoal } = this.props
     let {
       handleChange,
       goal={},
@@ -120,16 +123,35 @@ export default class GoalForm extends Component {
           type="textarea"
           initialValue={ other_goals }
         />
-        <FieldAndInput
-          handleNameChange={ handleChange }
-          name="last_q_evaluation"
-          title="Evaluation of previous quarter's goals:"
-          placeholder="Were last quarter's goals met?"
-          type="textarea"
-          initialValue={ last_q_evaluation }
-        />
+        { prevGoal &&
+          <div>
+            <div style={ styles.prevGoal }>
+              <h4 style={ styles.h4 }>Previous quarter</h4>
+              <b>Main goals:</b> { prevGoal.goals }
+              <br />
+              <b>Other goals:</b> { prevGoal.other_goals }
+            </div>
+            <FieldAndInput
+              handleNameChange={ handleChange }
+              name="last_q_evaluation"
+              title="Evaluation of previous quarter's goals:"
+              placeholder="Were last quarter's goals met?"
+              type="textarea"
+              initialValue={ last_q_evaluation }
+            />
+          </div>
+        }
       </div>
     )
   }
 }
 
+const styles = {
+  prevGoal: {
+    padding: '10px 0',
+  },
+  h4: {
+    margin: 0,
+    padding: 0,
+  },
+}

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :goals
     end
     post 'users/autocomplete' => 'users#autocomplete'
+    get 'users/:id/prev_quarter/:quarter_id' => 'users#prev_quarter'
     post 'titles/autocomplete' => 'titles#autocomplete'
     get 'sites/:site_name/quarters/:quarter_id' => 'goals#show_quarter'
     get 'goals/:id' => 'goals#show'

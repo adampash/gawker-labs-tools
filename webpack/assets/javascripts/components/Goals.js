@@ -15,7 +15,7 @@ class Goals extends React.Component {
     return React.Children.map(this.props.children, (child, index) => {
       return React.cloneElement(child, {
         dispatch,
-        quarter: quarters[index],
+        quarters,
         goals,
         currentUser,
       })
@@ -29,7 +29,7 @@ class Goals extends React.Component {
       return (
         <div key={ quarter.id } quarter={ quarter }>
           <Link to={`/sites/${siteName}/quarters/${quarter.q_id}`}>
-            { quarter.name }
+            <h3>{ quarter.name }</h3>
           </Link>
         </div>
       )
@@ -46,7 +46,6 @@ class Goals extends React.Component {
 
   render() {
     let { quarters, params } = this.props
-    console.log(React.Children.count())
     if (quarters.length) {
       if (Object.keys(params).length === 1) {
         return (

@@ -9,7 +9,7 @@ class QuarterlyGoal < ActiveRecord::Base
     puts options
     quarter = Quarter.find_by(q_id: options[:quarter])
     site = Site.find_by(name: options[:siteName].titlecase)
-    create(
+    goal = create(
       person_id: options["person"]["id"],
       job_title_id: options["title"]["id"],
       quarter_id: quarter.id,
@@ -17,6 +17,13 @@ class QuarterlyGoal < ActiveRecord::Base
       goals: options["goals"],
       other_goals: options["other_goals"],
     )
+    if options[:last_q_evaluation]
+      goal.previous_goal.update_attributes(
+        evaluation: options[:last_q_evaluation],
+        # evaluated_by_id: current_user.id,
+      )
+    end
+    goal
   end
 
   def self.by_site_and_quarter(site_name, q_id)
@@ -36,6 +43,12 @@ class QuarterlyGoal < ActiveRecord::Base
       params[:job_title_id] = options["title"]["id"]
     end
     update_attributes(params)
+    if options[:last_q_evaluation]
+      previous_goal.update_attributes(
+        evaluation: options[:last_q_evaluation],
+        # evaluated_by_id: current_user.id,
+      )
+    end
   end
 
   def previous_quarter_id
@@ -52,18 +65,23 @@ class QuarterlyGoal < ActiveRecord::Base
   end
 
   def previous_goal
-    QuarterlyGoal.find_by(
-      quarter_id: previous_quarter.id,
-      person_id: person_id
-    )
+    if previous_quarter
+      QuarterlyGoal.find_by(
+        quarter_id: previous_quarter.id,
+        person_id: person_id
+      )
+    else
+      false
+    end
   end
 
   def last_q_evaluation
-
+    previous_goal ? previous_goal.evaluation : ''
   end
 
   def as_json(options=nil)
     json = super
+    json["last_q_evaluation"] = last_q_evaluation
     json["person"] = person
     json["job"] = job_title
     json["quarter"] = quarter

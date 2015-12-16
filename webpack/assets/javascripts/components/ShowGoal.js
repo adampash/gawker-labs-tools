@@ -21,9 +21,11 @@ class ShowGoal extends React.Component {
           <h3>{ goal.person.site.toUpperCase() } { goal.quarter.name } Goals</h3>
           <h4>{ goal.person.name } - { goal.job.name }</h4>
           <h4>Primary goals:</h4>
-          <p>{ goal.goals}</p>
+          <p>{ goal.goals }</p>
           <h4>Other goals:</h4>
-          <p>{ goal.other_goals}</p>
+          <p>{ goal.other_goals }</p>
+          <h4>Evaluation:</h4>
+          <p>{ goal.evaluation }</p>
           { currentUser.manager &&
             <ApproveOrReject approved={ goal.approved } by={ goal.approved_by } />
           }

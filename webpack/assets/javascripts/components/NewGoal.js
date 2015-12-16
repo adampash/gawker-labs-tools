@@ -3,6 +3,7 @@ import Radium from 'radium'
 import { createGoal } from '../actions/goals'
 import { connect } from 'react-redux'
 import GoalForm from './GoalForm'
+import Network from '../Network'
 
 // @Radium
 class NewGoal extends React.Component {
@@ -17,8 +18,13 @@ class NewGoal extends React.Component {
     }
   }
 
-  onComponentDidMount() {
-
+  componentWillMount() {
+    let { params, quarters } = this.props
+    let { quarter: quarter_id } = params
+    let quarter = quarters.find( quarter => {
+      return quarter.q_id === parseInt(quarter_id)
+    })
+    this.setState({ quarter })
   }
 
   handleSubmit(e) {
@@ -35,13 +41,27 @@ class NewGoal extends React.Component {
     }, history))
   }
 
+  getPrevGoal() {
+    let { quarter, person } = this.state
+    Network.get(`users/${person.id}/prev_quarter/${quarter.id}`)
+      .then(response => {
+        return response.json()
+      })
+      .then(prevGoal => {
+        console.log(prevGoal)
+        this.setState({ prevGoal })
+      })
+  }
+
   handleNameChange(e) {
     let { value, name } = e.target
     this.setState({
       [name]: value
     })
     if (e.person) {
-      this.setState({ person: e.person })
+      this.setState({ person: e.person }, () => {
+        this.getPrevGoal()
+      })
     }
     if (e.title) {
       this.setState({ title: e.title })
@@ -55,12 +75,14 @@ class NewGoal extends React.Component {
 
   render() {
     let { params } = this.props
+    let { quarter, prevGoal } = this.state
     return (
       <div style={ styles.container }>
         <form style={ styles.form } onSubmit={ this.handleSubmit.bind(this) }>
           <GoalForm
             handleChange={ this.handleNameChange.bind(this) }
             params={ params }
+            prevGoal={ prevGoal }
           />
           <button
             type="submit"

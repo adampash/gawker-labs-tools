@@ -81,6 +81,7 @@ export function showGoals(goals) {
 
 export function getGoalsAsync(siteName, quarter) {
   return (dispatch, getState) => {
+    dispatch(showGoals([]))
     Network.get(`sites/${siteName}/quarters/${quarter}`)
       .then(response => {
         return response.json()
