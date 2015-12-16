@@ -10,7 +10,7 @@ export default class Home extends React.Component {
     if (currentUser.manager) {
       goalsUrl = "/sites/goals"
     } else {
-      goalsUrl = `/sites/${currentUser.site}/goals`
+      goalsUrl = `/sites/${currentUser.site}/quarters`
     }
     return (
       <div style={ styles.container }>
@@ -33,7 +33,7 @@ export default class Home extends React.Component {
           <HomeLink
             to={ goalsUrl }
             text="Goals"
-            description="Add a rule to the Gawker Media Style Guide"
+            description="Create and view goals for your site"
           />
         }
         <HomeLink

@@ -4,15 +4,15 @@ import { createGoal } from '../actions/goals'
 import { connect } from 'react-redux'
 import GoalForm from './GoalForm'
 
-@Radium
+// @Radium
 class NewGoal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       name: '',
-      title: '',
+      title_name: '',
       goals: '',
-      otherGoals: '',
+      other_goals: '',
       person: {},
     }
   }
@@ -43,11 +43,14 @@ class NewGoal extends React.Component {
     if (e.person) {
       this.setState({ person: e.person })
     }
+    if (e.title) {
+      this.setState({ title: e.title })
+    }
   }
 
   isFormEnabled() {
-    let { name } = this.state
-    return name !== ''
+    let { person, title } = this.state
+    return person && title
   }
 
   render() {
@@ -61,7 +64,7 @@ class NewGoal extends React.Component {
           />
           <button
             type="submit"
-            style={[ styles.button, !this.isFormEnabled() && styles.disabled ]}
+            style={{ ...styles.button, ...(!this.isFormEnabled() && styles.disabled) }}
             disabled={ !this.isFormEnabled() }
           >
             Create goal

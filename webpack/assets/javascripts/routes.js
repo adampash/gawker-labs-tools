@@ -18,6 +18,9 @@ import NewStyle from './components/NewStyle'
 import ShowStyle from './components/ShowStyle'
 import Goals from './components/Goals'
 import NewGoal from './components/NewGoal'
+import EditGoal from './components/EditGoal'
+import ShowGoal from './components/ShowGoal'
+import ShowSites from './components/ShowSites'
 import ShowQuarter from './components/ShowQuarter'
 
 let getRoutes = (store) => {
@@ -54,10 +57,13 @@ let getRoutes = (store) => {
           <Route path="new" name="New" component={ NewStyle } />
           <Route path=":styleId" name="Show style" component={ ShowStyle } />
         </Route>
-        <Route path="/sites/:siteName/goals" name="Goals" component={ Goals }>
+        <Route path="/sites/:siteName/quarters" name="Quarters" component={ Goals }>
           <Route path=":quarter" name="Show goals" component={ ShowQuarter } />
           <Route path=":quarter/new" name="New goal" component={ NewGoal } />
         </Route>
+        <Route path="/sites/goals" name="Show sites" component={ ShowSites } />
+        <Route path="/sites/:siteName/goals/:goalId" name="Show Goal" component={ ShowGoal } />
+        <Route path="/sites/:siteName/goals/:goalId/edit" name="Edit Goal" component={ EditGoal } />
         <Route path="/suggestions/new" name="Suggestions" component={ NewSuggestion } />
       </Route>
       <Route path="iframe/galleries/:galleryId" name="iframe_gallery" component={ GalleryEmbed } />

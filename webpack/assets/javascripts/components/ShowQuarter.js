@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import NewLink from './NewLink'
 import GoalRow from './GoalRow'
 import { connect } from 'react-redux'
@@ -12,25 +11,26 @@ class ShowQuarter extends React.Component {
     dispatch(getGoalsAsync(siteName, quarter))
   }
 
-  renderGoals() {
+  renderGoals(siteName) {
     let { goals, currentUser } = this.props
     return goals.map( (goal) => {
       return (
         <GoalRow goal={ goal } key={ goal.id }
           currentUser={ currentUser }
+          siteName={ siteName }
         />
       )
     })
   }
 
   render() {
-    let { quarter, params } = this.props
+    let { quarter, params, goals } = this.props
     let { siteName, quarter: quarter_id } = params
-    if (quarter) {
+    if (quarter && typeof goals.map === 'function') {
       return (
         <div>
-          <h3>{ `${siteName.toUpperCase()} ${quarter.name}` } <NewLink to={`/sites/${siteName}/goals/${quarter_id}/new`} text="Create new goal" /></h3>
-          { this.renderGoals() }
+          <h3>{ `${siteName.toUpperCase()} ${quarter.name}` } <NewLink to={`/sites/${siteName}/quarters/${quarter_id}/new`} text="Create new goal" /></h3>
+          { this.renderGoals(siteName) }
         </div>
       )
     } else {

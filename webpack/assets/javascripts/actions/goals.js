@@ -3,6 +3,7 @@ import Network from '../Network'
 export const CREATE_GOAL = 'CREATE_GOAL'
 export const SHOW_GOAL = 'SHOW_GOAL'
 export const SHOW_GOALS = 'SHOW_GOALS'
+export const SHOW_SITES = 'SHOW_SITES'
 export const SHOW_QUARTERS = 'SHOW_QUARTERS'
 export const UPDATE_GOAL = 'UPDATE_GOAL'
 export const CLEAR_NEW_GOAL = 'CLEAR_NEW_GOAL'
@@ -33,6 +34,25 @@ export function getGoalAsync(id) {
 
 }
 
+export function showSites(sites) {
+  return {
+    type: SHOW_SITES,
+    sites
+  }
+}
+
+export function getSitesAsync() {
+  return (dispatch, getState) => {
+    Network.get(`sites/`)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        dispatch(showSites(data))
+      })
+  }
+}
+
 export function showQuarters(quarters) {
   return {
     type: SHOW_QUARTERS,
@@ -61,7 +81,7 @@ export function showGoals(goals) {
 
 export function getGoalsAsync(siteName, quarter) {
   return (dispatch, getState) => {
-    Network.get(`sites/${siteName}/goals/${quarter}`)
+    Network.get(`sites/${siteName}/quarters/${quarter}`)
       .then(response => {
         return response.json()
       })
@@ -101,17 +121,7 @@ export function updateGoalAsync({id, rule, details, keywords}) {
         return response.json()
       })
       .then(data => {
-        console.log(data)
-        dispatch(updateGoal(
-          {
-            goal: {
-              ...goal,
-              loading: false,
-              rule,
-              details,
-              keywords,
-            }
-          }))
+        dispatch(updateGoal(goal))
       })
   }
 
@@ -125,7 +135,22 @@ export function createGoal(data, history) {
       return response.json()
     })
     .then(data => {
-      history.pushState(null, `/goals/${data.id}`)
+      history.pushState(null, `/sites/${siteName}/goals/${data.id}`)
+      dispatch(clearNewGoal())
+    })
+
+  }
+}
+
+export function updateGoal(data, history) {
+  let { siteName, goalId } = data
+  return (dispatch, getState) => {
+    Network.put(`sites/${siteName}/goals/${goalId}`, data)
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      history.pushState(null, `/sites/${siteName}/goals/${data.id}`)
       dispatch(clearNewGoal())
     })
 

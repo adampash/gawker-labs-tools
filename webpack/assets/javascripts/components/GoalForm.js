@@ -3,6 +3,7 @@ import { Component } from 'react'
 import Radium from 'radium'
 import FieldAndInput from './FieldAndInput'
 import PersonRow from './PersonRow'
+import TitleRow from './TitleRow'
 
 @Radium
 export default class GoalForm extends Component {
@@ -24,6 +25,22 @@ export default class GoalForm extends Component {
       })
   }
 
+  title_autocomplete(query) {
+    let data = {
+      query,
+    }
+    Network.post("titles/autocomplete", data)
+      .then(data => {
+        return data.json()
+      })
+      .then(title_suggestions => {
+        // title_suggestions.push('')
+        this.setState({
+          title_suggestions
+        })
+      })
+  }
+
   chooseUser(person) {
     this.setState({
       user_suggestions: []
@@ -34,21 +51,35 @@ export default class GoalForm extends Component {
     })
   }
 
+  chooseTitle(title) {
+    this.setState({
+      title_suggestions: []
+    })
+    this.props.handleChange({
+      target: { name: 'title_name', value: title.name },
+      title
+    })
+  }
+
   render() {
+    console.log('RENDER')
     let {
       handleChange,
       goal={},
+      type,
     } = this.props
     let {
       name,
-      title,
+      title_name,
       goals,
-      otherGoals,
+      other_goals,
       person = {},
-        siteId,
-        quarterId,
-        jobTitleId
+      siteId,
+      last_q_evaluation,
+      quarterId,
+      job={},
     } = goal
+    title_name = title_name || job.name
     return (
       <div>
         <FieldAndInput
@@ -60,13 +91,18 @@ export default class GoalForm extends Component {
           name="name"
           title="Writer's name"
           initialValue={ person.name }
+          disabled={ type == 'edit' ? true : false }
         />
         <FieldAndInput
           handleNameChange={ handleChange }
-          name="title"
+          autocomplete={ this.title_autocomplete.bind(this) }
+          suggestions={ this.state.title_suggestions }
+          SuggestionComponent={ TitleRow }
+          handleChoice={ this.chooseTitle.bind(this) }
+          name="title_name"
           title="Title"
           placeholder="Is this a writer, senior writer, editor, etc."
-          initialValue={ title }
+          initialValue={ title_name }
         />
         <FieldAndInput
           handleNameChange={ handleChange }
@@ -78,11 +114,19 @@ export default class GoalForm extends Component {
         />
         <FieldAndInput
           handleNameChange={ handleChange }
-          name="otherGoals"
+          name="other_goals"
           title="Other goals"
           placeholder="Anything else you'd like to see from this person?"
           type="textarea"
-          initialValue={ otherGoals }
+          initialValue={ other_goals }
+        />
+        <FieldAndInput
+          handleNameChange={ handleChange }
+          name="last_q_evaluation"
+          title="Evaluation of previous quarter's goals:"
+          placeholder="Were last quarter's goals met?"
+          type="textarea"
+          initialValue={ last_q_evaluation }
         />
       </div>
     )

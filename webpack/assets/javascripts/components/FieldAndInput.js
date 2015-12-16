@@ -19,17 +19,17 @@ export default class FieldAndInput extends Component {
     handleNameChange(e)
   }
 
-  selectSuggestion(person) {
+  selectSuggestion(suggestion) {
     let { handleChoice } = this.props
-    handleChoice(person)
-    this.refs.input.value = person.name
+    handleChoice(suggestion)
+    this.refs.input.value = suggestion.name
   }
 
   renderSuggestions() {
     let { suggestions, SuggestionComponent } = this.props
-    return suggestions.map( person => {
+    return suggestions.map( (suggestion, index) => {
       return (
-        <SuggestionComponent key={ person.id } person={ person }
+        <SuggestionComponent key={ index } suggestion={ suggestion }
           select={ this.selectSuggestion.bind(this) }
         />
       )
@@ -42,6 +42,7 @@ export default class FieldAndInput extends Component {
       name,
       initialValue,
       suggestions,
+      disabled,
     } = this.props
     return (
       <div style={ styles.container }>
@@ -49,9 +50,10 @@ export default class FieldAndInput extends Component {
         <input type="text" placeholder={ placeholder }
           onChange={ this.handleChange.bind(this) }
           name={ name }
-          style={ styles.input }
+          style={{ ...styles.input, ...(disabled ? styles.disabled : {}) }}
           defaultValue={ initialValue }
           ref="input"
+          disabled={ disabled }
         />
         { suggestions && suggestions.length > 0 &&
           <div style={ styles.autocomplete }>
@@ -68,6 +70,7 @@ export default class FieldAndInput extends Component {
       placeholder,
       name,
       initialValue,
+      disabled,
     } = this.props
     return (
       <div style={ styles.container }>
@@ -77,6 +80,7 @@ export default class FieldAndInput extends Component {
           name={ name }
           style={ styles.textarea }
           defaultValue={ initialValue }
+          disabled={ disabled }
         />
       </div>
     )
@@ -101,7 +105,7 @@ const styles = {
     fontSize: 16,
     padding: '5px 10px',
     marginBottom: 20,
-    outline: 'none'
+    outline: 'none',
   },
   textarea: {
     fontSize: 13,
@@ -109,10 +113,17 @@ const styles = {
     marginBottom: 20,
     outline: 'none',
   },
+  disabled: {
+    color: 'black',
+    outline: 'none',
+    border: 'none',
+    background: 'none',
+  },
   autocomplete: {
     position: 'absolute',
     background: 'white',
-    width: 500,
+    maxWidth: 540,
+    width: '100%',
     marginTop: -21,
     border: '1px solid black',
   },

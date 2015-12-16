@@ -1,9 +1,19 @@
 import {
   SHOW_GOAL,
   SHOW_GOALS,
+  SHOW_SITES,
   UPDATE_GOAL,
   SHOW_QUARTERS,
 } from '../actions/goals'
+
+export function sites(state=[], action) {
+  switch (action.type) {
+    case SHOW_SITES:
+      return action.sites
+    default:
+      return state
+  }
+}
 
 export function quarters(state={}, action) {
   switch (action.type) {
@@ -14,22 +24,25 @@ export function quarters(state={}, action) {
   }
 }
 
+function pushOrReplaceGoal(goal, goals) {
+  let newState = goals.reduce( (acc, item) => {
+    if (item.id !== goal.id) {
+      acc.push(item)
+    }
+    return acc
+  }, [])
+  newState.push(goal)
+  return newState
+}
+
 export function goals(state=[], action) {
   switch (action.type) {
   case SHOW_GOAL:
-    let newState = {
-      ...state,
-      [action.goal.id]: action.goal,
-    }
-    return newState
+    return pushOrReplaceGoal(action.goal, state)
   case SHOW_GOALS:
     return action.goals
   case UPDATE_GOAL:
-    let { goal } = action
-    return {
-      ...state,
-      [goal.id]: goal
-    }
+    return pushOrReplaceGoal(action.goal, state)
   default:
     return state
   }

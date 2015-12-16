@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router'
-import NewLink from './NewLink'
 import { connect } from 'react-redux'
 import { getQuartersAsync } from '../actions/goals'
 
@@ -29,7 +28,7 @@ class Goals extends React.Component {
     let list = quarters.map( quarter => {
       return (
         <div key={ quarter.id } quarter={ quarter }>
-          <Link to={`/sites/${siteName}/goals/${quarter.q_id}`}>
+          <Link to={`/sites/${siteName}/quarters/${quarter.q_id}`}>
             { quarter.name }
           </Link>
         </div>

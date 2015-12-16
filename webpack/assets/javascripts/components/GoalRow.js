@@ -1,30 +1,39 @@
 import { Component } from 'react'
 import Radium from 'radium'
+import { Link } from 'react-router'
 import FontAwesome from 'react-fontawesome'
 
 @Radium
 export default class GoalRow extends Component {
   render() {
-    let { goal, currentUser } = this.props
+    let { goal, currentUser, siteName } = this.props
     let { person } = goal
     return (
-      <div style={ styles.container }>
-        <img src={ person.avatar } style={ styles.avatar } />
-        <div style={ styles.name }>{ person.name }</div>
-        <div style={ styles.goal } >
-          { goal.goals }
+        <div style={ styles.container }>
+          <Link to={ `/sites/gawker/goals/${goal.id}` } >
+            <img src={ person.avatar } style={ styles.avatar } />
+          </Link>
+          <Link to={ `/sites/gawker/goals/${goal.id}` }
+            style={ styles.name}
+          >
+            { person.name }
+          </Link>
+          <Link to={ `/sites/gawker/goals/${goal.id}` } style={ styles.goal} >
+              { goal.goals }
+          </Link>
+          { currentUser.editor && !goal.approved &&
+            <span>
+              <Link to={ `/sites/${siteName}/goals/${goal.id}/edit` } goal={ goal }>
+                &nbsp;<FontAwesome name="pencil" />
+              </Link>
+            </span>
+          }
+          { goal.approved &&
+            <span>
+              <FontAwesome name="check" style={{ color: "#66C14A" }} />
+            </span>
+          }
         </div>
-        { currentUser.editor && !goal.approved &&
-          <span>
-            &nbsp;<FontAwesome name="pencil" />
-          </span>
-        }
-        { goal.approved &&
-          <span>
-            <FontAwesome name="check" style={{ color: "#66C14A" }} />
-          </span>
-        }
-      </div>
     )
   }
 }
@@ -38,6 +47,7 @@ const styles = {
     padding: '10px 5px',
     borderBottom: '1px solid #ddd',
     cursor: 'pointer',
+    fontSize: '13px',
     ':hover': {
       background: 'white',
     },

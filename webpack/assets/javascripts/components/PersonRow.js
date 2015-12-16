@@ -5,13 +5,13 @@ import FontAwesome from 'react-fontawesome'
 @Radium
 export default class PersonRow extends Component {
   render() {
-    let { person, select } = this.props
+    let { suggestion, select } = this.props
     return (
       <div style={ styles.container }
-        onClick={ (e) => select(person) }
+        onClick={ (e) => select(suggestion) }
       >
-        <img src={ person.avatar } style={ styles.avatar } />
-        { person.name }
+        <img src={ suggestion.avatar } style={ styles.avatar } />
+        { suggestion.name }
       </div>
     )
   }
