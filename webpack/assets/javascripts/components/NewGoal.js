@@ -41,6 +41,20 @@ class NewGoal extends React.Component {
     }, history))
   }
 
+  getGoal() {
+    let { quarter, person } = this.state
+    let { siteName, quarter: quarter_id } = this.props.params
+    Network.get(`users/${person.id}/goals/${quarter.id}/check`)
+      .then(response => {
+        return response.json()
+      })
+      .then(goal => {
+        this.props.history.pushState(
+          null, `/sites/${siteName}/goals/${goal.id}/edit`
+        )
+      })
+  }
+
   getPrevGoal() {
     let { quarter, person } = this.state
     Network.get(`users/${person.id}/prev_quarter/${quarter.id}`)

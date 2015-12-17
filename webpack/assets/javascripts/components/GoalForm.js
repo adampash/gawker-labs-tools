@@ -65,9 +65,9 @@ export default class GoalForm extends Component {
   }
 
   render() {
-    let { prevGoal } = this.props
     let {
       handleChange,
+      prevGoal,
       goal={},
       type,
     } = this.props
