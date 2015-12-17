@@ -45,7 +45,12 @@ class User < ActiveRecord::Base
   end
 
   def previous_goal(quarter_id)
-    quarterly_goals.find_by(quarter_id: previous_quarter(quarter_id).id)
+    prev = previous_quarter(quarter_id)
+    if prev
+      quarterly_goals.find_by(quarter_id: prev.id)
+    else
+      nil
+    end
   end
 
   def previous_quarter(quarter_id)

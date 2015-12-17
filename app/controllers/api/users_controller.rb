@@ -11,6 +11,14 @@ class Api::UsersController < ApplicationController
     render json: @users
   end
 
+  def check_for_goal
+    @goal = QuarterlyGoal.find_by(
+      person_id: params[:id],
+      quarter_id: params[:quarter_id],
+     )
+    render json: @goal
+  end
+
   def prev_quarter
     @user = User.find(params[:id])
     @goal = @user.previous_goal(params[:quarter_id].to_i)
