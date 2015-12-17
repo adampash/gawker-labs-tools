@@ -41,7 +41,7 @@ class NewGoal extends React.Component {
     }, history))
   }
 
-  getGoal() {
+  getGoal(callback) {
     let { quarter, person } = this.state
     let { siteName, quarter: quarter_id } = this.props.params
     Network.get(`users/${person.id}/goals/${quarter.id}/check`)
@@ -49,9 +49,13 @@ class NewGoal extends React.Component {
         return response.json()
       })
       .then(goal => {
-        this.props.history.pushState(
-          null, `/sites/${siteName}/goals/${goal.id}/edit`
-        )
+        if (goal) {
+          this.props.history.pushState(
+            null, `/sites/${siteName}/goals/${goal.id}/edit`
+          )
+        } else if (callback) {
+          callback()
+        }
       })
   }
 
@@ -74,7 +78,9 @@ class NewGoal extends React.Component {
     })
     if (e.person) {
       this.setState({ person: e.person }, () => {
-        this.getPrevGoal()
+        this.getGoal( () => {
+          this.getPrevGoal()
+        })
       })
     }
     if (e.title) {

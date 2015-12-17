@@ -59,6 +59,11 @@ class EditGoal extends React.Component {
     if (goal) {
       return (
         <div style={ styles.container }>
+          { goal.reject_message &&
+            <p>
+              <b>Needed for approval:</b> { goal.reject_message }
+            </p>
+          }
           <form style={ styles.form } onSubmit={ this.handleSubmit.bind(this) }>
             <GoalForm
               handleChange={ this.handleNameChange.bind(this) }
