@@ -1,6 +1,6 @@
 import React from 'react'
 import Radium from 'radium'
-import { getGoalAsync, updateGoal } from '../actions/goals'
+import { getGoalAsync, updateGoalAsync } from '../actions/goals'
 import { connect } from 'react-redux'
 import GoalForm from './GoalForm'
 
@@ -28,7 +28,7 @@ class EditGoal extends React.Component {
     }
     let { dispatch, history } = this.props
     console.log(this.state)
-    dispatch(updateGoal({
+    dispatch(updateGoalAsync({
       ...this.state,
       siteName,
       quarter,

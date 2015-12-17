@@ -43,7 +43,7 @@ class QuarterlyGoal < ActiveRecord::Base
       params[:job_title_id] = options["title"]["id"]
     end
     update_attributes(params)
-    if options[:last_q_evaluation]
+    if options[:last_q_evaluation] && previous_goal
       previous_goal.update_attributes(
         evaluation: options[:last_q_evaluation],
         # evaluated_by_id: current_user.id,
@@ -83,9 +83,17 @@ class QuarterlyGoal < ActiveRecord::Base
     json = super
     json["last_q_evaluation"] = last_q_evaluation
     json["person"] = person
+    json["approved_by"] = approved_by
     json["job"] = job_title
     json["quarter"] = quarter
     json
+  end
+
+  def approve(user)
+    update_attributes(
+      approved_by_id: user.id,
+      approved: true
+    )
   end
 
 end

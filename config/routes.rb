@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     post 'titles/autocomplete' => 'titles#autocomplete'
     get 'sites/:site_name/quarters/:quarter_id' => 'goals#show_quarter'
     get 'goals/:id' => 'goals#show'
+    post 'goals/:id/approve' => 'goals#approve'
     get 'sites' => 'sites#index'
   end
 

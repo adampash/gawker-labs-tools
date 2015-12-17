@@ -14,7 +14,7 @@ class ShowGoal extends React.Component {
   }
 
   render() {
-    let { goal, currentUser } = this.props
+    let { goal, currentUser, dispatch } = this.props
     if (goal) {
       return (
         <div style={ styles.container }>
@@ -27,7 +27,7 @@ class ShowGoal extends React.Component {
           <h4>Evaluation:</h4>
           <p>{ goal.evaluation }</p>
           { currentUser.manager &&
-            <ApproveOrReject approved={ goal.approved } by={ goal.approved_by } />
+            <ApproveOrReject goal={ goal } dispatch={ dispatch } />
           }
         </div>
       )

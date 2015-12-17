@@ -8,7 +8,6 @@ class Api::GoalsController < ApplicationController
   end
 
   def show_quarter
-    puts params
     @goals = QuarterlyGoal.by_site_and_quarter(
       params[:site_name], params[:quarter_id]
     )
@@ -23,15 +22,20 @@ class Api::GoalsController < ApplicationController
   end
 
   def create
-    puts params
     @goal = QuarterlyGoal.create_from_params(params)
     render json: @goal
   end
 
   def update
-    puts params
     @goal = QuarterlyGoal.find(params[:id])
     @goal.update_with_params(params)
+    render json: @goal
+  end
+
+  def approve
+    @goal = QuarterlyGoal.find(params[:id])
+    require 'pry'; binding.pry
+    @goal.approve(current_user)
     render json: @goal
   end
 end

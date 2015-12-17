@@ -99,33 +99,11 @@ function clearNewGoal() {
   }
 }
 
-export function updateGoal(data) {
+export function updateGoal(goal) {
   return {
     type: UPDATE_GOAL,
-    ...data
+    goal
   }
-}
-
-export function updateGoalAsync({id, rule, details, keywords}) {
-  return (dispatch, getState) => {
-    let goal = getState().goals[id]
-    dispatch(updateGoal(
-      {
-        goal: {
-          ...goal,
-          loading: true
-        }
-      }
-    ))
-    Network.put(`goals/${id}`, { rule, details, keywords })
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        dispatch(updateGoal(goal))
-      })
-  }
-
 }
 
 export function createGoal(data, history) {
@@ -143,7 +121,20 @@ export function createGoal(data, history) {
   }
 }
 
-export function updateGoal(data, history) {
+export function approveGoal(id) {
+  return (dispatch, getState) => {
+    Network.post(`goals/${id}/approve`, id)
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      dispatch(updateGoal(data))
+    })
+
+  }
+}
+
+export function updateGoalAsync(data, history) {
   let { siteName, goalId } = data
   return (dispatch, getState) => {
     Network.put(`sites/${siteName}/goals/${goalId}`, data)
@@ -153,6 +144,7 @@ export function updateGoal(data, history) {
     .then(data => {
       history.pushState(null, `/sites/${siteName}/goals/${data.id}`)
       dispatch(clearNewGoal())
+      dispatch(updateGoal(data))
     })
 
   }
