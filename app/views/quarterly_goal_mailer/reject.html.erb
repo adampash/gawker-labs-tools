@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+      <p>
+        <%= @rejected_by.name %> said:
+      </p>
+      <p>
+        <%= @message %>
+      </p>
+      <p>
+        Update <%= @goal.person.name %>'s goal <a href="<%= edit_api_site_goal_url(@goal.site.lower_name, @goal.id).gsub('/api', '') %>">here</a>.
+      </p>
+  </body>
+</html>

@@ -100,6 +100,7 @@ class QuarterlyGoal < ActiveRecord::Base
     update_attributes(
       reject_message: message,
     )
+    QuarterlyGoalMailer.reject(self, user, message).deliver
   end
 
 end
