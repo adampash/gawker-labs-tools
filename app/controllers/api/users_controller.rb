@@ -14,7 +14,6 @@ class Api::UsersController < ApplicationController
   def prev_quarter
     @user = User.find(params[:id])
     @goal = @user.previous_goal(params[:quarter_id].to_i)
-    require 'pry'; binding.pry
     render json: @goal
   end
 end

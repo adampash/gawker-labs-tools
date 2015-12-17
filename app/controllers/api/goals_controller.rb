@@ -1,5 +1,8 @@
 class Api::GoalsController < ApplicationController
   after_filter :set_csrf_cookie, except: :show
+  before_filter :is_manager, only: [:approve, :reject]
+  before_filter :is_senior
+  before_filter :is_editor, only: [:create, :update]
 
   def index
     Quarter.initiate_quarters
@@ -12,13 +15,11 @@ class Api::GoalsController < ApplicationController
       params[:site_name], params[:quarter_id]
     )
     render json: @goals
-    # render json: ["hi", "bye"].to_json
   end
 
   def show
     @goal = QuarterlyGoal.find(params[:id])
     render json: @goal
-    # render json: ["hi", "bye"].to_json
   end
 
   def create
@@ -44,4 +45,3 @@ class Api::GoalsController < ApplicationController
     render json: @goal
   end
 end
-

@@ -7,6 +7,27 @@ class ApplicationController < ActionController::Base
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
 
+  def is_manager
+    unless current_user.manager
+      render nothing: true
+      return
+    end
+  end
+
+  def is_editor
+    unless current_user.editor
+      render nothing: true
+      return
+    end
+  end
+
+  def is_senior
+    unless (current_user.manager || current_user.editor)
+      render nothing: true
+      return
+    end
+  end
+
   protected
 
   # In Rails 4.2 and above
