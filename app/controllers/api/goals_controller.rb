@@ -34,8 +34,13 @@ class Api::GoalsController < ApplicationController
 
   def approve
     @goal = QuarterlyGoal.find(params[:id])
-    require 'pry'; binding.pry
     @goal.approve(current_user)
+    render json: @goal
+  end
+
+  def reject
+    @goal = QuarterlyGoal.find(params[:id])
+    @goal.reject(current_user, params[:message])
     render json: @goal
   end
 end

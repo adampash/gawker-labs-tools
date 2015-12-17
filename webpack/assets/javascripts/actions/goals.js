@@ -134,6 +134,19 @@ export function approveGoal(id) {
   }
 }
 
+export function rejectGoal(data) {
+  return (dispatch, getState) => {
+    Network.post(`goals/${data.id}/reject`, data)
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      dispatch(updateGoal(data))
+    })
+
+  }
+}
+
 export function updateGoalAsync(data, history) {
   let { siteName, goalId } = data
   return (dispatch, getState) => {

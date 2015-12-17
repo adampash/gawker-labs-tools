@@ -96,4 +96,10 @@ class QuarterlyGoal < ActiveRecord::Base
     )
   end
 
+  def reject(user, message)
+    update_attributes(
+      reject_message: message,
+    )
+  end
+
 end

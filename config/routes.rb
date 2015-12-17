@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get 'sites/:site_name/quarters/:quarter_id' => 'goals#show_quarter'
     get 'goals/:id' => 'goals#show'
     post 'goals/:id/approve' => 'goals#approve'
+    post 'goals/:id/reject' => 'goals#reject'
     get 'sites' => 'sites#index'
   end
 
