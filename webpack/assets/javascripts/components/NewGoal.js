@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import GoalForm from './GoalForm'
 import Network from '../Network'
 
-// @Radium
+@Radium
 class NewGoal extends React.Component {
   constructor(props) {
     super(props)
