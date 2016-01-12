@@ -66,7 +66,6 @@ class NewGoal extends React.Component {
         return response.json()
       })
       .then(prevGoal => {
-        console.log(prevGoal)
         this.setState({ prevGoal })
       })
   }

@@ -48,7 +48,7 @@
     "react-router": "^1.0.0-rc1",
     "redux-router": "^1.0.0-beta3",
     "react-slick": "git@github.com:adampash/react-slick.git#react@0.14.0-rc1",
-    "react-swipeable-views": "^0.1.4",
+    "react-swipeable-views": "^0.3.5",
     "react-timer-mixin": "^0.13.1",
     "ruby-sass-loader": "^0.2.0",
     "sass-loader": "^1.0.2",

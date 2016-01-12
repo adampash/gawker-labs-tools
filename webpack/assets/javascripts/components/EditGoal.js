@@ -3,6 +3,7 @@ import Radium from 'radium'
 import { getGoalAsync, updateGoalAsync } from '../actions/goals'
 import { connect } from 'react-redux'
 import GoalForm from './GoalForm'
+import Network from '../Network'
 
 @Radium
 class EditGoal extends React.Component {
@@ -15,9 +16,28 @@ class EditGoal extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     let { goal } = nextProps
+    if (goal) {
+      if (this.state.prevGoal) {
+        return
+      } else {
+        this.getPrevGoal(nextProps)
+      }
+    }
     this.setState({
       ...goal
     })
+  }
+
+  getPrevGoal(props) {
+    let { goal } = props
+    let { person, quarter_id } = goal
+    Network.get(`users/${person.id}/prev_quarter/${quarter_id}`)
+      .then(response => {
+        return response.json()
+      })
+      .then(prevGoal => {
+        this.setState({ prevGoal })
+      })
   }
 
   handleSubmit(e) {
@@ -56,6 +76,7 @@ class EditGoal extends React.Component {
 
   render() {
     let { params, goal } = this.props
+    let { quarter, prevGoal } = this.state
     if (goal) {
       return (
         <div style={ styles.container }>
@@ -69,6 +90,7 @@ class EditGoal extends React.Component {
               handleChange={ this.handleNameChange.bind(this) }
               params={ params }
               goal={ goal }
+              prevGoal={ prevGoal }
               type="edit"
             />
             <button
