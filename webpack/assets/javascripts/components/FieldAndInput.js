@@ -126,5 +126,6 @@ const styles = {
     width: '100%',
     marginTop: -21,
     border: '1px solid black',
+    zIndex: 100,
   },
 }
