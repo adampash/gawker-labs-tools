@@ -9,4 +9,4 @@ echo Pushing changes
 git push;
 echo Deploying to heroku
 git push heroku;
-heroku run rake purge;
+# heroku run rake purge;
