@@ -13,7 +13,7 @@ export default class Gallery extends React.Component {
     super(props)
     let md = new MobileDetect(window.navigator.userAgent)
     this.state = {
-      index: 0,
+      index: 1,
       mobile: md.mobile()
     }
   }
@@ -25,12 +25,19 @@ export default class Gallery extends React.Component {
 
   componentDidMount() {
     let { resize } = this.props
-    if (resize) resize()
+    this.setState({ index: 0 })
   }
 
   componentDidUpdate() {
     let { resize } = this.props
-    if (resize) resize()
+    if (resize) {
+      resize()
+      setTimeout(resize, 100)
+      setTimeout(resize, 200)
+      setTimeout(resize, 300)
+      setTimeout(resize, 400)
+      setTimeout(resize, 500)
+    }
   }
 
   componentWillUnmount() {
@@ -145,6 +152,7 @@ export default class Gallery extends React.Component {
     let pics = this.getPics()
     if (!pics) return null
     let pic = pics[index]
+    let { resize } = this.props
     let { description } = this.props.gallery
     return (
       <div style={ styles.global }>
@@ -154,9 +162,11 @@ export default class Gallery extends React.Component {
             <SwipeableViews
               style={{
                 alignItems: 'center',
+                // minHeight: 300,
               }}
               index={ index }
               onChangeIndex={ (index) => this.setState({index}) }
+              onSwitching={ resize() }
             >
               { this.renderImages() }
             </SwipeableViews>

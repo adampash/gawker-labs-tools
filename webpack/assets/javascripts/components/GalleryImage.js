@@ -4,14 +4,17 @@ import Radium from 'radium'
 
 @Radium
 export default class GalleryImage extends Component {
+  resize() {
+    let { resize } = this.props
+  }
   render() {
-    let { pic, resize } = this.props
+    let { pic } = this.props
     return (
       <div>
         <img
           src={ pic.url }
           style={ styles.img }
-          onLoad={() => resize() }
+          onLoad={ this.resize.bind(this) }
         />
       </div>
     )
