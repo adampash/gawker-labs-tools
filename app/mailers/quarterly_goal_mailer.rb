@@ -4,10 +4,15 @@ class QuarterlyGoalMailer < ApplicationMailer
 
   def reject(goal, rejected_by, message)
     @goal = goal
+    @editors = goal.person.editors
+    emails = @editors.map do |editor|
+      editor.email
+    end
     @rejected_by = rejected_by
     @message = message
     mail(
-      to: 'adam.pash@gawker.com',
+      to: emails.join(', '),
+      from: rejected_by.email,
       subject: "Goal for #{ goal.person.name } needs attention",
       html: rejection_html(message, goal, rejected_by)
     )

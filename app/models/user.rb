@@ -67,4 +67,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def editors
+    User.where(editor: true).where(manager: true).select do |user|
+      user.site == site
+    end
+  end
+
 end
