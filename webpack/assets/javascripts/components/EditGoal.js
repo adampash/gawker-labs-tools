@@ -80,7 +80,7 @@ class EditGoal extends React.Component {
     if (goal) {
       return (
         <div style={ styles.container }>
-          { goal.reject_message &&
+          { !goal.approved && goal.reject_message &&
             <p>
               <b>Needed for approval:</b> { goal.reject_message }
             </p>

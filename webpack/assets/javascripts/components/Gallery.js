@@ -25,6 +25,7 @@ export default class Gallery extends React.Component {
 
   componentDidMount() {
     let { resize } = this.props
+    resize()
     this.setState({ index: 0 })
   }
 
@@ -84,7 +85,7 @@ export default class Gallery extends React.Component {
     let pics = this.getPics()
     // if (!pics) return null
     let pic = pics[index]
-    let { description, credit } = pic
+    let { description, credit, original } = pic
     return (
       <div>
         { description && description.trim() !== '' &&
@@ -150,13 +151,13 @@ export default class Gallery extends React.Component {
   render() {
     let { index } = this.state
     let pics = this.getPics()
-    if (!pics) return null
+    if (!pics || pics.length === 0) return null
     let pic = pics[index]
-    let { resize } = this.props
-    let { description } = this.props.gallery
+    let { resize, gallery } = this.props
+    let { description } = gallery
     return (
       <div style={ styles.global }>
-        <div style={[ styles.title, styles.copy ]}>{ description }</div>
+        <div style={[ styles.title, styles.copy ]}>{ description ? description : '' }</div>
         <div style={ styles.container }>
           <div style={ styles.swipeContainer } className="galContainer">
             <SwipeableViews
@@ -171,7 +172,7 @@ export default class Gallery extends React.Component {
               { this.renderImages() }
             </SwipeableViews>
             <div className="enlarge">
-              <a href={ pic.original } target="_blank">
+              <a href={ pic ? pic.original : '#' } target="_blank">
                 <img src="/new_tab_icon.svg"
                   style={ styles.original }
                 />

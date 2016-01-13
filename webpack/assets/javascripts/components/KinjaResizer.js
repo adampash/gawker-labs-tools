@@ -21,8 +21,13 @@ export default class KinjaResizer extends Component {
       window.removeEventListener('resize', this.resize.bind(this))
   }
 
-  resize(e) {
-    let height = this.getHeight() + 10
+  resize(h) {
+    let height
+    if (h) {
+      height = h
+    } else {
+      height = this.getHeight() + 10
+    }
     window.top.postMessage(
       JSON.stringify({
         kinja: {

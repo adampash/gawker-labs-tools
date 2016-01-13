@@ -1,5 +1,6 @@
 import React from 'react'
 import Radium from 'radium'
+import KinjaResizer from '../components/KinjaResizer'
 import Gallery from './Gallery'
 import EmbedArea from './EmbedArea'
 import ImageList from './ImageList'
@@ -55,10 +56,12 @@ class ShowGallery extends React.Component {
         <div style={ styles.note }>
           Note: The embed will automatically adjust its height to fit in Kinja
         </div>
-        <Gallery
-          gallery={ gallery }
-          pics={ pictures }
-        />
+        <KinjaResizer>
+          <Gallery
+            gallery={ gallery }
+            pics={ pictures }
+          />
+        </KinjaResizer>
         <div style={{ maxWidth: 400, margin: '15px auto' }}>
           <EmbedArea link={ this.renderLink() } />
         </div>
