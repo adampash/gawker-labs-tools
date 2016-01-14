@@ -38,6 +38,8 @@ export default class Gallery extends React.Component {
       setTimeout(resize, 300)
       setTimeout(resize, 400)
       setTimeout(resize, 500)
+      setTimeout(resize, 1000)
+      setTimeout(resize, 4000)
     }
   }
 
