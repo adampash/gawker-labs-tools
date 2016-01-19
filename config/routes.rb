@@ -32,6 +32,9 @@ Rails.application.routes.draw do
     get '(*iframe)' => 'embeds#empty'
   end
 
+  get 'switch_user' => 'switch_user#set_current_user'
+  get 'switch' => 'users#switch'
+
   # direct all non-caught pages somewhere
   get '(*foo)' => 'pages#hello'
   root 'pages#hello'

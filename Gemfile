@@ -44,6 +44,7 @@ gem 'newrelic_rpm'
 # auth
 gem 'devise'
 gem "omniauth-google-oauth2"
+gem "switch_user"
 
 # attachments
 gem 'paperclip', "~> 4.3"
