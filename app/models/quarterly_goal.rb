@@ -1,4 +1,5 @@
 class QuarterlyGoal < ActiveRecord::Base
+  include ActionView::Helpers::TextHelper
   belongs_to :site
   belongs_to :quarter
   belongs_to :job_title
@@ -101,6 +102,12 @@ class QuarterlyGoal < ActiveRecord::Base
       reject_message: message,
     )
     QuarterlyGoalMailer.reject(self, user, message).deliver
+  end
+
+
+  class Helper
+    include Singleton
+    include ::ActionView::Helpers::NumberHelper
   end
 
 end

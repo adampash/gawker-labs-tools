@@ -1,8 +1,10 @@
 import React from 'react'
 import Radium from 'radium'
+import marked from 'react-marked'
 import { getGoalAsync } from '../actions/goals'
 import { connect } from 'react-redux'
 import ApproveOrReject from './ApproveOrReject'
+
 
 @Radium
 class ShowGoal extends React.Component {
@@ -16,16 +18,30 @@ class ShowGoal extends React.Component {
   render() {
     let { goal, currentUser, dispatch } = this.props
     if (goal) {
+      marked.setOptions({
+        renderer: new marked.Renderer(),
+        gfm: true,
+        tables: true,
+        breaks: true,
+        pedantic: true,
+        sanitize: false,
+        smartLists: true,
+        smartypants: true
+      })
+      let { goals, other_goals, evaluation } = goal
+
       return (
         <div style={ styles.container }>
           <h3>{ goal.person.site.toUpperCase() } { goal.quarter.name } Goals</h3>
           <h4>{ goal.person.name } - { goal.job.name }</h4>
           <h4>Primary goals:</h4>
-          <p>{ goal.goals }</p>
+          { goals ? marked(goals) : '' }
+
           <h4>Other goals:</h4>
-          <p>{ goal.other_goals }</p>
+          { other_goals ? marked(other_goals) : '' }
+
           <h4>Evaluation:</h4>
-          <p>{ goal.evaluation }</p>
+          { evaluation ? marked(evaluation) : '' }
           { currentUser.manager &&
             <ApproveOrReject goal={ goal } dispatch={ dispatch } />
           }
