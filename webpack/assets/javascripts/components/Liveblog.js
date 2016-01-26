@@ -103,6 +103,7 @@ const styles = {
   },
   img: {
     maxWidth: "100%",
+    margin: "10px 0",
   },
   link: {
     color: 'red',
