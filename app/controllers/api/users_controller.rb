@@ -24,4 +24,3 @@ class Api::UsersController < ApplicationController
     render json: @goal
   end
 end
-

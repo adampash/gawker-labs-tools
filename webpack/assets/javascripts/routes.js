@@ -17,6 +17,7 @@ import Styles from './components/Styles'
 import NewStyle from './components/NewStyle'
 import ShowStyle from './components/ShowStyle'
 import Goals from './components/Goals'
+import Liveblog from './components/Liveblog'
 import NewGoal from './components/NewGoal'
 import EditGoal from './components/EditGoal'
 import ShowGoal from './components/ShowGoal'
@@ -65,6 +66,7 @@ let getRoutes = (store) => {
         <Route path="/sites/:siteName/goals/:goalId" name="Show Goal" component={ ShowGoal } />
         <Route path="/sites/:siteName/goals/:goalId/edit" name="Edit Goal" component={ EditGoal } />
         <Route path="/suggestions/new" name="Suggestions" component={ NewSuggestion } />
+        <Route path="/liveblog" name="Liveblog" component={ Liveblog } />
       </Route>
       <Route path="iframe/galleries/:galleryId" name="iframe_gallery" component={ GalleryEmbed } />
       <Route path="iframe/embeds/:embedId" name="iframe_embed" component={ Nothing } />
