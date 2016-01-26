@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
     user
   end
 
+  def self.autocomplete(sitename, query)
+    where("email LIKE ?", "%#{sitename}.com")
+      .where("LOWER(name) LIKE ?", "%#{query.downcase}%")
+  end
+
   def latest_galleries
     galleries.order(created_at: :desc).limit(10)
   end

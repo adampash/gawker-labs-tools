@@ -5,8 +5,7 @@ class Api::UsersController < ApplicationController
     if params[:query] == ''
       @users = []
     else
-      @users = User.where("email LIKE ?", "%#{params[:siteName]}.com")
-        .where("LOWER(name) LIKE ?", "%#{params[:query].downcase}%")
+      @users = User.autocomplete(params[:siteName], params[:query])
     end
     render json: @users
   end
