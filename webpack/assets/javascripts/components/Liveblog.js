@@ -10,6 +10,9 @@ export default class Liveblog extends Component {
         <h3> How to set up a liveblog </h3>
         <ol>
           <li>
+            Ping @adampash on Slack to let him know you're doing a liveblog.
+          </li>
+          <li>
             Go to the one of the liveblog Slack rooms (
               <a target="_blank"
                 style={ styles.link } href="https://gawker.slack.com/messages/liveblog/">
@@ -19,7 +22,7 @@ export default class Liveblog extends Component {
                   style={ styles.link } href="https://gawker.slack.com/messages/liveblog2/">
                     #liveblog2
                 </a>
-              , or <a target="_blank" 
+              , or <a target="_blank"
                     style={ styles.link } href="https://gawker.slack.com/messages/liveblog3/">
                     #liveblog3
                   </a>).
