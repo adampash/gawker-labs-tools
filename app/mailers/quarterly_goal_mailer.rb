@@ -13,6 +13,7 @@ class QuarterlyGoalMailer < ApplicationMailer
     mail(
       to: emails.join(', '),
       from: rejected_by.email,
+      cc: rejected_by.email,
       subject: "Goal for #{ goal.person.name } needs attention",
       html: rejection_html(message, goal, rejected_by)
     )
