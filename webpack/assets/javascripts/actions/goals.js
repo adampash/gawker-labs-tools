@@ -162,5 +162,3 @@ export function updateGoalAsync(data, history) {
 
   }
 }
-
-
