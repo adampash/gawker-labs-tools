@@ -19,8 +19,10 @@ body {
 }
 
 .center_embed {
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
+  display: block;
+  text-align: center;
   max-width: 100%;
 }
 
