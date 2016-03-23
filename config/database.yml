@@ -81,5 +81,6 @@ test:
 production:
   <<: *default
   database: labs-tools_production
-  username: labs-tools
-  password: <%= ENV['RAILS-REACT-WEBPACK-STARTER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  # username: labs-tools
+  # password: <%= ENV['RAILS-REACT-WEBPACK-STARTER_DATABASE_PASSWORD'] %>
