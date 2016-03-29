@@ -8,6 +8,6 @@ git add . && git commit -m "$message"
 echo Pushing changes
 git push;
 echo Deploying to heroku
-# git push heroku;
-git push dokku;
+git push heroku;
+# git push dokku;
 # heroku run rake purge;
