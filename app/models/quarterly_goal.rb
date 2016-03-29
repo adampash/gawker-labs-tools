@@ -55,7 +55,7 @@ class QuarterlyGoal < ActiveRecord::Base
   def previous_quarter_id
     case quarter.q_id.to_s.last
     when "2", "3", "4"
-      quarter.q_id + 1
+      quarter.q_id - 1
     else
       quarter.q_id - 7
     end
