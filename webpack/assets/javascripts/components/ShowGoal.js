@@ -28,10 +28,10 @@ class ShowGoal extends React.Component {
         smartLists: true,
         smartypants: true
       })
-      let { goals, other_goals, evaluation } = goal
+      let { goals, other_goals, evaluation, previous_goal } = goal
 
       return (
-        <div style={ styles.container }>
+        <div style={ styles.container } className="goals">
           <h3>{ goal.person.site.toUpperCase() } { goal.quarter.name } Goals</h3>
           <h4>{ goal.person.name } - { goal.job.name }</h4>
           <h4>Primary goals:</h4>
@@ -40,8 +40,22 @@ class ShowGoal extends React.Component {
           <h4>Other goals:</h4>
           { other_goals ? marked(other_goals) : '' }
 
-          <h4>Evaluation:</h4>
-          { evaluation ? marked(evaluation) : '' }
+          <h4>Evaluation for this quarter:</h4>
+          { evaluation ? marked(evaluation) : <span className="none">None yet submitted</span> }
+          { previous_goal &&
+            <div>
+              <h4>Previous goal:</h4>
+              <p>
+                { previous_goal.goals }
+              </p>
+              <p>
+                { previous_goal.other_goals }
+              </p>
+              <p>
+                <b>Last quarter goal evaluation:</b> { previous_goal.evaluation }
+              </p>
+            </div>
+          }
           { currentUser.manager &&
             <ApproveOrReject goal={ goal } dispatch={ dispatch } />
           }

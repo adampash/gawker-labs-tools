@@ -125,11 +125,15 @@ export default class GoalForm extends Component {
         />
         { prevGoal &&
           <div>
+            <hr />
             <div style={ styles.prevGoal }>
               <h4 style={ styles.h4 }>Previous quarter</h4>
-              <b>Main goals:</b> { prevGoal.goals }
-              <br />
-              <b>Other goals:</b> { prevGoal.other_goals }
+              <p>
+                <b>Main goals:</b> { prevGoal.goals }
+              </p>
+              <p>
+                <b>Other goals:</b> { prevGoal.other_goals ? prevGoal.other_goals : <span className="none">None submitted</span> }
+              </p>
             </div>
             <FieldAndInput
               handleNameChange={ handleChange }
@@ -148,10 +152,10 @@ export default class GoalForm extends Component {
 
 const styles = {
   prevGoal: {
-    padding: '10px 0',
+    padding: '0 0 25px',
   },
   h4: {
-    margin: 0,
+    marginBottom: 5,
     padding: 0,
   },
 }

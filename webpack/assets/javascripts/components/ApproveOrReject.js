@@ -75,6 +75,7 @@ export default class ApproveOrReject extends Component {
 const styles = {
   buttons: {
     display: 'flex',
+    marginTop: 20,
   },
   button: {
     marginRight: 20,
@@ -98,6 +99,7 @@ const styles = {
   },
   approved_message: {
     fontSize: 13,
+    marginTop: 20,
   },
   reject_message: {
     width: '80%',

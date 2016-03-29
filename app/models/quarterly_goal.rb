@@ -87,6 +87,7 @@ class QuarterlyGoal < ActiveRecord::Base
     json["approved_by"] = approved_by
     json["job"] = job_title
     json["quarter"] = quarter
+    json["previous_goal"] = previous_goal
     json
   end
 

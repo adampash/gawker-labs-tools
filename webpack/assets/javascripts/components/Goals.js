@@ -27,7 +27,7 @@ class Goals extends React.Component {
     let { siteName } = params
     let list = quarters.map( quarter => {
       return (
-        <div key={ quarter.id } quarter={ quarter }>
+        <div key={ quarter.id } quarter={ quarter } className="goals">
           <Link to={`/sites/${siteName}/quarters/${quarter.q_id}`}>
             <h3>{ quarter.name }</h3>
           </Link>
